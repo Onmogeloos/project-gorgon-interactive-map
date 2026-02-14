@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  scrollbar-color: var(--color-gray) transparent !important;
+}
+
+body {
+  background: linear-gradient(rgb(22, 22, 29) 0%,
+      rgb(31, 31, 58) 35%,
+      rgb(59, 47, 74) 71%,
+      rgb(84, 62, 110) 100%);
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+#root {
+  --color-primary: rgb(134, 203, 146);
+  --color-gray: #424242;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 6rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.leaflet-container {
+  user-select: none;
+}
+
+.leaflet-marker-icon {
+  background: transparent;
+  border: none;
+
+  .icon-wrapper {
+    position: relative;
+    fill: blue;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-marker {
+      fill: var(--color-primary);
+      height: 100%;
+      width: 100%;
+    }
+
+    svg:not(.icon-marker) {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      fill: black;
+      top: 2px;
+    }
+  }
+}

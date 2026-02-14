@@ -3,12 +3,22 @@
     "jsx": "react-jsx",
     "outDir": "../dist",
     "noEmit": true,
-    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "paths": {
-      "@assets/*": ["./assets/*"]
-    }
+      "@assets/*": ["./src/assets/*"],
+      "@types/*": ["./src/types/*"],
+      "@components/*": ["./src/components/*"]
+    },
+    "target": "es2022",
+    "module": "es2022"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+  ],
 }
