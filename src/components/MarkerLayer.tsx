@@ -1,10 +1,10 @@
-import { Marker, Popup } from "react-leaflet";
-import { MapData, MarkerData, MarkerGroup } from "@types/Map";
-import { DivIcon, icon, Icon } from "leaflet";
-import { useContext } from "react";
-import { MapContext } from "../main";
-import markerWrapper from "@assets/icons/markerwrapper.svg?raw"
 import hexagon from "@assets/icons/hexagon.svg?raw";
+import markerWrapper from "@assets/icons/markerwrapper.svg?raw";
+import { MapData, MarkerData, MarkerGroup } from "@types/Map";
+import { DivIcon } from "leaflet";
+import { useContext } from "react";
+import { Marker, Popup, useMapEvents } from "react-leaflet";
+import { MapContext } from "../main";
 
 const wrapIcon = (svg: string): string => `
     <div class="icon-wrapper">
@@ -18,6 +18,11 @@ export default function MarkerLayer({
 }: {
     mapData: MapData
 }) {
+    useMapEvents({
+        click(e) {
+            console.log(`[${e.latlng.lat}, ${e.latlng.lng}],`);
+        },
+    });
     return (
         <>
             {mapData.markers.map((marker, index) => (<CustomMarker key={index} markerData={marker} />))}

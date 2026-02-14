@@ -124,13 +124,13 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 },
                 {
                     name: "Path to Eltibule",
-                    position: [950, 430],
+                    position: [946.25, 346.25],
                     group: MarkerGroup.MapGate
                 },
                 {
                     name: "Old Fangsworth",
-                    position: [900, 650],
-                    group: MarkerGroup.Location
+                    position: [914.25, 568.75],
+                    group: MarkerGroup.Boss
                 },
                 {
                     name: "Fitz the Boatman",
@@ -165,16 +165,16 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Old Snouty",
                     position: [520, 780],
-                    group: MarkerGroup.NPC
+                    group: MarkerGroup.Boss
                 },
                 {
-                    name: "Mushroom",
-                    position: [500, 900],
+                    name: "Mushroom circle",
+                    position: [500, 882],
                     group: MarkerGroup.Object
                 },
                 {
                     name: "Serbule Keep & Market",
-                    position: [500, 500],
+                    position: [411.75, 579.25],
                     group: MarkerGroup.Location
                 },
                 {
@@ -189,37 +189,40 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 },
                 {
                     name: "Carpal Tunnels",
-                    position: [520, 150],
+                    position: [448, 165],
                     group: MarkerGroup.Location
                 },
                 {
                     name: "Giant Mushrooms",
-                    position: [650, 80],
+                    position: [585.75, 22.5],
                     group: MarkerGroup.Location
                 },
                 {
                     name: "Serbule Graveyard",
-                    position: [160, 180],
+                    position:[132, 116.5],
                     group: MarkerGroup.Location
                 },
                 {
                     name: "Serbule Crypt",
-                    position: [120, 120],
+                    position: [104, 76],
                     group: MarkerGroup.Location
                 },
                 {
-                    name: "Gluxax",
-                    position: [180, 420],
-                    group: MarkerGroup.NPC
+                    name: "Gluzax",
+                    position: [
+                        151.75,
+                        307.5
+                    ],
+                    group: MarkerGroup.Boss
                 },
                 {
                     name: "Teleport Pad (South)",
-                    position: [170, 600],
+                    position: [188, 602],
                     group: MarkerGroup.Object
                 },
                 {
                     name: "Salmpo",
-                    position: [140, 600],
+                    position: [124, 535],
                     group: MarkerGroup.NPC
                 },
                 {

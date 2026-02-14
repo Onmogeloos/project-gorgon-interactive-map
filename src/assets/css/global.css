@@ -35,34 +35,35 @@ h3 {
 }
 
 .leaflet-container {
+  background: inherit !important;
   user-select: none;
-}
 
-.leaflet-marker-icon {
-  background: transparent;
-  border: none;
+  .leaflet-marker-icon {
+    background: transparent;
+    border: none;
 
-  .icon-wrapper {
-    position: relative;
-    fill: blue;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .icon-wrapper {
+      position: relative;
+      fill: blue;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    .icon-marker {
-      fill: var(--color-primary);
-      height: 100%;
-      width: 100%;
-    }
+      .icon-marker {
+        fill: var(--color-primary);
+        height: 100%;
+        width: 100%;
+      }
 
-    svg:not(.icon-marker) {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      fill: black;
-      top: 2px;
+      svg:not(.icon-marker) {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        fill: black;
+        top: 2px;
+      }
     }
   }
 }

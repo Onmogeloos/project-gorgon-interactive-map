@@ -3,8 +3,8 @@ import { Maps } from "@types/Map";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { MapContext } from "../main";
-import { FlexColumn } from "./Flex";
+import { MapContext } from "../../main";
+import { FlexColumn } from "../Flex";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import MarkerToggles from "./MarkerToggles";
@@ -60,8 +60,7 @@ export default function Sidebar() {
         <Box sx={{ position: "relative" }} >
             <StyledSidebar $isOpen={isOpen}>
                 <Box sx={{paddingBottom: "1rem"}}>
-                    <h2>Gorgon Interactive Map</h2>
-                <p>Select a map from the list below:</p>
+                    <h2>Project: Gorgon Interactive Map</h2>
                 <FlexColumn $gapY="0.5rem">
                     {(Object.keys(mapData) as Maps[]).map((mapKey) => {
                         const map = mapData[mapKey];

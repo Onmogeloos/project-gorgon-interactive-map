@@ -1,10 +1,10 @@
 import { GlobalData, GlobalMapData, MapData, Maps, MarkerGroup } from '@types/Map';
 import { CRS } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ImageOverlay, MapContainer, ZoomControl } from 'react-leaflet';
-import { HashRouter, Route, Routes } from 'react-router';
+import { HashRouter, Route, Routes, useLocation, useParams } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
@@ -12,7 +12,7 @@ import { CssBaseline } from "@mui/material";
 import "./assets/css/global.css";
 import { loadGlobalData, loadMapData } from './components/Mapdata';
 import MarkerLayer from './components/MarkerLayer';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import theme from './Theme';
 
 const MainContainer = styled.div`
@@ -42,6 +42,7 @@ function App() {
                     <CssBaseline />
                     <HashRouter>
                         <Routes>
+                            <Route key={MAP_DATA[Maps.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Maps.AnagogeIsland]} />} />
                             {
                                 Object.values(MAP_DATA).map((map) => (
                                     <Route key={map.slug} path={map.slug} element={<Page map={map} />} />

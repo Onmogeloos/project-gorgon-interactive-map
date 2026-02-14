@@ -1,9 +1,10 @@
 import { Box, Button, Checkbox } from "@mui/material";
 import { MarkerGroup } from "@types/Map";
 import { useContext, useState } from "react";
-import { FlexRow } from "./Flex";
-import { MapContext } from "../main";
+import { FlexRow } from "../Flex";
+import { MapContext } from "../../main";
 import { Label } from "@mui/icons-material";
+import { useLocation } from "react-router";
 
 const MarkerGroupData: {[key in MarkerGroup]: {
     label: string
