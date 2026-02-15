@@ -1,19 +1,21 @@
-import { GlobalData, GlobalMapData, MapData, Maps, MarkerGroup } from '@types/Map';
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
+import { GlobalData, GlobalMapData, MapData, Maps } from '@types/Map';
 import { CRS } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { createContext, useEffect } from 'react';
+import { createContext } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ImageOverlay, MapContainer, ZoomControl } from 'react-leaflet';
-import { HashRouter, Route, Routes, useLocation, useParams } from 'react-router';
+import { MapContainer } from 'react-leaflet';
+import { Provider, useSelector } from 'react-redux';
+import { HashRouter, Route, Routes } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
-import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { RootState, store } from './store/store';
 
 import "./assets/css/global.css";
 import { loadGlobalData, loadMapData } from './components/Mapdata';
-import MarkerLayer from './components/MarkerLayer';
 import Sidebar from './components/sidebar/Sidebar';
 import theme from './Theme';
+import Map from './components/map/Map';
 
 const MainContainer = styled.div`
     width: 100vw;
@@ -31,54 +33,53 @@ export const MapContext = createContext<{
 }>({
     currentMapData: MAP_DATA[Maps.AnagogeIsland],
     mapData: MAP_DATA,
-    globalData: GLOBAL_DATA
+    globalData: GLOBAL_DATA,
 });
 
 function App() {
     return (
-        <MainContainer>
-            <ThemeProvider theme={theme}>
-                <MUIThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <HashRouter>
-                        <Routes>
-                            <Route key={MAP_DATA[Maps.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Maps.AnagogeIsland]} />} />
-                            {
-                                Object.values(MAP_DATA).map((map) => (
-                                    <Route key={map.slug} path={map.slug} element={<Page map={map} />} />
-                                ))
-                            }
-                        </Routes>
-                    </HashRouter>
-                </MUIThemeProvider>
-            </ThemeProvider>
-        </MainContainer >
+        <Provider store={store}>
+            <MainContainer>
+                <ThemeProvider theme={theme}>
+                    <MUIThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <HashRouter>
+                            <Routes>
+                                <Route key={MAP_DATA[Maps.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Maps.AnagogeIsland]} />} />
+                                {
+                                    Object.values(MAP_DATA).map((map) => (
+                                        <Route key={map.slug} path={map.slug} element={<Page map={map} />} />
+                                    ))
+                                }
+                            </Routes>
+                        </HashRouter>
+                    </MUIThemeProvider>
+                </ThemeProvider>
+            </MainContainer >
+        </Provider>
     );
 }
 
-function Page({ map }: { map: MapData }) {
+function Page({ map: mapData }: { map: MapData }) {
+    const isMarkerProposalOpen = useSelector((state: RootState) => state.map.isMarkerProposalOpen);
+    
     return <>
         <MapContext.Provider value={{
-            currentMapData: map,
+            currentMapData: mapData,
             mapData: MAP_DATA,
-            globalData: GLOBAL_DATA
+            globalData: GLOBAL_DATA,
         }}>
             <Sidebar />
             <MapContainer
                 crs={CRS.Simple}
                 bounds={[[0, 0], [1000, 1000]]}
-                style={{ height: '100vh', width: '100vw', background: '#000' }}
+                style={{ height: '100vh', width: '100vw' }}
                 minZoom={-2}
                 maxZoom={2}
                 zoom={0}
                 zoomControl={false}
             >
-                <ZoomControl position="topright" />
-                <ImageOverlay
-                    url={map.imageUrl}
-                    bounds={[[0, 0], [1000, 1000]]}
-                />
-                <MarkerLayer mapData={map} />
+                <Map/>
             </MapContainer >
         </MapContext.Provider>
     </>

@@ -2,16 +2,57 @@ import { GlobalData, GlobalMapData, Maps, MarkerGroup } from "@types/Map";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
-        icons: {
-            [MarkerGroup.Boss]: (await import("@assets/icons/boss.svg?raw")).default,
-            [MarkerGroup.Resource]: (await import("@assets/icons/user.svg?raw")).default,
-            [MarkerGroup.Entrance]: (await import("@assets/icons/cave.svg?raw")).default,
-            [MarkerGroup.NPC]: (await import("@assets/icons/user.svg?raw")).default,
-            [MarkerGroup.Location]: (await import("@assets/icons/marker.svg?raw")).default,
-            [MarkerGroup.Object]: (await import("@assets/icons/hexagon.svg?raw")).default,
-            [MarkerGroup.MapGate]: (await import("@assets/icons/road.svg?raw")).default,
-            [MarkerGroup.TeleportPad]: (await import("@assets/icons/teleport.svg?raw")).default,
-            [MarkerGroup.MeditationPillar]: (await import("@assets/icons/meditate.svg?raw")).default
+        markerGroups: {
+            [MarkerGroup.Boss]: {
+                icon: (await import("@assets/icons/boss.svg?raw")).default,
+                label: "Bosses",
+                color: "#e74c3c"
+            },
+            [MarkerGroup.Resource]: {
+                icon: (await import("@assets/icons/user.svg?raw")).default,
+                label: "Resources",
+                color: "#27ae60"
+            },
+            [MarkerGroup.Entrance]: {
+                icon: (await import("@assets/icons/cave.svg?raw")).default,
+                label: "Entrances",
+                color: "#6d6d6d"
+            },
+            [MarkerGroup.NPC]: {
+                icon: (await import("@assets/icons/user.svg?raw")).default,
+                label: "NPCs",
+                color: "#f1c40f"
+            },
+            [MarkerGroup.Location]: {
+                icon: (await import("@assets/icons/marker.svg?raw")).default,
+                label: "Locations",
+                color: "#3498db"
+            },
+            [MarkerGroup.Object]: {
+                icon: (await import("@assets/icons/hexagon.svg?raw")).default,
+                label: "Objects",
+                color: "#95a5a6"
+            },
+            [MarkerGroup.MapGate]: {
+                icon: (await import("@assets/icons/road.svg?raw")).default,
+                label: "Map Gates",
+                color: "#d35400"
+            },
+            [MarkerGroup.TeleportPad]: {
+                icon: (await import("@assets/icons/teleport.svg?raw")).default,
+                label: "Teleport Pads",
+                color: "#2ecc71"
+            },
+            [MarkerGroup.MeditationPillar]: {
+                icon: (await import("@assets/icons/meditate.svg?raw")).default,
+                label: "Meditation Pillars",
+                color: "#9b59b6"
+            },
+            [MarkerGroup.Forage]: {
+                icon: (await import("@assets/icons/plant.svg?raw")).default,
+                label: "Forage",
+                color: "#27ae60"
+            },
         }
     }
 }
@@ -19,11 +60,11 @@ export async function loadGlobalData(): Promise<GlobalData> {
 export async function loadMapData(): Promise<GlobalMapData> {
     return {
         [Maps.AnagogeIsland]: {
-            name: "Anagoge island",
+            name: "Anagoge Island",
             slug: "anagoge",
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaNewbieIsland.png")).default,
-            markers: [
+            uniqueMarkers: [
                 {
                     name: "Anagoge Dock",
                     position: [950, 310],
@@ -99,14 +140,15 @@ export async function loadMapData(): Promise<GlobalMapData> {
                     position: [230, 840],
                     group: MarkerGroup.NPC
                 }
-            ]
+            ],
+            bulkMarkers: []
         },
         [Maps.Serbule]: {
             name: "Serbule",
             slug: "serbule",
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaSerbule.png")).default,
-            markers: [
+            uniqueMarkers: [
                 {
                     name: "Brain Bug Cave",
                     position: [880, 110],
@@ -199,7 +241,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 },
                 {
                     name: "Serbule Graveyard",
-                    position:[132, 116.5],
+                    position: [132, 116.5],
                     group: MarkerGroup.Location
                 },
                 {
@@ -230,14 +272,41 @@ export async function loadMapData(): Promise<GlobalMapData> {
                     position: [80, 780],
                     group: MarkerGroup.MapGate
                 }
-            ]
+            ],
+            bulkMarkers: []
         },
         [Maps.SerbuleHills]: {
             name: "Serbule Hills",
             slug: "serbulehills",
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaSerbule2.png")).default,
-            markers: []
+            uniqueMarkers: [
+                {
+                    name: "Path to Serbule",
+                    position: [988, 95],
+                    group: MarkerGroup.MapGate
+                },
+                {
+                    name: "Path to Serbule Hills",
+                    position: [80, 780],
+                    group: MarkerGroup.MapGate
+                }
+            ],
+            bulkMarkers: [
+                {
+                    name: "Apple tree",
+                    group: MarkerGroup.Forage,
+                    positions: [
+                        [855, 55.5],
+                        [855.25, 48.25],
+                        [875, 21],
+                        [937.75, 20.75],
+                        [941.25, 33.5],
+                        [973.5, 78],
+                        [906.25, 121.75],
+                    ]
+                }
+            ]
         }
     };
 }

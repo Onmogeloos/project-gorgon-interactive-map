@@ -44,7 +44,6 @@ h3 {
 
     .icon-wrapper {
       position: relative;
-      fill: blue;
       width: 32px;
       height: 32px;
       display: flex;
@@ -52,7 +51,6 @@ h3 {
       justify-content: center;
 
       .icon-marker {
-        fill: var(--color-primary);
         height: 100%;
         width: 100%;
       }

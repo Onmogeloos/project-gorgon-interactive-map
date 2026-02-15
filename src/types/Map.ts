@@ -4,7 +4,8 @@ export type MapData = {
     slug: string;
     description: string;
     imageUrl: string;
-    markers: MarkerData[];
+    uniqueMarkers: UniqueMarkerData[];
+    bulkMarkers: BulkMarkerData[]
 }
 
 export enum MarkerGroup {
@@ -17,15 +18,22 @@ export enum MarkerGroup {
     MapGate = 'mapgate',
     MeditationPillar = 'meditationpillar',
     Statue = 'statue',
-    TeleportPad = 'teleportpad'
+    TeleportPad = 'teleportpad',
+    Forage = "Forage"
 }
 
 export type Coordinate = [number, number];
 
-export type MarkerData = {
+export type UniqueMarkerData = {
     name: string;
     group: MarkerGroup;
     position: Coordinate;
+}
+
+export type BulkMarkerData = {
+    name: string;
+    group: MarkerGroup;
+    positions: Coordinate[];
 }
 
 export enum Maps {
@@ -35,6 +43,10 @@ export enum Maps {
 }
 
 export type GlobalData = {
-    icons: {[key in MarkerGroup]?: string;}
+    markerGroups: {[key in MarkerGroup]?: {
+        icon: string;
+        label: string;
+        color: string;
+    }}
 }
 export type GlobalMapData = {[key in Maps]: MapData}
