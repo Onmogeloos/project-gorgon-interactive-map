@@ -1,13 +1,12 @@
 import hexagon from "@assets/icons/hexagon.svg?raw";
 import markerWrapper from "@assets/icons/markerwrapper.svg?raw";
 import plus from "@assets/icons/plus.svg?raw";
-import { MapData, UniqueMarkerData, MarkerGroup } from "@types/Map";
+import { MarkerGroup, UniqueMarkerData } from "@types/Map";
 import { DivIcon } from "leaflet";
 import { useContext } from "react";
-import { Marker, Popup, useMapEvents } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 import { MapContext } from "../../main";
 import { useAppSelector } from "../../store/hooks";
-import { setIsMarkerProposalOpen } from "@store/mapSlice";
 
 const wrapIcon = (svg: string, color: string): string => `
     <div class="icon-wrapper" style="fill: ${color}">

@@ -1,4 +1,4 @@
-import { Button, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Button, Dialog, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { Maps } from "@types/Map";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
@@ -128,48 +128,68 @@ function MarkerProposalSidebar() {
     const form = useForm<FormData>({
         defaultValues: {
             name: "",
-            type: Object.keys(globalData.markerGroups)[0],
+            type: undefined,
             map: currentMapData.slug,
             position: [mapClickPosition?.y ?? 0, mapClickPosition?.x ?? 0],
         },
         resolver: joiResolver(Joi.object({
             name: Joi.string().required(),
-            type: Joi.string().valid(...Object.keys(globalData.markerGroups)).required(),
+            type: Joi.string().disallow("").required(),
             map: Joi.string().required(),
             position: Joi.array().items(Joi.number()).length(2).required(),
         })),
         mode: "onChange",
     })
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = async (data: FormData) => {
         console.log(data);
-        fetch(`https://master-project-gorgon-marker-worker.onmogeloos.workers.dev/save-marker`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
+        try {
+            await fetch(`https://master-project-gorgon-marker-worker.onmogeloos.workers.dev/save-marker`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+            window.alert("Thank you for your submission! Your marker proposal has been received and will be reviewed as soon as possible.");
+        } catch (error) {
+            window.alert(`Failed to submit marker. Please try again later.`);
+        } finally {
+            dispatch(setIsMarkerProposalOpen(false));
+        }
     }
 
     return (
         <FlexColumn $gapY="1rem">
             <Typography variant="h6">Propose a new marker</Typography>
-            <Typography variant="body1">Click on the map to select the position.</Typography>
-            <Form onSubmit={form.handleSubmit(onSubmit)}>
+            <Typography variant="body1">Submitted markers are manually reviewed before being added to the map.</Typography>
+            <Typography variant="body2">Click on the map to select the position.</Typography>
+            <Form onSubmit={form.handleSubmit(onSubmit, (err) => console.error(err))}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                    <TextField label="Name" variant="filled" {...form.register("name")} />
-                    <TextField
-                        select
-                        label="Type"
-                        defaultValue=""
-                    >
+                    <Box sx={{ width: "100%" }}>
+                        <TextField label="Name" variant="filled" {...form.register("name")} fullWidth />
                         {
-                            Object.entries(globalData.markerGroups).map(([key, group]) => (
-                                <MenuItem key={key} value={key}>{group.label}</MenuItem>
-                            ))
+                            form.formState.errors.name && <Typography color="error">{form.formState.errors.name.message}</Typography>
                         }
-                    </TextField>
+                    </Box>
+                    <Box sx={{ width: "100%" }}   >
+                        <TextField
+                            select
+                            label="Type"
+                            defaultValue=""
+                            fullWidth
+                            {...form.register("type")}
+                        >
+                            {
+                                Object.entries(globalData.markerGroups).map(([key, group]) => (
+                                    <MenuItem key={key} value={key}>{group.label}</MenuItem>
+                                ))
+                            }
+                        </TextField>
+                        {
+                            form.formState.errors.type && <Typography color="error">{form.formState.errors.type.message}</Typography>
+                        }
+                    </Box>
                     <TextField
                         label="Map"
                         disabled

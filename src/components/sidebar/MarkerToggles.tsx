@@ -1,12 +1,10 @@
-import { Box, Button, Checkbox } from "@mui/material";
+import { Box, Checkbox } from "@mui/material";
 import { MarkerGroup } from "@types/Map";
-import { useContext, useState } from "react";
-import { FlexRow } from "../Flex";
+import { useContext } from "react";
 import { MapContext } from "../../main";
-import { Label } from "@mui/icons-material";
-import { useLocation } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setHiddenGroups } from "../../store/mapSlice";
+import { FlexRow } from "../Flex";
 
 export default function MarkerToggles() {
     const { currentMapData, globalData } = useContext(MapContext);
