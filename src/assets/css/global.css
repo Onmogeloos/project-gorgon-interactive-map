@@ -38,6 +38,14 @@ h3 {
   background: inherit !important;
   user-select: none;
 
+  .leaflet-top .leaflet-control {
+    margin-top: 4rem;
+  }
+
+  .leaflet-tooltip {
+    padding: 2px;
+  }
+
   .leaflet-marker-icon {
     background: transparent;
     border: none;

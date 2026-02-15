@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MarkerGroup } from '@types/Map';
+import { MarkerType, ZoneType } from '@types/Map';
+import { set } from 'react-hook-form';
 
 export interface MapClickPosition {
     y: number;
@@ -7,14 +8,16 @@ export interface MapClickPosition {
 }
 
 interface MapState {
-    hiddenGroups: MarkerGroup[];
+    hiddenMarkerTypes: MarkerType[];
+    hiddenZoneTypes: ZoneType[];
     searchQuery: string;
     isMarkerProposalOpen: boolean;
     mapClickPosition: MapClickPosition | null;
 }
 
 const initialState: MapState = {
-    hiddenGroups: [],
+    hiddenMarkerTypes: [],
+    hiddenZoneTypes: [],
     searchQuery: '',
     isMarkerProposalOpen: false,
     mapClickPosition: null,
@@ -24,8 +27,11 @@ const mapSlice = createSlice({
     name: 'map',
     initialState,
     reducers: {
-        setHiddenGroups: (state, action: PayloadAction<MarkerGroup[]>) => {
-            state.hiddenGroups = action.payload;
+        setHiddenGroups: (state, action: PayloadAction<MarkerType[]>) => {
+            state.hiddenMarkerTypes = action.payload;
+        },
+        setHiddenZoneTypes: (state, action: PayloadAction<ZoneType[]>) => {
+            state.hiddenZoneTypes = action.payload;
         },
         setSearchQuery: (state, action: PayloadAction<string>) => {
             state.searchQuery = action.payload;
@@ -42,5 +48,5 @@ const mapSlice = createSlice({
     },
 });
 
-export const { setHiddenGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition } = mapSlice.actions;
+export const { setHiddenGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition, setHiddenZoneTypes } = mapSlice.actions;
 export default mapSlice.reducer;

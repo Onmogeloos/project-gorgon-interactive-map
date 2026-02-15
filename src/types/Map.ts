@@ -5,10 +5,11 @@ export type MapData = {
     description: string;
     imageUrl: string;
     uniqueMarkers: UniqueMarkerData[];
-    bulkMarkers: BulkMarkerData[]
+    bulkMarkers: BulkMarkerData[];
+    zones: ZoneData[];
 }
 
-export enum MarkerGroup {
+export enum MarkerType {
     Boss = 'boss',
     Resource = 'resource',
     Entrance = 'entrance',
@@ -27,14 +28,24 @@ export type Coordinate = [number, number];
 
 export type UniqueMarkerData = {
     name: string;
-    group: MarkerGroup;
+    group: MarkerType;
     position: Coordinate;
 }
 
 export type BulkMarkerData = {
     name: string;
-    group: MarkerGroup;
+    group: MarkerType;
     positions: Coordinate[];
+}
+
+export type ZoneData = {
+    name: string;
+    type: ZoneType;
+    polygonPoints: Coordinate[];
+}
+
+export enum ZoneType {
+    Enemies = "enemies"
 }
 
 export enum Maps {
@@ -55,8 +66,12 @@ export enum Maps {
 }
 
 export type GlobalData = {
-    markerGroups: {[key in MarkerGroup]?: {
+    markerGroups: {[key in MarkerType]?: {
         icon: string;
+        label: string;
+        color: string;
+    }},
+    zoneTypes: {[key in ZoneType]?: {
         label: string;
         color: string;
     }}

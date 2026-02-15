@@ -15,6 +15,7 @@ import { setIsMarkerProposalOpen } from "../../store/mapSlice";
 import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { useForm } from "react-hook-form";
+import ZoneToggles from "./ZoneToggles";
 
 const CollapseButton = styled.div<{ $isOpen: boolean }>`
     position: absolute;
@@ -93,6 +94,7 @@ export default function Sidebar() {
                         <SearchBar />
                         <Divider />
                         <MarkerToggles />
+                        <ZoneToggles />
                         <Divider />
                         <Button variant="contained" color="primary" fullWidth onClick={() => dispatch(setIsMarkerProposalOpen(true))}>
                             Propose new marker

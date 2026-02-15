@@ -1,62 +1,68 @@
-import { GlobalData, GlobalMapData, Maps, MarkerGroup } from "@types/Map";
+import { GlobalData, GlobalMapData, Maps, MarkerType, ZoneType } from "@types/Map";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
         markerGroups: {
-            [MarkerGroup.Boss]: {
+            [MarkerType.Boss]: {
                 icon: (await import("@assets/icons/boss.svg?raw")).default,
                 label: "Bosses",
                 color: "#e74c3c"
             },
-            [MarkerGroup.Resource]: {
+            [MarkerType.Resource]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
                 label: "Resources",
                 color: "#27ae60"
             },
-            [MarkerGroup.Entrance]: {
+            [MarkerType.Entrance]: {
                 icon: (await import("@assets/icons/cave.svg?raw")).default,
                 label: "Entrances",
                 color: "#6d6d6d"
             },
-            [MarkerGroup.NPC]: {
+            [MarkerType.NPC]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
                 label: "NPCs",
                 color: "#2d95d2"
             },
-            [MarkerGroup.Location]: {
+            [MarkerType.Location]: {
                 icon: (await import("@assets/icons/marker.svg?raw")).default,
                 label: "Locations",
                 color: "#9e9e9e"
             },
-            [MarkerGroup.Object]: {
+            [MarkerType.Object]: {
                 icon: (await import("@assets/icons/hexagon.svg?raw")).default,
                 label: "Objects",
                 color: "#70553e"
             },
-            [MarkerGroup.ZonePortal]: {
+            [MarkerType.ZonePortal]: {
                 icon: (await import("@assets/icons/road.svg?raw")).default,
                 label: "Zone Portals",
                 color: "#d35400"
             },
-            [MarkerGroup.TeleportPlatform]: {
+            [MarkerType.TeleportPlatform]: {
                 icon: (await import("@assets/icons/teleport.svg?raw")).default,
                 label: "Teleport Platforms",
                 color: "#2ecc71"
             },
-            [MarkerGroup.MeditationPillar]: {
+            [MarkerType.MeditationPillar]: {
                 icon: (await import("@assets/icons/meditate.svg?raw")).default,
                 label: "Meditation Pillars",
                 color: "#9b59b6"
             },
-            [MarkerGroup.FruitTree]: {
+            [MarkerType.FruitTree]: {
                 icon: (await import("@assets/icons/fruittree.svg?raw")).default,
                 label: "Fruit trees",
                 color: "#27ae60"
             },
-            [MarkerGroup.ForageSpots]: {
+            [MarkerType.ForageSpots]: {
                 icon: (await import("@assets/icons/plant.svg?raw")).default,
                 label: "Foraging Spots",
                 color: "#27ae60"
+            },
+        },
+        zoneTypes: {
+            [ZoneType.Enemies]: {
+                label: "Enemy zones",
+                color: "#e74c3c"
             },
         }
     }
@@ -73,80 +79,81 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Anagoge Dock",
                     position: [950, 310],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Location
                 },
                 {
                     name: "Riger",
                     position: [820, 230],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 },
                 {
                     name: "Obelisk (North)",
                     position: [780, 520],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Sturdy Chest",
                     position: [780, 610],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Lawara",
                     position: [770, 600],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 },
                 {
                     name: "Strange Platform",
                     position: [718, 637],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Statue",
                     position: [600, 500],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Elmetaph",
                     position: [660, 320],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 },
                 {
                     name: "Obelisk (East)",
                     position: [620, 760],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Obelisk (West)",
                     position: [420, 170],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Anagoge Records Facility",
                     position: [370, 285],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Location
                 },
                 {
                     name: "Teleport Pad",
                     position: [290, 410],
-                    group: MarkerGroup.TeleportPlatform
+                    group: MarkerType.TeleportPlatform
                 },
                 {
                     name: "Obelisk (South)",
                     position: [210, 510],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Pedestal Puzzle",
                     position: [340, 830],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Enchanted Dummy",
                     position: [230, 840],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 }
             ],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Serbule]: {
             name: "Serbule",
@@ -157,102 +164,102 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Brain Bug Cave",
                     position: [880, 110],
-                    group: MarkerGroup.Entrance
+                    group: MarkerType.Entrance
                 },
                 {
                     name: "Meditation Pillar (NW)",
                     position: [855, 205],
-                    group: MarkerGroup.MeditationPillar
+                    group: MarkerType.MeditationPillar
                 },
                 {
                     name: "Crystal Cavern",
                     position: [780, 420],
-                    group: MarkerGroup.Entrance
+                    group: MarkerType.Entrance
                 },
                 {
                     name: "Path to Eltibule",
                     position: [946.25, 346.25],
-                    group: MarkerGroup.ZonePortal
+                    group: MarkerType.ZonePortal
                 },
                 {
                     name: "Old Fangsworth",
                     position: [914.25, 568.75],
-                    group: MarkerGroup.Boss
+                    group: MarkerType.Boss
                 },
                 {
                     name: "Fitz the Boatman",
                     position: [940, 675],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 },
                 {
                     name: "Juri the Boatman",
                     position: [930, 695],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 },
                 {
                     name: "Borghild",
                     position: [750, 910],
-                    group: MarkerGroup.Entrance
+                    group: MarkerType.Entrance
                 },
                 {
                     name: "Teleport Pad (NE)",
                     position: [760, 895],
-                    group: MarkerGroup.TeleportPlatform
+                    group: MarkerType.TeleportPlatform
                 },
                 {
                     name: "Meditation Pillar (NE)",
                     position: [740, 895],
-                    group: MarkerGroup.MeditationPillar
+                    group: MarkerType.MeditationPillar
                 },
                 {
                     name: "Serbule Sewers",
                     position: [655, 695],
-                    group: MarkerGroup.Entrance
+                    group: MarkerType.Entrance
                 },
                 {
                     name: "Old Snouty",
                     position: [520, 780],
-                    group: MarkerGroup.Boss
+                    group: MarkerType.Boss
                 },
                 {
                     name: "Mushroom circle",
                     position: [500, 882],
-                    group: MarkerGroup.Object
+                    group: MarkerType.Object
                 },
                 {
                     name: "Serbule Keep & Market",
                     position: [411.75, 579.25],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Location
                 },
                 {
                     name: "Teleport Pad (Central)",
                     position: [555, 508],
-                    group: MarkerGroup.TeleportPlatform
+                    group: MarkerType.TeleportPlatform
                 },
                 {
                     name: "Meditation Pillar (Central)",
                     position: [580, 430],
-                    group: MarkerGroup.MeditationPillar
+                    group: MarkerType.MeditationPillar
                 },
                 {
                     name: "Carpal Tunnels",
                     position: [448, 165],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Entrance
                 },
                 {
                     name: "Giant Mushrooms",
                     position: [585.75, 22.5],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Entrance
                 },
                 {
                     name: "Serbule Graveyard",
                     position: [132, 116.5],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Location
                 },
                 {
                     name: "Serbule Crypt",
                     position: [104, 76],
-                    group: MarkerGroup.Location
+                    group: MarkerType.Location
                 },
                 {
                     name: "Gluzax",
@@ -260,25 +267,90 @@ export async function loadMapData(): Promise<GlobalMapData> {
                         151.75,
                         307.5
                     ],
-                    group: MarkerGroup.Boss
+                    group: MarkerType.Boss
                 },
                 {
                     name: "Teleport Pad (South)",
                     position: [188, 602],
-                    group: MarkerGroup.TeleportPlatform
+                    group: MarkerType.TeleportPlatform
                 },
                 {
                     name: "Salmpo",
                     position: [124, 535],
-                    group: MarkerGroup.NPC
+                    group: MarkerType.NPC
                 },
                 {
                     name: "Path to Serbule Hills",
                     position: [80, 780],
-                    group: MarkerGroup.ZonePortal
+                    group: MarkerType.ZonePortal
+                },
+                {
+                    name: "Fainor",
+                    position: [534.125, 498],
+                    group: MarkerType.NPC
+                }, {
+                    name: "Rita",
+                    position: [528.4375, 504.46875],
+                    group: MarkerType.NPC
+                },
+                {
+                    name: "Blanche",
+                    position: [525, 505.5],
+                    group: MarkerType.NPC
+                },
+                {
+                    name: "Velkort",
+                    position: [543.59375, 510.875],
+                    group: MarkerType.NPC
                 }
             ],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: [
+                {
+                    name: "Brain Bugs",
+                    type: ZoneType.Enemies,
+                    polygonPoints: [
+                        [878.5, 358.5],
+                        [884.5, 295],
+                        [948.5, 216],
+                        [988.5, 245],
+                        [976, 377.5],
+                    ]
+                },
+                {
+                    name: "Tigers",
+                    type: ZoneType.Enemies,
+                    polygonPoints: [
+                        [832.5, 421.75],
+                        [912.5, 371],
+                        [968.25, 386.75],
+                        [991.5, 575.5],
+                        [876.5, 652.5],
+                        [782, 623],
+                        [751.5, 664],
+                        [728.5, 670],
+                        [733, 504],
+                        [792, 491],
+                        [836.5, 442.5],
+                    ]
+                },
+                {
+                    name: "Augmented Mantis Slaves",
+                    type: ZoneType.Enemies,
+                    polygonPoints: [
+                        [137.5, 10.5],
+                        [200.5, 90],
+                        [206.5, 165.5],
+                        [179.5, 281],
+                        [224.5, 369],
+                        [329.5, 381.5],
+                        [346.5, 238.5],
+                        [470.5, 186],
+                        [490.5, 6],
+                        [141.5, 2.5],
+                    ]
+                }
+            ]
         },
         [Maps.SerbuleHills]: {
             name: "Serbule Hills",
@@ -289,13 +361,13 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Path to Serbule",
                     position: [988, 95],
-                    group: MarkerGroup.ZonePortal
+                    group: MarkerType.ZonePortal
                 }
             ],
             bulkMarkers: [
                 {
                     name: "Apple tree",
-                    group: MarkerGroup.FruitTree,
+                    group: MarkerType.FruitTree,
                     positions: [
                         [855, 55.5],
                         [855.25, 48.25],
@@ -306,15 +378,23 @@ export async function loadMapData(): Promise<GlobalMapData> {
                         [906.25, 121.75],
                     ]
                 }
-            ]
+            ],
+            zones: []
         },
         [Maps.PhantomIlmariDesert]: {
             name: "Phantom Ilmari Desert",
             slug: "phantomilmari",
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaDesert1.png")).default,
-            uniqueMarkers: [],
-            bulkMarkers: []
+            uniqueMarkers: [
+                {
+                    name: "Miravelle",
+                    position: [353.625, 494.625],
+                    group: MarkerType.NPC
+                }
+            ],
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Eltibule]: {
             name: "Eltibule",
@@ -322,7 +402,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaEltibule.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.SunVale]: {
             name: "Sun Vale",
@@ -330,7 +411,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaSunVale.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.KurMountains]: {
             name: "Kur Mountains",
@@ -338,7 +420,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaKurMountains.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Ilmari]: {
             name: "Ilmari",
@@ -346,7 +429,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaDesert1.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Rahu]: {
             name: "Rahu",
@@ -354,7 +438,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaRahu.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Gazluk]: {
             name: "Gazluk",
@@ -362,7 +447,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaGazluk.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.FaeRealm]: {
             name: "Fae Realm",
@@ -370,7 +456,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaFaeRealm1.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Povus]: {
             name: "Povus",
@@ -378,7 +465,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_Povus.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Vidaria]: {
             name: "Vidaria",
@@ -386,7 +474,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_Vidaria.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
         [Maps.Statehelm]: {
             name: "Statehelm",
@@ -394,7 +483,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
             description: "",
             imageUrl: (await import("@assets/maps/Map_AreaStatehelm.png")).default,
             uniqueMarkers: [],
-            bulkMarkers: []
+            bulkMarkers: [],
+            zones: []
         },
     };
 }
