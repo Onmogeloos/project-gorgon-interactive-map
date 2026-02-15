@@ -15,11 +15,12 @@ export enum MarkerGroup {
     NPC = 'npc',
     Location = 'location',
     Object = 'object',
-    MapGate = 'mapgate',
+    ZonePortal = 'mapgate',
     MeditationPillar = 'meditationpillar',
     Statue = 'statue',
-    TeleportPad = 'teleportpad',
-    Forage = "Forage"
+    TeleportPlatform = 'teleportpad',
+    FruitTree = "Forage",
+    ForageSpots = "ForageSpots"
 }
 
 export type Coordinate = [number, number];

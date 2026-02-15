@@ -38,8 +38,8 @@ export default function MarkerLayer() {
                 icon={
                     new DivIcon({
                         html: wrapIcon(plus, "rgb(255, 255, 255)"),
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32]
+                        iconSize: [36, 36],
+                        iconAnchor: [18, 18]
                     })
                 }
                 />
@@ -56,8 +56,8 @@ function CustomMarker({ markerData }: { markerData: UniqueMarkerData }) {
             icon={
                 new DivIcon({
                     html: wrapIcon(group.icon || hexagon, group.color),
-                    iconSize: [32, 32],
-                    iconAnchor: [16, 16]
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18]
                 })
             }
         >

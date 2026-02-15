@@ -74,8 +74,8 @@ function Page({ map: mapData }: { map: MapData }) {
                 crs={CRS.Simple}
                 bounds={[[0, 0], [1000, 1000]]}
                 style={{ height: '100vh', width: '100vw' }}
-                minZoom={-2}
-                maxZoom={2}
+                minZoom={-1}
+                maxZoom={5}
                 zoom={0}
                 zoomControl={false}
             >

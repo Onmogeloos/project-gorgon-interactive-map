@@ -21,26 +21,26 @@ export async function loadGlobalData(): Promise<GlobalData> {
             [MarkerGroup.NPC]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
                 label: "NPCs",
-                color: "#f1c40f"
+                color: "#2d95d2"
             },
             [MarkerGroup.Location]: {
                 icon: (await import("@assets/icons/marker.svg?raw")).default,
                 label: "Locations",
-                color: "#3498db"
+                color: "#9e9e9e"
             },
             [MarkerGroup.Object]: {
                 icon: (await import("@assets/icons/hexagon.svg?raw")).default,
                 label: "Objects",
-                color: "#95a5a6"
+                color: "#70553e"
             },
-            [MarkerGroup.MapGate]: {
+            [MarkerGroup.ZonePortal]: {
                 icon: (await import("@assets/icons/road.svg?raw")).default,
-                label: "Map Gates",
+                label: "Zone Portals",
                 color: "#d35400"
             },
-            [MarkerGroup.TeleportPad]: {
+            [MarkerGroup.TeleportPlatform]: {
                 icon: (await import("@assets/icons/teleport.svg?raw")).default,
-                label: "Teleport Pads",
+                label: "Teleport Platforms",
                 color: "#2ecc71"
             },
             [MarkerGroup.MeditationPillar]: {
@@ -48,9 +48,14 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 label: "Meditation Pillars",
                 color: "#9b59b6"
             },
-            [MarkerGroup.Forage]: {
+            [MarkerGroup.FruitTree]: {
+                icon: (await import("@assets/icons/fruittree.svg?raw")).default,
+                label: "Fruit trees",
+                color: "#27ae60"
+            },
+            [MarkerGroup.ForageSpots]: {
                 icon: (await import("@assets/icons/plant.svg?raw")).default,
-                label: "Forage",
+                label: "Foraging Spots",
                 color: "#27ae60"
             },
         }
@@ -123,7 +128,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Teleport Pad",
                     position: [290, 410],
-                    group: MarkerGroup.TeleportPad
+                    group: MarkerGroup.TeleportPlatform
                 },
                 {
                     name: "Obelisk (South)",
@@ -167,7 +172,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Path to Eltibule",
                     position: [946.25, 346.25],
-                    group: MarkerGroup.MapGate
+                    group: MarkerGroup.ZonePortal
                 },
                 {
                     name: "Old Fangsworth",
@@ -192,7 +197,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Teleport Pad (NE)",
                     position: [760, 895],
-                    group: MarkerGroup.TeleportPad
+                    group: MarkerGroup.TeleportPlatform
                 },
                 {
                     name: "Meditation Pillar (NE)",
@@ -222,7 +227,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Teleport Pad (Central)",
                     position: [555, 508],
-                    group: MarkerGroup.TeleportPad
+                    group: MarkerGroup.TeleportPlatform
                 },
                 {
                     name: "Meditation Pillar (Central)",
@@ -260,7 +265,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Teleport Pad (South)",
                     position: [188, 602],
-                    group: MarkerGroup.Object
+                    group: MarkerGroup.TeleportPlatform
                 },
                 {
                     name: "Salmpo",
@@ -270,7 +275,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Path to Serbule Hills",
                     position: [80, 780],
-                    group: MarkerGroup.MapGate
+                    group: MarkerGroup.ZonePortal
                 }
             ],
             bulkMarkers: []
@@ -284,13 +289,13 @@ export async function loadMapData(): Promise<GlobalMapData> {
                 {
                     name: "Path to Serbule",
                     position: [988, 95],
-                    group: MarkerGroup.MapGate
+                    group: MarkerGroup.ZonePortal
                 }
             ],
             bulkMarkers: [
                 {
                     name: "Apple tree",
-                    group: MarkerGroup.Forage,
+                    group: MarkerGroup.FruitTree,
                     positions: [
                         [855, 55.5],
                         [855.25, 48.25],
