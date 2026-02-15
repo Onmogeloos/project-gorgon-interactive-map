@@ -285,11 +285,6 @@ export async function loadMapData(): Promise<GlobalMapData> {
                     name: "Path to Serbule",
                     position: [988, 95],
                     group: MarkerGroup.MapGate
-                },
-                {
-                    name: "Path to Serbule Hills",
-                    position: [80, 780],
-                    group: MarkerGroup.MapGate
                 }
             ],
             bulkMarkers: [
