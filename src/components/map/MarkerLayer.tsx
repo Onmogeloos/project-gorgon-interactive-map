@@ -1,5 +1,6 @@
 import hexagon from "@assets/icons/hexagon.svg?raw";
 import markerWrapper from "@assets/icons/markerwrapper.svg?raw";
+import plus from "@assets/icons/plus.svg?raw";
 import { MapData, UniqueMarkerData, MarkerGroup } from "@types/Map";
 import { DivIcon } from "leaflet";
 import { useContext } from "react";
@@ -34,7 +35,15 @@ export default function MarkerLayer() {
                     ))
                 ))}
             {isMarkerProposalOpen && mapClickPosition && (
-                <Marker position={[mapClickPosition.y, mapClickPosition.x]}/>
+                <Marker position={[mapClickPosition.y, mapClickPosition.x]}
+                icon={
+                    new DivIcon({
+                        html: wrapIcon(plus, "rgb(255, 255, 255)"),
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32]
+                    })
+                }
+                />
             )}
         </>
     );

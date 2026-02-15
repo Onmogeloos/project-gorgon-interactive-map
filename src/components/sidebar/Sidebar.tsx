@@ -49,6 +49,7 @@ const StyledSidebar = styled.div<{ $isOpen: boolean }>`
     padding: 1rem;
     transform: translateX(${props => props.$isOpen ? '0' : '-100%'});
     transition: transform 0.3s ease;
+    overflow-y: auto;
     h2 {
         margin-bottom: 1rem;
     }
@@ -68,8 +69,8 @@ export default function Sidebar() {
     return (
         <Box sx={{ position: "relative" }} >
             <StyledSidebar $isOpen={isOpen}>
-                <Box sx={{ paddingBottom: "1rem" }}>
-                    <h2>Project: Gorgon Interactive Map</h2>
+                <h2>Project: Gorgon Interactive Map</h2>
+                <Box sx={{ paddingBottom: "1rem", flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
                     <FlexColumn $gapY="0.5rem">
                         {(Object.keys(mapData) as Maps[]).map((mapKey) => {
                             const map = mapData[mapKey];

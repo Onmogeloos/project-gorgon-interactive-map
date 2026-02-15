@@ -39,7 +39,18 @@ export type BulkMarkerData = {
 export enum Maps {
     AnagogeIsland = "Anagoge Island",
     Serbule = "Serbule",
-    SerbuleHills = "Serbule Hills"
+    SerbuleHills = "Serbule Hills",
+    PhantomIlmariDesert = "Phantom Ilmari Desert",
+    Eltibule = "Eltibule",
+    SunVale = "Sun Vale",
+    KurMountains = "Kur Mountains",
+    Ilmari = "Ilmari",
+    Rahu = "Rahu",
+    Gazluk = "Gazluk",
+    FaeRealm = "Fae Realm",
+    Povus = "Povus",
+    Vidaria = "Vidaria",
+    Statehelm = "Statehelm",
 }
 
 export type GlobalData = {

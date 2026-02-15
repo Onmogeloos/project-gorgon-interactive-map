@@ -307,6 +307,94 @@ export async function loadMapData(): Promise<GlobalMapData> {
                     ]
                 }
             ]
-        }
+        },
+        [Maps.PhantomIlmariDesert]: {
+            name: "Phantom Ilmari Desert",
+            slug: "phantomilmari",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaDesert1.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Eltibule]: {
+            name: "Eltibule",
+            slug: "eltibule",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaEltibule.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.SunVale]: {
+            name: "Sun Vale",
+            slug: "sunvale",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaSunvale.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.KurMountains]: {
+            name: "Kur Mountains",
+            slug: "kurmountains",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaKurMountains.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Ilmari]: {
+            name: "Ilmari",
+            slug: "ilmari",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaDesert1.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Rahu]: {
+            name: "Rahu",
+            slug: "rahu",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaRahu.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Gazluk]: {
+            name: "Gazluk",
+            slug: "gazluk",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaGazluk.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.FaeRealm]: {
+            name: "Fae Realm",
+            slug: "faerealm",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaFaeRealm1.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Povus]: {
+            name: "Povus",
+            slug: "povus",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_Povus.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Vidaria]: {
+            name: "Vidaria",
+            slug: "vidaria",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_Vidaria.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
+        [Maps.Statehelm]: {
+            name: "Statehelm",
+            slug: "statehelm",
+            description: "",
+            imageUrl: (await import("@assets/maps/Map_AreaStatehelm.png")).default,
+            uniqueMarkers: [],
+            bulkMarkers: []
+        },
     };
 }
