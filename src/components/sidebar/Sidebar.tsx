@@ -128,18 +128,14 @@ function MarkerProposalSidebar() {
     const form = useForm<FormData>({
         defaultValues: {
             name: "",
-            type: undefined,
-            map: currentMapData.slug,
-            position: [mapClickPosition?.y ?? 0, mapClickPosition?.x ?? 0],
+            type: undefined
         },
         resolver: joiResolver(Joi.object({
             name: Joi.string().required(),
-            type: Joi.string().disallow("").required(),
-            map: Joi.string().required(),
-            position: Joi.array().items(Joi.number()).length(2).required(),
+            type: Joi.string().disallow("").required()
         })),
         mode: "onChange",
-    })
+    });
 
     const onSubmit = async (data: FormData) => {
         console.log(data);
@@ -149,7 +145,11 @@ function MarkerProposalSidebar() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+                    ...data,
+                    position: [mapClickPosition.y, mapClickPosition.x],
+                    map: currentMapData.slug
+                })
             });
             window.alert("Thank you for your submission! Your marker proposal has been received and will be reviewed as soon as possible.");
         } catch (error) {
