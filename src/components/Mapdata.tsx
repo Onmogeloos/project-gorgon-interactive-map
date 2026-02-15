@@ -328,7 +328,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
             name: "Sun Vale",
             slug: "sunvale",
             description: "",
-            imageUrl: (await import("@assets/maps/Map_AreaSunvale.png")).default,
+            imageUrl: (await import("@assets/maps/Map_AreaSunVale.png")).default,
             uniqueMarkers: [],
             bulkMarkers: []
         },
