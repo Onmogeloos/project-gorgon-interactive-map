@@ -1,7 +1,7 @@
 import hexagon from "@assets/icons/hexagon.svg?raw";
 import markerWrapper from "@assets/icons/markerwrapper.svg?raw";
 import plus from "@assets/icons/plus.svg?raw";
-import { MarkerType, UniqueMarkerData } from "@localtypes/Map";
+import { MarkerType, MarkerData } from "@localtypes/Map";
 import { DivIcon } from "leaflet";
 import { useContext, useState } from "react";
 import { Marker, Popup } from "react-leaflet";
@@ -23,16 +23,12 @@ export default function MarkerLayer() {
 
     return (
         <>
-            {currentMapData.uniqueMarkers
-                .filter((marker: UniqueMarkerData) => !hiddenGroups.includes(marker.group as MarkerType))
-                .filter((marker: UniqueMarkerData) => marker.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                .map((marker, index) => (<CustomMarker key={index} markerData={marker} />))}
-            {currentMapData.bulkMarkers
-                .filter((marker) => !hiddenGroups.includes(marker.group as MarkerType))
+            {currentMapData.markers
+                .filter((marker) => !hiddenGroups.includes(marker.type))
                 .filter((marker) => marker.name.toLowerCase().includes(searchQuery.toLowerCase()))
                 .map((marker, index) => (
-                    marker.positions.map((position, posIndex) => (
-                        <CustomMarker key={`${index}-${posIndex}`} markerData={{ ...marker, position }} />
+                    marker.position.map((position) => (
+                        <CustomMarker key={`${marker.name}-${position}`} name={marker.name} type={marker.type} position={position} />
                     ))
                 ))}
             {isMarkerProposalOpen && mapClickPosition && (
@@ -50,16 +46,23 @@ export default function MarkerLayer() {
     );
 }
 
-function CustomMarker({ markerData }: { markerData: UniqueMarkerData }) {
-    const [image, setImage] = useState<string | null>(null);
+function CustomMarker({ 
+    name,
+    type,
+    position
+ }: { 
+    name: string;
+    type: MarkerType;
+    position: [number, number];
+}) {
     const { globalData: { markerGroups } } = useContext(MapContext);
-    const group = markerGroups[markerData.group as MarkerType];
+    const groupData = markerGroups[type];
     const toWiki = (name: string) => `https://wiki.projectgorgon.com/w/index.php?search=${name}`
     return (
-        <Marker position={markerData.position}
+        <Marker position={position}
             icon={
                 new DivIcon({
-                    html: wrapIcon(group.icon || hexagon, group.color),
+                    html: wrapIcon(groupData.icon || hexagon, groupData.color),
                     iconSize: [36, 36],
                     iconAnchor: [18, 18]
                 })
@@ -68,13 +71,12 @@ function CustomMarker({ markerData }: { markerData: UniqueMarkerData }) {
             <Popup>
                 <FlexRow>
                     <FlexColumn>
-                        {image && <img src={image} alt={markerData.name} />}
-                        <Typography variant="h6">{markerData.name}</Typography>
-                        <Typography variant="body1">{group.label}</Typography>
+                        <Typography variant="h6">{name}</Typography>
+                        <Typography variant="body1">{groupData.label}</Typography>
                         <Typography variant="body2">
-                            Wiki: <a href={toWiki(markerData.name)}>{markerData.name}</a>
+                            Wiki: <a href={toWiki(name)}>{name}</a>
                             <br/>
-                            Position: {`[${markerData.position[0]}, ${markerData.position[1]}]`}
+                            Position: {`[${position[0]}, ${position[1]}]`}
                         </Typography>
                     </FlexColumn>
                 </FlexRow>

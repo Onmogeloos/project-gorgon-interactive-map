@@ -1,10 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { useAppDispatch } from "@store/hooks";
+import { setMapClickPosition } from "@store/mapSlice";
 import { useContext } from "react";
 import { ImageOverlay, useMapEvents, ZoomControl } from "react-leaflet";
 import { MapContext } from "../../main";
 import MarkerLayer from "./MarkerLayer";
-import ZoneLayer from "./ZoneLayer";
-import { setMapClickPosition } from "@store/mapSlice";
 
 export default function Map() {
     const { currentMapData } = useContext(MapContext);
@@ -26,7 +25,7 @@ export default function Map() {
             url={currentMapData.imageUrl}
             bounds={[[0, 0], [1000, 1000]]}
         />
-        <ZoneLayer />
+        {/* <ZoneLayer /> */}
         <MarkerLayer />
     </>
 }

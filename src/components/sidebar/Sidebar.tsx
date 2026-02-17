@@ -90,7 +90,7 @@ export default function Sidebar() {
                         <Typography variant="subtitle2">Project: Gorgon Interactive Map</Typography>
                     </Box>
                     <Divider />
-                    <Box sx={{ paddingBottom: "1rem", flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
+                    <Box sx={{ flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
                         <FlexColumn $gapY="0.5rem">
                             {(Object.keys(mapData) as Maps[]).map((mapKey) => {
                                 const map = mapData[mapKey];
