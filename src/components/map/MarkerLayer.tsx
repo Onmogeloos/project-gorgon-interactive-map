@@ -1,14 +1,14 @@
 import hexagon from "@assets/icons/hexagon.svg?raw";
 import markerWrapper from "@assets/icons/markerwrapper.svg?raw";
 import plus from "@assets/icons/plus.svg?raw";
-import { MarkerType, MarkerData } from "@localtypes/Map";
+import { FlexColumn, FlexRow } from "@components/Flex";
+import { MarkerType } from "@localtypes/Map";
+import { Typography } from "@mui/material";
 import { DivIcon } from "leaflet";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Marker, Popup } from "react-leaflet";
 import { MapContext } from "../../main";
 import { useAppSelector } from "../../store/hooks";
-import { Typography } from "@mui/material";
-import { FlexColumn, FlexRow } from "@components/Flex";
 
 const wrapIcon = (svg: string, color: string): string => `
     <div class="icon-wrapper" style="fill: ${color}">
@@ -26,7 +26,7 @@ export default function MarkerLayer() {
             {currentMapData.markers
                 .filter((marker) => !hiddenGroups.includes(marker.type))
                 .filter((marker) => marker.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                .map((marker, index) => (
+                .map((marker) => (
                     marker.position.map((position) => (
                         <CustomMarker key={`${marker.name}-${position}`} name={marker.name} type={marker.type} position={position} />
                     ))

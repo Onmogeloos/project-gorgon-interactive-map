@@ -1,33 +1,54 @@
-export default {
-    env: {
-        browser: true,
-        es2021: true,
-        node: true,
+import js from '@eslint/js';
+import globals from 'globals';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsparser from '@typescript-eslint/parser';
+
+export default [
+    {
+        ignores: ['scripts/**', 'dist/**', 'node_modules/**', '*.config.js', '*.config.ts'],
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:react-hooks/recommended',
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
+    js.configs.recommended,
+    {
+        files: ['**/*.{js,jsx,ts,tsx}'],
+        languageOptions: {
+            ecmaVersion: 2021,
+            sourceType: 'module',
+            parser: tsparser,
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+            globals: {
+                ...globals.browser,
+                ...globals.es2021,
+                ...globals.node,
+            },
         },
-        ecmaVersion: 12,
-        sourceType: 'module',
-    },
-    plugins: [
-        'react',
-        '@typescript-eslint',
-    ],
-    settings: {
-        react: {
-            version: 'detect',
+        plugins: {
+            react: reactPlugin,
+            'react-hooks': reactHooksPlugin,
+            '@typescript-eslint': tseslint,
+        },
+        settings: {
+            react: {
+                version: 'detect',
+            },
+        },
+        rules: {
+            ...reactPlugin.configs.recommended.rules,
+            ...reactHooksPlugin.configs.recommended.rules,
+            ...tseslint.configs.recommended.rules,
+            // Add any custom rules here
+            'react/react-in-jsx-scope': 'off',
+            "@typescript-eslint/ban-ts-comment": "off",
+            "@typescript-eslint/no-unused-vars": ["warn", { 
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
+            }],
         },
     },
-    rules: {
-        // Add any custom rules here
-    },
-};
+];

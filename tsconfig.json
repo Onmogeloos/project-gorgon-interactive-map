@@ -4,6 +4,7 @@
     "outDir": "../dist",
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "moduleResolution": "node",
     "resolveJsonModule": true,

@@ -1,22 +1,20 @@
-import { Button, Dialog, Drawer, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
-import { useContext } from "react";
+import logo from "@assets/images/logo.png";
+import { Form } from "@base-ui-components/react";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { Maps } from "@localtypes/Map";
+import { Button, Drawer, MenuItem, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import Joi from "joi";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { MapContext } from "../../main";
-import { FlexColumn } from "../Flex";
-import { Box } from "@mui/system";
-import { useState } from "react";
-import MarkerToggles from "./MarkerToggles";
-import SearchBar from "./SearchBar";
-import { Form } from "@base-ui-components/react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setIsMarkerProposalOpen } from "../../store/mapSlice";
-import { joiResolver } from "@hookform/resolvers/joi";
-import Joi from "joi";
-import { useForm } from "react-hook-form";
-import ZoneToggles from "./ZoneToggles";
-import { Maps } from "@localtypes/Map";
-import logo from "@assets/images/logo.png";
+import { FlexColumn } from "../Flex";
+import MarkerToggles from "./MarkerToggles";
+import SearchBar from "./SearchBar";
 
 const sidebarWidth = 300;
 
@@ -113,7 +111,7 @@ export default function Sidebar() {
                             <SearchBar />
                             <Divider />
                             <MarkerToggles />
-                            <ZoneToggles />
+                            {/* <ZoneToggles /> */}
                             <Divider />
                             <Button variant="contained" color="primary" fullWidth onClick={() => dispatch(setIsMarkerProposalOpen(true))}>
                                 Propose new marker
@@ -159,8 +157,11 @@ function MarkerProposalSidebar() {
     });
 
     const onSubmit = async (data: FormData) => {
-        console.log(data);
         try {
+            if (!mapClickPosition) {
+                window.alert("Please click on the map to select the marker position before submitting.");
+                return
+            }
             await fetch(`https://master-project-gorgon-marker-worker.onmogeloos.workers.dev/save-marker`, {
                 method: "POST",
                 headers: {
@@ -173,7 +174,7 @@ function MarkerProposalSidebar() {
                 })
             });
             window.alert("Thank you for your submission! Your marker proposal has been received and will be reviewed as soon as possible.");
-        } catch (error) {
+        } catch (_error) {
             window.alert(`Failed to submit marker. Please try again later.`);
         } finally {
             dispatch(setIsMarkerProposalOpen(false));

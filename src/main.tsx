@@ -1,18 +1,18 @@
+import { GlobalData, GlobalMapData, MapData, Maps } from "@localtypes/Map";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
 import { createContext, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MapContainer } from 'react-leaflet';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
-import { RootState, store } from './store/store';
+import Map from './components/map/Map';
 import { loadGlobalData, loadMapData } from './components/Mapdata';
 import Sidebar from './components/sidebar/Sidebar';
+import { store } from './store/store';
 import theme from './Theme';
-import Map from './components/map/Map';
-import { GlobalData, GlobalMapData, MapData, Maps } from "@localtypes/Map";
 
 // CSS
 import 'leaflet/dist/leaflet.css';

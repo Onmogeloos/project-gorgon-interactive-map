@@ -17,10 +17,10 @@ export enum MarkerType {
     Object = 'object',
     ZonePortal = 'mapgate',
     MeditationPillar = 'meditationpillar',
-    Statue = 'statue',
     TeleportPlatform = 'teleportpad',
-    FruitTree = "Forage",
-    ForageSpots = "ForageSpots"
+    FruitTree = "fruittree",
+    ForageSpots = "foragespots",
+    Altar = "altar",
 }
 
 export type Coordinate = [number, number];
@@ -59,14 +59,16 @@ export enum Maps {
 }
 
 export type GlobalData = {
-    markerGroups: {[key in MarkerType]?: {
-        icon: string;
+    markerGroups: {
+        [key in MarkerType]: {
+            icon: string;
+            label: string;
+            color: string;
+        }
+    },
+    zoneTypes: { [key in ZoneType]: {
         label: string;
         color: string;
-    }},
-    zoneTypes: {[key in ZoneType]?: {
-        label: string;
-        color: string;
-    }}
+    } }
 }
-export type GlobalMapData = {[key in Maps]: MapData}
+export type GlobalMapData = { [key in Maps]: MapData }
