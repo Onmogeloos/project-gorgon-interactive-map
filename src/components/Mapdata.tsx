@@ -1,4 +1,4 @@
-import { GlobalData, GlobalMapData, Maps, MarkerType, ZoneType } from "@types/Map";
+import { GlobalData, GlobalMapData, Maps, MarkerType, ZoneType } from "@localtypes/Map";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
@@ -306,17 +306,6 @@ export async function loadMapData(): Promise<GlobalMapData> {
             ],
             bulkMarkers: [],
             zones: [
-                {
-                    name: "Brain Bugs",
-                    type: ZoneType.Enemies,
-                    polygonPoints: [
-                        [878.5, 358.5],
-                        [884.5, 295],
-                        [948.5, 216],
-                        [988.5, 245],
-                        [976, 377.5],
-                    ]
-                },
                 {
                     name: "Tigers",
                     type: ZoneType.Enemies,

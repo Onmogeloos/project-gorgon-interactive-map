@@ -1,7 +1,7 @@
 import hexagon from "@assets/icons/hexagon.svg?raw";
 import markerWrapper from "@assets/icons/markerwrapper.svg?raw";
 import plus from "@assets/icons/plus.svg?raw";
-import { MarkerType, UniqueMarkerData } from "@types/Map";
+import { MarkerType, UniqueMarkerData } from "@localtypes/Map";
 import { DivIcon } from "leaflet";
 import { useContext, useState } from "react";
 import { Marker, Popup } from "react-leaflet";
@@ -73,6 +73,8 @@ function CustomMarker({ markerData }: { markerData: UniqueMarkerData }) {
                         <Typography variant="body1">{group.label}</Typography>
                         <Typography variant="body2">
                             Wiki: <a href={toWiki(markerData.name)}>{markerData.name}</a>
+                            <br/>
+                            Position: {`[${markerData.position[0]}, ${markerData.position[1]}]`}
                         </Typography>
                     </FlexColumn>
                 </FlexRow>

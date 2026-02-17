@@ -1,5 +1,5 @@
 {
-  "name": "@wf-price-overview/webapp",
+  "name": "project-gorgon-interactive-map",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",

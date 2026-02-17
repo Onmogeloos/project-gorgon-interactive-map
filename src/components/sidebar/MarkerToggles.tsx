@@ -1,5 +1,5 @@
 import { Box, Checkbox, Typography } from "@mui/material";
-import { MarkerType } from "@types/Map";
+import { MarkerType } from "@localtypes/Map";
 import { useContext } from "react";
 import { MapContext } from "../../main";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
