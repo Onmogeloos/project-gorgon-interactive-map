@@ -1,7 +1,7 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MapContainer } from 'react-leaflet';
 import { Provider, useSelector } from 'react-redux';
@@ -38,6 +38,15 @@ export const MapContext = createContext<{
 });
 
 function App() {
+
+    useEffect(() => {
+        // Preload all map images
+        Object.values(MAP_DATA).forEach(map => {
+            const img = new Image();
+            img.src = map.imageUrl;
+        });
+    }, [])
+
     return (
         <Provider store={store}>
             <MainContainer>
