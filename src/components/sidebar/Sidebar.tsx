@@ -1,63 +1,63 @@
-import { Button, Dialog, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
-import { Maps } from "@types/Map";
-import { useContext } from "react";
+import logo from "@assets/images/logo.png";
+import { Form } from "@base-ui-components/react";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { Maps } from "@localtypes/Map";
+import { Button, Drawer, MenuItem, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import Joi from "joi";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { MapContext } from "../../main";
-import { FlexColumn } from "../Flex";
-import { Box } from "@mui/system";
-import { useState } from "react";
-import MarkerToggles from "./MarkerToggles";
-import SearchBar from "./SearchBar";
-import { Form } from "@base-ui-components/react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setIsMarkerProposalOpen } from "../../store/mapSlice";
-import { joiResolver } from "@hookform/resolvers/joi";
-import Joi from "joi";
-import { useForm } from "react-hook-form";
-import ZoneToggles from "./ZoneToggles";
+import { FlexColumn } from "../Flex";
+import MarkerToggles from "./MarkerToggles";
+import SearchBar from "./SearchBar";
+
+const sidebarWidth = 300;
 
 const CollapseButton = styled.div<{ $isOpen: boolean }>`
-    position: absolute;
-    top: 0;
-    left: ${props => props.$isOpen ? '300px' : '0'};
+    z-index: 1000;
     width: 3rem;
     height: 3rem;
-    opacity: 0.9;
-    z-index: 999;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${props => props.theme.palette.secondary.main};
+    opacity: 0.9;
     cursor: pointer;
-    transition: left 0.3s ease;
-    &:hover {
-        opacity: 1;
-    }
+    position: absolute;
+    top: 0;
+    left: ${props => props.$isOpen ? `${sidebarWidth}px` : "0"};
+    // Equals the drawer transition
+    transition: left 225ms cubic-bezier(0, 0, 0.2, 1);
 `
 
-const StyledSidebar = styled.div<{ $isOpen: boolean }>`
-    position: absolute;
-    z-index: 999;
-    background-color: ${props => props.theme.palette.secondary.main};
-    width: 300px;
-    height: 100%;
+
+const DrawerContainer = styled.div`
+    width: ${sidebarWidth}px;
     display: flex;
     flex-direction: column;
     opacity: 0.9;
     padding: 1rem;
-    transform: translateX(${props => props.$isOpen ? '0' : '-100%'});
-    transition: transform 0.3s ease;
     overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    background-color: ${props => props.theme.palette.secondary.main};
     h2 {
         margin-bottom: 1rem;
     }
     p {
         margin-bottom: 0.5rem;
     }
+`
 
+const Logo = styled.img`
+    width: 100%;
+    margin-bottom: 1rem;
 `
 
 export default function Sidebar() {
@@ -68,43 +68,60 @@ export default function Sidebar() {
     const navigate = useNavigate();
 
     return (
-        <Box sx={{ position: "relative" }} >
-            <StyledSidebar $isOpen={isOpen}>
-                <h2>Project: Gorgon Interactive Map</h2>
-                <Box sx={{ paddingBottom: "1rem", flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
-                    <FlexColumn $gapY="0.5rem">
-                        {(Object.keys(mapData) as Maps[]).map((mapKey) => {
-                            const map = mapData[mapKey];
-                            const isActive = currentMapData.slug === map.slug;
-                            return (
-                                <Button
-                                    key={map.slug}
-                                    color={isActive ? "primary" : "inherit"}
-                                    onClick={() => navigate(`/${map.slug}`)}
-                                >
-                                    {map.name}
-                                </Button>
-                            );
-                        })}
-                    </FlexColumn>
-                </Box>
-                <Divider />
-                {
-                    !isMarkerProposalOpen && <>
-                        <SearchBar />
-                        <Divider />
-                        <MarkerToggles />
-                        <ZoneToggles />
-                        <Divider />
-                        <Button variant="contained" color="primary" fullWidth onClick={() => dispatch(setIsMarkerProposalOpen(true))}>
-                            Propose new marker
-                        </Button></>
-                }
-                {
-                    isMarkerProposalOpen && <MarkerProposalSidebar />
-                }
-
-            </StyledSidebar>
+        <Box>
+            <Drawer
+                slotProps={{
+                    paper: {
+                        sx: {
+                            background: "transparent",
+                            border: "none",
+                            borderStartEndRadius: 0,
+                        }
+                    }
+                }}
+                open={isOpen}
+                onClose={() => setIsOpen(false)}
+                variant="persistent">
+                <DrawerContainer>
+                    <Logo src={logo} alt="Logo" />
+                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                        <Typography variant="subtitle2">Project: Gorgon Interactive Map</Typography>
+                    </Box>
+                    <Divider />
+                    <Box sx={{ flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
+                        <FlexColumn $gapY="0.5rem">
+                            {(Object.keys(mapData) as Maps[]).map((mapKey) => {
+                                const map = mapData[mapKey];
+                                const isActive = currentMapData.slug === map.slug;
+                                return (
+                                    <Button
+                                        key={map.slug}
+                                        color={isActive ? "primary" : "inherit"}
+                                        onClick={() => navigate(`/${map.slug}`)}
+                                    >
+                                        {map.name}
+                                    </Button>
+                                );
+                            })}
+                        </FlexColumn>
+                    </Box>
+                    <Divider />
+                    {
+                        !isMarkerProposalOpen && <>
+                            <SearchBar />
+                            <Divider />
+                            <MarkerToggles />
+                            {/* <ZoneToggles /> */}
+                            <Divider />
+                            <Button variant="contained" color="primary" fullWidth onClick={() => dispatch(setIsMarkerProposalOpen(true))}>
+                                Propose new marker
+                            </Button></>
+                    }
+                    {
+                        isMarkerProposalOpen && <MarkerProposalSidebar />
+                    }
+                </DrawerContainer>
+            </Drawer>
             <CollapseButton $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? "<" : ">"}
             </CollapseButton>
@@ -140,8 +157,11 @@ function MarkerProposalSidebar() {
     });
 
     const onSubmit = async (data: FormData) => {
-        console.log(data);
         try {
+            if (!mapClickPosition) {
+                window.alert("Please click on the map to select the marker position before submitting.");
+                return
+            }
             await fetch(`https://master-project-gorgon-marker-worker.onmogeloos.workers.dev/save-marker`, {
                 method: "POST",
                 headers: {
@@ -154,7 +174,7 @@ function MarkerProposalSidebar() {
                 })
             });
             window.alert("Thank you for your submission! Your marker proposal has been received and will be reviewed as soon as possible.");
-        } catch (error) {
+        } catch (_error) {
             window.alert(`Failed to submit marker. Please try again later.`);
         } finally {
             dispatch(setIsMarkerProposalOpen(false));

@@ -4,8 +4,7 @@ export type MapData = {
     slug: string;
     description: string;
     imageUrl: string;
-    uniqueMarkers: UniqueMarkerData[];
-    bulkMarkers: BulkMarkerData[];
+    markers: MarkerData[];
     zones: ZoneData[];
 }
 
@@ -18,24 +17,18 @@ export enum MarkerType {
     Object = 'object',
     ZonePortal = 'mapgate',
     MeditationPillar = 'meditationpillar',
-    Statue = 'statue',
     TeleportPlatform = 'teleportpad',
-    FruitTree = "Forage",
-    ForageSpots = "ForageSpots"
+    FruitTree = "fruittree",
+    ForageSpots = "foragespots",
+    Altar = "altar",
 }
 
 export type Coordinate = [number, number];
 
-export type UniqueMarkerData = {
+export type MarkerData = {
     name: string;
-    group: MarkerType;
-    position: Coordinate;
-}
-
-export type BulkMarkerData = {
-    name: string;
-    group: MarkerType;
-    positions: Coordinate[];
+    type: MarkerType;
+    position: Coordinate[];
 }
 
 export type ZoneData = {
@@ -66,14 +59,16 @@ export enum Maps {
 }
 
 export type GlobalData = {
-    markerGroups: {[key in MarkerType]?: {
-        icon: string;
+    markerGroups: {
+        [key in MarkerType]: {
+            icon: string;
+            label: string;
+            color: string;
+        }
+    },
+    zoneTypes: { [key in ZoneType]: {
         label: string;
         color: string;
-    }},
-    zoneTypes: {[key in ZoneType]?: {
-        label: string;
-        color: string;
-    }}
+    } }
 }
-export type GlobalMapData = {[key in Maps]: MapData}
+export type GlobalMapData = { [key in Maps]: MapData }

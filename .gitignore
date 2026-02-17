@@ -4,3 +4,7 @@ node_modules
 .pnp.loader.mjs
 dist
 *.tsbuildinfo
+scripts/data.json
+.env
+.env.local
+.eslintcache

@@ -1,5 +1,5 @@
+import { MarkerType } from "@localtypes/Map";
 import { Box, Checkbox, Typography } from "@mui/material";
-import { MarkerType } from "@types/Map";
 import { useContext } from "react";
 import { MapContext } from "../../main";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -7,7 +7,7 @@ import { setHiddenGroups } from "../../store/mapSlice";
 import { FlexRow } from "../Flex";
 
 export default function MarkerToggles() {
-    const { currentMapData, globalData } = useContext(MapContext);
+    const { globalData } = useContext(MapContext);
     const dispatch = useAppDispatch();
     const hiddenGroups = useAppSelector((state) => state.map.hiddenMarkerTypes);
 

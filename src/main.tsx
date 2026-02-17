@@ -1,21 +1,22 @@
+import { GlobalData, GlobalMapData, MapData, Maps } from "@localtypes/Map";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
-import { GlobalData, GlobalMapData, MapData, Maps } from '@types/Map';
 import { CRS } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MapContainer } from 'react-leaflet';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
-import { RootState, store } from './store/store';
-
-import "./assets/css/global.css";
+import Map from './components/map/Map';
 import { loadGlobalData, loadMapData } from './components/Mapdata';
 import Sidebar from './components/sidebar/Sidebar';
+import { store } from './store/store';
 import theme from './Theme';
-import Map from './components/map/Map';
+
+// CSS
+import 'leaflet/dist/leaflet.css';
+import "./assets/css/global.css";
 
 const MainContainer = styled.div`
     width: 100vw;
@@ -37,6 +38,15 @@ export const MapContext = createContext<{
 });
 
 function App() {
+
+    useEffect(() => {
+        // Preload all map images
+        Object.values(MAP_DATA).forEach(map => {
+            const img = new Image();
+            img.src = map.imageUrl;
+        });
+    }, [])
+
     return (
         <Provider store={store}>
             <MainContainer>
@@ -61,8 +71,6 @@ function App() {
 }
 
 function Page({ map: mapData }: { map: MapData }) {
-    const isMarkerProposalOpen = useSelector((state: RootState) => state.map.isMarkerProposalOpen);
-    
     return <>
         <MapContext.Provider value={{
             currentMapData: mapData,

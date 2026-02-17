@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MarkerType, ZoneType } from '@types/Map';
-import { set } from 'react-hook-form';
+import { MarkerType, ZoneType } from '@localtypes/Map';
 
 export interface MapClickPosition {
     y: number;
