@@ -1,0 +1,19 @@
+{
+    "name": "Project: Gorgon Interactive Map",
+    "short_name": "Project: Gorgon Map",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#86cb92",
+    "background_color": "#191919",
+    "display": "standalone"
+}

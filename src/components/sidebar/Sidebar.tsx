@@ -16,6 +16,7 @@ import Joi from "joi";
 import { useForm } from "react-hook-form";
 import ZoneToggles from "./ZoneToggles";
 import { Maps } from "@localtypes/Map";
+import logo from "@assets/images/logo.png";
 
 const sidebarWidth = 300;
 
@@ -56,6 +57,11 @@ const DrawerContainer = styled.div`
     }
 `
 
+const Logo = styled.img`
+    width: 100%;
+    margin-bottom: 1rem;
+`
+
 export default function Sidebar() {
     const { mapData, currentMapData } = useContext(MapContext);
     const dispatch = useAppDispatch();
@@ -65,18 +71,25 @@ export default function Sidebar() {
 
     return (
         <Box>
-            <Drawer slotProps={{
-                paper: {
-                    sx: {
-                        background: "transparent",
-                        border: "none",
-                        borderStartEndRadius: 0,
+            <Drawer
+                slotProps={{
+                    paper: {
+                        sx: {
+                            background: "transparent",
+                            border: "none",
+                            borderStartEndRadius: 0,
+                        }
                     }
-                }
-            }} open={isOpen} onClose={() => setIsOpen(false)} variant="persistent">
+                }}
+                open={isOpen}
+                onClose={() => setIsOpen(false)}
+                variant="persistent">
                 <DrawerContainer>
-                    <Typography variant="h4">Project: Gorgon</Typography>
-                    <Typography sx={{ paddingBottom: "1rem" }} variant="h5">Interactive map</Typography>
+                    <Logo src={logo} alt="Logo" />
+                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                        <Typography variant="subtitle2">Project: Gorgon Interactive Map</Typography>
+                    </Box>
+                    <Divider />
                     <Box sx={{ paddingBottom: "1rem", flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
                         <FlexColumn $gapY="0.5rem">
                             {(Object.keys(mapData) as Maps[]).map((mapKey) => {
@@ -109,7 +122,6 @@ export default function Sidebar() {
                     {
                         isMarkerProposalOpen && <MarkerProposalSidebar />
                     }
-
                 </DrawerContainer>
             </Drawer>
             <CollapseButton $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
