@@ -1,2 +1,2 @@
 # Redirect pages.dev domain to custom domain
-https://project-gorgon-interactive-map.pages.dev/* https://pg-map.com/:splat 301
+/* https://pg-map.com/:splat 301
