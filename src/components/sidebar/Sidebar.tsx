@@ -15,11 +15,12 @@ import { setIsMarkerProposalOpen } from "../../store/mapSlice";
 import { FlexColumn } from "../Flex";
 import MarkerToggles from "./MarkerToggles";
 import SearchBar from "./SearchBar";
+import SidebarFooter from "./SidebarFooter";
 
-const sidebarWidth = 300;
+const sidebarWidth = 350;
 
 const CollapseButton = styled.div<{ $isOpen: boolean }>`
-    z-index: 1000;
+    z-index: 99999999;
     width: 3rem;
     height: 3rem;
     border-top-right-radius: 8px;
@@ -45,7 +46,6 @@ const DrawerContainer = styled.div`
     opacity: 0.9;
     padding: 1rem;
     overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     background-color: ${props => props.theme.palette.secondary.main};
     h2 {
         margin-bottom: 1rem;
@@ -62,7 +62,6 @@ const Logo = styled.img`
 
 export default function Sidebar() {
     const { mapData, currentMapData } = useContext(MapContext);
-    const dispatch = useAppDispatch();
     const isMarkerProposalOpen = useAppSelector((state) => state.map.isMarkerProposalOpen);
     const [isOpen, setIsOpen] = useState(true);
     const navigate = useNavigate();
@@ -75,7 +74,7 @@ export default function Sidebar() {
                         sx: {
                             background: "transparent",
                             border: "none",
-                            borderStartEndRadius: 0,
+                            borderStartEndRadius: 0
                         }
                     }
                 }}
@@ -84,9 +83,9 @@ export default function Sidebar() {
                 variant="persistent">
                 <DrawerContainer>
                     <Logo src={logo} alt="Logo" />
-                    <Box sx={{ display: "flex", justifyContent: "center" }}>
-                        <Typography variant="subtitle2">Project: Gorgon Interactive Map</Typography>
-                    </Box>
+                    <FlexColumn $gapY="0.5rem" $alignHorizontal="center">
+                        <Typography variant="subtitle1">Project: Gorgon Interactive Map</Typography>
+                    </FlexColumn>
                     <Divider />
                     <Box sx={{ flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
                         <FlexColumn $gapY="0.5rem">
@@ -113,9 +112,8 @@ export default function Sidebar() {
                             <MarkerToggles />
                             {/* <ZoneToggles /> */}
                             <Divider />
-                            <Button variant="contained" color="primary" fullWidth onClick={() => dispatch(setIsMarkerProposalOpen(true))}>
-                                Propose new marker
-                            </Button></>
+                            <SidebarFooter/>
+                            </>
                     }
                     {
                         isMarkerProposalOpen && <MarkerProposalSidebar />

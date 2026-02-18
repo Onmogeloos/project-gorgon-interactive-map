@@ -17,6 +17,7 @@ import theme from './Theme';
 // CSS
 import 'leaflet/dist/leaflet.css';
 import "./assets/css/global.css";
+import FloatingButtons from "@components/FloatingButtons";
 
 const MainContainer = styled.div`
     width: 100vw;
@@ -85,10 +86,12 @@ function Page({ map: mapData }: { map: MapData }) {
                 minZoom={-1}
                 maxZoom={5}
                 zoom={0}
+                attributionControl={false}
                 zoomControl={false}
             >
                 <Map/>
             </MapContainer >
+            <FloatingButtons />
         </MapContext.Provider>
     </>
 }
