@@ -1,4 +1,4 @@
-import { GlobalData, GlobalMapData, MapData, Maps } from "@localtypes/Map";
+import { GlobalData, GlobalMapData, MapData, Area } from "@localtypes/Map";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router';
 import styled, { ThemeProvider } from 'styled-components';
 import Map from './components/map/Map';
-import { loadGlobalData, loadMapData } from './components/Mapdata';
+import { loadGlobalData, loadMapData } from './data/Mapdata';
 import Sidebar from './components/sidebar/Sidebar';
 import { store } from './store/store';
 import theme from './Theme';
@@ -33,7 +33,7 @@ export const MapContext = createContext<{
     mapData: GlobalMapData;
     globalData: GlobalData;
 }>({
-    currentMapData: MAP_DATA[Maps.AnagogeIsland],
+    currentMapData: MAP_DATA[Area.AnagogeIsland],
     mapData: MAP_DATA,
     globalData: GLOBAL_DATA,
 });
@@ -56,7 +56,7 @@ function App() {
                         <CssBaseline />
                         <HashRouter>
                             <Routes>
-                                <Route key={MAP_DATA[Maps.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Maps.AnagogeIsland]} />} />
+                                <Route key={MAP_DATA[Area.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Area.AnagogeIsland]} />} />
                                 {
                                     Object.values(MAP_DATA).map((map) => (
                                         <Route key={map.slug} path={map.slug} element={<Page map={map} />} />

@@ -22,10 +22,10 @@ export default function MarkerToggles() {
 
     return (
         <Box sx={{marginBottom: "1rem"}}>
-            <Typography variant="h6">Markers</Typography>
+            <Typography variant="h6">Marker types</Typography>
             <FlexRow $wrap>
                 {Object.entries(globalData.markerGroups).map(([key, data]) => (
-                    <Box key={key} sx={{ display: "flex", alignItems: "center", width: "50%" }}>
+                    <Box key={key} sx={{ display: "flex", alignItems: "center", width: "100%" }}>
                         <Checkbox size="small" id={key} checked={!hiddenGroups.includes(key as MarkerType)} onChange={() => toggleGroup(key as MarkerType)} />
                         <Label htmlFor={key}>{data.label}</Label>
                     </Box>

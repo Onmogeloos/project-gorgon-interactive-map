@@ -10,7 +10,7 @@ export default function SearchBar() {
         <Box>
             <TextField
                 fullWidth
-                placeholder="Search..."
+                placeholder="Search marker..."
                 value={searchQuery}
                 onChange={(e) => dispatch(setSearchQuery(e.target.value))}
             />

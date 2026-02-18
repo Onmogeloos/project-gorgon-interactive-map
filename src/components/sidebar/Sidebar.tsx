@@ -1,14 +1,13 @@
 import logo from "@assets/images/logo.png";
 import { Form } from "@base-ui-components/react";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { Maps } from "@localtypes/Map";
-import { Button, Drawer, MenuItem, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, Drawer, MenuItem, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Joi from "joi";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { MapContext } from "../../main";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setIsMarkerProposalOpen } from "../../store/mapSlice";
@@ -36,12 +35,18 @@ const CollapseButton = styled.div<{ $isOpen: boolean }>`
     left: ${props => props.$isOpen ? `${sidebarWidth}px` : "0"};
     // Equals the drawer transition
     transition: left 225ms cubic-bezier(0, 0, 0.2, 1);
+
+    @media (max-width: ${sidebarWidth + 3 * 16}px) {
+        left: ${props => props.$isOpen ? `calc(100vw - 3rem)` : "0"};
+    }
 `
 
 
 const DrawerContainer = styled.div`
     width: ${sidebarWidth}px;
+    max-width: calc(100vw - 3rem);
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     opacity: 0.9;
     padding: 1rem;
@@ -65,7 +70,17 @@ export default function Sidebar() {
     const isMarkerProposalOpen = useAppSelector((state) => state.map.isMarkerProposalOpen);
     const [isOpen, setIsOpen] = useState(true);
     const navigate = useNavigate();
-
+    const theme = useTheme();
+    // Sort areas by group first, then by name to avoid duplicated headers in Autocomplete
+    const areas = Object.values(mapData)
+        .sort((a, b) => {
+            const groupA = a.group || "";
+            const groupB = b.group || "";
+            if (groupA !== groupB) {
+                return groupA.localeCompare(groupB);
+            }
+            return a.name.localeCompare(b.name);
+        });
     return (
         <Box>
             <Drawer
@@ -86,34 +101,47 @@ export default function Sidebar() {
                     <FlexColumn $gapY="0.5rem" $alignHorizontal="center">
                         <Typography variant="subtitle1">Project: Gorgon Interactive Map</Typography>
                     </FlexColumn>
+                    {/* Custom divider to avoid input label clipping */}
+                    <Box sx={{ width: "100%", borderBottom: "1px solid rgba(255, 255, 255, 0.2)", marginTop: "1rem" }} />
+                    <FlexColumn $gapY="0.5rem">
+                        <Autocomplete
+                            disableClearable={true}
+                            value={areas.find(area => area.slug === currentMapData.slug)}
+                            options={areas}
+                            getOptionLabel={(option) => option.name}
+                            groupBy={(option) => option.group}
+                            renderInput={(params) => <TextField {...params} label="Zone" />}
+                            onChange={(_, map) => navigate(`/${map.slug}`)}
+                            slotProps={{
+                                listbox: {
+                                    sx: {
+                                        maxHeight: "60vh"
+                                    }
+                                }
+                            }}
+                            renderGroup={
+                                (params) => <Box key={params.group}>
+                                    <Box sx={{ padding: "0.5rem", backgroundColor: theme.palette.secondary.main }}>
+                                        <Typography variant="subtitle2">{params.group}</Typography>
+                                    </Box>
+                                    {params.children}
+                                </Box>
+                            }
+                        />
+                    </FlexColumn>
                     <Divider />
-                    <Box sx={{ flexGrow: 1, overflowY: "auto", minHeight: "8rem" }}>
-                        <FlexColumn $gapY="0.5rem">
-                            {(Object.keys(mapData) as Maps[]).map((mapKey) => {
-                                const map = mapData[mapKey];
-                                const isActive = currentMapData.slug === map.slug;
-                                return (
-                                    <Button
-                                        key={map.slug}
-                                        color={isActive ? "primary" : "inherit"}
-                                        onClick={() => navigate(`/${map.slug}`)}
-                                    >
-                                        {map.name}
-                                    </Button>
-                                );
-                            })}
-                        </FlexColumn>
-                    </Box>
-                    <Divider />
+
                     {
                         !isMarkerProposalOpen && <>
                             <SearchBar />
                             <Divider />
-                            <MarkerToggles />
-                            {/* <ZoneToggles /> */}
+                            <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+                                <MarkerToggles />
+                            </Box>
+
                             <Divider />
-                            <SidebarFooter/>
-                            </>
+                            <SidebarFooter />
+                        </>
                     }
                     {
                         isMarkerProposalOpen && <MarkerProposalSidebar />

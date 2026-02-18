@@ -8,7 +8,6 @@ export interface MapClickPosition {
 
 interface MapState {
     hiddenMarkerTypes: MarkerType[];
-    hiddenZoneTypes: ZoneType[];
     searchQuery: string;
     isMarkerProposalOpen: boolean;
     mapClickPosition: MapClickPosition | null;
@@ -16,7 +15,6 @@ interface MapState {
 
 const initialState: MapState = {
     hiddenMarkerTypes: [],
-    hiddenZoneTypes: [],
     searchQuery: '',
     isMarkerProposalOpen: false,
     mapClickPosition: null,
@@ -28,9 +26,6 @@ const mapSlice = createSlice({
     reducers: {
         setHiddenGroups: (state, action: PayloadAction<MarkerType[]>) => {
             state.hiddenMarkerTypes = action.payload;
-        },
-        setHiddenZoneTypes: (state, action: PayloadAction<ZoneType[]>) => {
-            state.hiddenZoneTypes = action.payload;
         },
         setSearchQuery: (state, action: PayloadAction<string>) => {
             state.searchQuery = action.payload;
@@ -47,5 +42,5 @@ const mapSlice = createSlice({
     },
 });
 
-export const { setHiddenGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition, setHiddenZoneTypes } = mapSlice.actions;
+export const { setHiddenGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition } = mapSlice.actions;
 export default mapSlice.reducer;

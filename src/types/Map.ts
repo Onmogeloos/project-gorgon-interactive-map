@@ -5,22 +5,24 @@ export type MapData = {
     description: string;
     imageUrl: string;
     markers: MarkerData[];
-    zones: ZoneData[];
+    group: Area;
 }
 
 export enum MarkerType {
-    Boss = 'boss',
-    Resource = 'resource',
-    Entrance = 'entrance',
-    NPC = 'npc',
-    Location = 'location',
-    Object = 'object',
-    ZonePortal = 'mapgate',
-    MeditationPillar = 'meditationpillar',
-    TeleportPlatform = 'teleportpad',
-    FruitTree = "fruittree",
-    ForageSpots = "foragespots",
     Altar = "altar",
+    Boss = 'boss',
+    Elite = 'elite',
+    Enemy = 'enemy',
+    Entrance = 'entrance',
+    ForageSpots = "foragespots",
+    FruitTree = "fruittree",
+    Location = 'location',
+    MeditationPillar = 'meditationpillar',
+    NPC = 'npc',
+    Object = 'object',
+    Resource = 'resource',
+    TeleportPlatform = 'teleportplatform',
+    ZonePortal = 'zoneportal',
 }
 
 export type Coordinate = [number, number];
@@ -31,17 +33,7 @@ export type MarkerData = {
     position: Coordinate[];
 }
 
-export type ZoneData = {
-    name: string;
-    type: ZoneType;
-    polygonPoints: Coordinate[];
-}
-
-export enum ZoneType {
-    Enemies = "enemies"
-}
-
-export enum Maps {
+export enum Area {
     AnagogeIsland = "Anagoge Island",
     Serbule = "Serbule",
     SerbuleHills = "Serbule Hills",
@@ -56,6 +48,51 @@ export enum Maps {
     Povus = "Povus",
     Vidaria = "Vidaria",
     Statehelm = "Statehelm",
+    Casino = "Casino",
+    BoardedUpBasement = "Boarded Up Basement",
+    Borghild = "Borghild",
+    BrainBugCave = "Brain Bug Cave",
+    CarpalTunnels = "Carpal Tunnels",
+    CrystalCavern = "Crystal Cavern",
+    DarkChapel = "Dark Chapel",
+    EltibuleCrypt = "Eltibule Crypt",
+    GoblinDungeon = "Goblin Dungeon",
+    GoblinDungeonTopFloor = "Goblin Dungeon Top Floor",
+    HogansKeepBasement = "Hogan's Keep Basement",
+    KhyruleksCrypt = "Khyrulek's Crypt",
+    KurCourtyard = "Kur Courtyard",
+    KurTower = "Kur Tower",
+    Labyrinth = "Labyrinth",
+    MyconianCave = "Myconian Cave",
+    NewbieIslandDungeon = "Newbie Island Dungeon",
+    NewPrestonbule = "New Prestonbule",
+    NoNameCave = "No-name Cave",
+    PovusCavesAktaariCave = "Povus Caves Aktaari Cave",
+    PovusCavesElvenJudgement = "Povus Caves Elven Judgement",
+    PovusCavesErrrukasCave = "Povus Caves Errruka's Cave",
+    PovusCavesForthragarianCaves = "Povus Caves Forthragarian Caves",
+    PovusCavesLevel1 = "Povus Caves Level 1",
+    PovusCavesLevel2 = "Povus Caves Level 2",
+    PovusCavesLevel3 = "Povus Caves Level 3",
+    PovusCavesLevel4 = "Povus Caves Level 4",
+    PovusCavesNightmareCaves = "Povus Caves Nightmare Caves",
+    PuckHalls = "Puck Halls",
+    RahuSewer = "Rahu Sewer",
+    RanalonBase = "Ranalon Base",
+    SerbuleSewer = "Serbule Sewer",
+    SnowbloodCave = "Snowblood Cave",
+    SpiderCave = "Spider Cave",
+    StatehelmCavesSafeHouseA = "Statehelm Caves Safe House A",
+    SunValeCave1 = "Sun Vale Cave 1",
+    SunValeCave2 = "Sun Vale Cave 2",
+    SunValeCave3 = "Sun Vale Cave 3",
+    TheWintertide = "The Wintertide",
+    TowerView = "Tower View",
+    WardenCave = "Warden Cave",
+    WindyViewCave = "Windy View Cave",
+    WinterNexus = "Winter Nexus",
+    WolfCave = "Wolf Cave",
+    YetiCave = "Yeti Cave",
 }
 
 export type GlobalData = {
@@ -65,10 +102,6 @@ export type GlobalData = {
             label: string;
             color: string;
         }
-    },
-    zoneTypes: { [key in ZoneType]: {
-        label: string;
-        color: string;
-    } }
+    }
 }
-export type GlobalMapData = { [key in Maps]: MapData }
+export type GlobalMapData = { [key in Area]: MapData }

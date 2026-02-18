@@ -14,7 +14,7 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-#root {
+body {
   --color-primary: rgb(134, 203, 146);
   --color-gray: #424242;
   height: 100vh;
