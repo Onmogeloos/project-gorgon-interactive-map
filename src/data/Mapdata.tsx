@@ -55,6 +55,7 @@ import SunValeCave2Data from "./areas/sunvale/SunValeCave2Data";
 import SunValeCave3Data from "./areas/sunvale/SunValeCave3Data";
 import SunValeData from "./areas/sunvale/SunValeData";
 import WinterNexusData from "./areas/sunvale/WinterNexusData";
+import AnimalNexusData from "./areas/faerealm/AnimalNexusData";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
@@ -147,6 +148,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.Rahu]: RahuData,
         [Area.Gazluk]: GazlukData,
         [Area.FaeRealm]: FaeRealmData,
+        [Area.AnimalNexus]: AnimalNexusData,
         [Area.Povus]: PovusData,
         [Area.Vidaria]: VidariaData,
         [Area.Statehelm]: StatehelmData,

@@ -6,6 +6,7 @@ export type MapData = {
     imageUrl: string;
     markers: MarkerData[];
     group: Area;
+    aspectRatio?: number;
 }
 
 export enum MarkerType {
@@ -93,6 +94,7 @@ export enum Area {
     WinterNexus = "Winter Nexus",
     WolfCave = "Wolf Cave",
     YetiCave = "Yeti Cave",
+    AnimalNexus = "Animal Nexus",
 }
 
 export type GlobalData = {

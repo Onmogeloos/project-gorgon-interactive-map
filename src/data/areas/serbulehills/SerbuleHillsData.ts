@@ -5,6 +5,7 @@ const data: MapData = {
     slug: "serbulehills",
     description: "",
     group: Area.SerbuleHills,
+    aspectRatio: 2048/1988,
     imageUrl: (await import("@assets/areas/Map_AreaSerbule2.png")).default,
     markers: [
         {

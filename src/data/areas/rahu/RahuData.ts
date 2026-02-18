@@ -5,6 +5,7 @@ const RahuData: GlobalMapData[Area.Rahu] = {
     slug: "rahu",
     description: "",
     group: Area.Rahu,
+    aspectRatio: 1720/1772,
     imageUrl: (await import("@assets/areas/Map_AreaRahu.png")).default,
     markers: [],
 };

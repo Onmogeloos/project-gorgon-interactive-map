@@ -2,7 +2,7 @@ import { GlobalData, GlobalMapData, MapData, Area } from "@localtypes/Map";
 import { Box, CircularProgress, CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useReducer, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MapContainer } from 'react-leaflet';
 import { Provider } from 'react-redux';
@@ -29,18 +29,25 @@ const MainContainer = styled.div`
 const MAP_DATA = await loadMapData();
 const GLOBAL_DATA = await loadGlobalData();
 
+type ImageCache = {
+    [area in Area]?: HTMLImageElement
+};
+
 export const MapContext = createContext<{
     currentMapData: MapData;
+    currentArea: Area;
     mapData: GlobalMapData;
     globalData: GlobalData;
 }>({
-    currentMapData: MAP_DATA[Area.AnagogeIsland],
-    mapData: MAP_DATA,
-    globalData: GLOBAL_DATA,
-});
+        currentMapData: MAP_DATA[Area.AnagogeIsland],
+        currentArea: Area.AnagogeIsland,
+        mapData: MAP_DATA,
+        globalData: GLOBAL_DATA,
+    });
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         const preload = async () => {
             // Preload all map images
@@ -60,10 +67,20 @@ function App() {
                         <CssBaseline />
                         <HashRouter>
                             <Routes>
-                                <Route key={MAP_DATA[Area.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Area.AnagogeIsland]} isLoading={isLoading} />} />
+                                <Route key={MAP_DATA[Area.AnagogeIsland].slug} path={"/"}
+                                    element={<Page
+                                        area={Area.AnagogeIsland}
+                                        map={MAP_DATA[Area.AnagogeIsland]}
+                                        isLoading={isLoading}/>} />
                                 {
-                                    Object.values(MAP_DATA).map((map) => (
-                                        <Route key={map.slug} path={map.slug} element={<Page map={map} isLoading={isLoading} />} />
+                                    Object.entries(MAP_DATA).map(([area, map]: [Area, MapData]) => (
+                                        <Route
+                                            key={map.slug}
+                                            path={map.slug}
+                                            element={<Page
+                                                map={map}
+                                                area={area}
+                                                isLoading={isLoading}/>} />
                                     ))
                                 }
                             </Routes>
@@ -75,12 +92,13 @@ function App() {
     );
 }
 
-function Page({ map: mapData, isLoading }: { map: MapData, isLoading: boolean }) {
+function Page({ map: mapData, area, isLoading }: { map: MapData, area: Area, isLoading: boolean }) {
     return <>
         <MapContext.Provider value={{
             currentMapData: mapData,
+            currentArea: area,
             mapData: MAP_DATA,
-            globalData: GLOBAL_DATA,
+            globalData: GLOBAL_DATA
         }}>
             <Sidebar />
             {

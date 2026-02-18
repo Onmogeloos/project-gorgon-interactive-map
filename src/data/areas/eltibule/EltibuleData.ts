@@ -6,6 +6,7 @@ const data: MapData = {
     description: "",
     group: Area.Eltibule,
     imageUrl: (await import("@assets/areas/Map_AreaEltibule.png")).default,
+    aspectRatio: 2048/2033,
     markers: [
         {
             name: "Pudding",
