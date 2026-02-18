@@ -1,8 +1,8 @@
 import { GlobalData, GlobalMapData, MapData, Area } from "@localtypes/Map";
-import { CssBaseline } from "@mui/material";
+import { Box, CircularProgress, CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
-import { createContext, useEffect } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MapContainer } from 'react-leaflet';
 import { Provider } from 'react-redux';
@@ -18,6 +18,7 @@ import theme from './Theme';
 import 'leaflet/dist/leaflet.css';
 import "./assets/css/global.css";
 import FloatingButtons from "@components/FloatingButtons";
+import LoadingOverlay from "@components/LoadingOverlay";
 
 const MainContainer = styled.div`
     width: 100vw;
@@ -39,13 +40,16 @@ export const MapContext = createContext<{
 });
 
 function App() {
-
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        // Preload all map images
-        Object.values(MAP_DATA).forEach(map => {
-            const img = new Image();
-            img.src = map.imageUrl;
-        });
+        const preload = async () => {
+            // Preload all map images
+            Object.values(MAP_DATA).forEach(map => {
+                const img = new Image();
+                img.src = map.imageUrl;
+            });
+        };
+        preload().finally(() => setIsLoading(false));
     }, [])
 
     return (
@@ -56,10 +60,10 @@ function App() {
                         <CssBaseline />
                         <HashRouter>
                             <Routes>
-                                <Route key={MAP_DATA[Area.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Area.AnagogeIsland]} />} />
+                                <Route key={MAP_DATA[Area.AnagogeIsland].slug} path={"/"} element={<Page map={MAP_DATA[Area.AnagogeIsland]} isLoading={isLoading} />} />
                                 {
                                     Object.values(MAP_DATA).map((map) => (
-                                        <Route key={map.slug} path={map.slug} element={<Page map={map} />} />
+                                        <Route key={map.slug} path={map.slug} element={<Page map={map} isLoading={isLoading} />} />
                                     ))
                                 }
                             </Routes>
@@ -71,7 +75,7 @@ function App() {
     );
 }
 
-function Page({ map: mapData }: { map: MapData }) {
+function Page({ map: mapData, isLoading }: { map: MapData, isLoading: boolean }) {
     return <>
         <MapContext.Provider value={{
             currentMapData: mapData,
@@ -79,18 +83,21 @@ function Page({ map: mapData }: { map: MapData }) {
             globalData: GLOBAL_DATA,
         }}>
             <Sidebar />
-            <MapContainer
-                crs={CRS.Simple}
-                bounds={[[0, 0], [1000, 1000]]}
-                style={{ height: '100vh', width: '100vw' }}
-                minZoom={-1}
-                maxZoom={5}
-                zoom={0}
-                attributionControl={false}
-                zoomControl={false}
-            >
-                <Map/>
-            </MapContainer >
+            {
+                !isLoading && <MapContainer
+                    crs={CRS.Simple}
+                    bounds={[[0, 0], [1000, 1000]]}
+                    style={{ height: '100vh', width: '100vw' }}
+                    minZoom={-1}
+                    maxZoom={5}
+                    zoom={0}
+                    attributionControl={false}
+                    zoomControl={false}
+                >
+                    <Map />
+                </MapContainer >
+            }
+            {isLoading && <LoadingOverlay />}
             <FloatingButtons />
         </MapContext.Provider>
     </>
