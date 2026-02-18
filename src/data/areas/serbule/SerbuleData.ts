@@ -26,18 +26,12 @@ const data: MapData = {
         {
             "name": "Sir Coth",
             type: MarkerType.NPC,
-            position: [[
-                565.75,
-                518.25
-            ]]
+            position: [[559.40625, 515.625]]
         },
         {
             "name": "Roshun the Traitor",
             type: MarkerType.NPC,
-            position: [[
-                869.25,
-                340
-            ]]
+            position: [[863.8125, 347.125]]
         },
         {
             "name": "Lugnir",
@@ -50,13 +44,10 @@ const data: MapData = {
         {
             "name": "Apple tree",
             type: MarkerType.FruitTree,
-            position: [[
-                622.625,
-                100.25
-            ], [
-                908.75,
-                172
-            ]]
+            position: [
+                [622.625, 118],
+                [903.5, 186]
+            ]
         },
         {
             "name": "Nelson Ballard",
@@ -80,14 +71,8 @@ const data: MapData = {
             position: [
                 [513.25, 548.25],
                 [480.5, 545.5],
-                [
-                    252.5,
-                    259
-                ],
-                [
-                    495.25,
-                    728
-                ]
+                [251.6875, 269],
+                [493.375, 717.625]
 
             ]
         },
@@ -158,10 +143,9 @@ const data: MapData = {
         {
             "name": "Zeratak",
             type: MarkerType.NPC,
-            position: [[
-                877.25,
-                322.5
-            ]]
+            position: [
+                [877.4375, 330.5]
+            ]
         },
         {
             "name": "Elahil",
@@ -238,10 +222,9 @@ const data: MapData = {
         {
             "name": "Azalak",
             type: MarkerType.NPC,
-            position: [[
-                866.25,
-                331
-            ]]
+            position: [
+                [865.9375, 337.625]
+            ]
         },
         {
             "name": "Flia",
@@ -270,36 +253,24 @@ const data: MapData = {
         {
             "name": "Larsan",
             type: MarkerType.NPC,
-            position: [[
-                541.75,
-                507.375
-            ]]
+            position: [[543.09375, 509.21875]]
         },
         {
             "name": "Pennoc",
             type: MarkerType.NPC,
-            position: [[
-                502.875,
-                531.75
-            ]]
+            position: [[502.625, 529.40625]]
         },
         {
             name: "Brain Bug Cave",
             position: [
-                [
-                    880,
-                    110
-                ]
+                [875.75, 167.5]
             ],
             type: MarkerType.Entrance
         },
         {
             name: "Meditation Pillar (NW)",
             position: [
-                [
-                    855,
-                    205
-                ]
+                [852.625, 219.75]
             ],
             type: MarkerType.MeditationPillar
         },
@@ -316,10 +287,7 @@ const data: MapData = {
         {
             name: "Path to Eltibule",
             position: [
-                [
-                    946.25,
-                    346.25
-                ]
+                [927.5625, 357.0625]
             ],
             type: MarkerType.ZonePortal
         },
@@ -336,60 +304,46 @@ const data: MapData = {
         {
             name: "Fitz the Boatman",
             position: [
-                [
-                    940,
-                    675
-                ]
+                [934.8125, 669.4375]
             ],
             type: MarkerType.NPC
         },
         {
             name: "Juri the Boatman",
             position: [
-                [
-                    930,
-                    695
-                ]
+                [930.125, 688.6875]
             ],
             type: MarkerType.NPC
         },
         {
             name: "Borghild",
             position: [
-                [
-                    750,
-                    910
-                ]
+                [748.4375, 893.3125]
             ],
             type: MarkerType.Entrance
         },
         {
             name: "Teleport Pad (NE)",
             position: [
-                [
-                    760,
-                    895
-                ]
+                [757.28125, 877.25]
             ],
             type: MarkerType.TeleportPlatform
         },
         {
             name: "Meditation Pillar (NE)",
             position: [
-                [
-                    740,
-                    895
-                ]
+                // [
+                //     740, // 0,9951013513513514
+                //     895 // 0.981284916
+                // ],
+                [736.375, 878.25]
             ],
             type: MarkerType.MeditationPillar
         },
         {
             name: "Serbule Sewers",
             position: [
-                [
-                    655,
-                    695
-                ]
+                [650.1875, 688.8125]
             ],
             type: MarkerType.Entrance
         },
@@ -406,10 +360,7 @@ const data: MapData = {
         {
             name: "Mushroom circle",
             position: [
-                [
-                    500,
-                    882
-                ]
+                [489.375, 859]
             ],
             type: MarkerType.Object
         },
@@ -426,20 +377,14 @@ const data: MapData = {
         {
             name: "Teleport Pad (Central)",
             position: [
-                [
-                    555,
-                    508
-                ]
+                [551.75, 508.375]
             ],
             type: MarkerType.TeleportPlatform
         },
         {
             name: "Meditation Pillar (Central)",
             position: [
-                [
-                    580,
-                    430
-                ]
+                [581.90625, 432.375]
             ],
             type: MarkerType.MeditationPillar
         },
@@ -456,30 +401,21 @@ const data: MapData = {
         {
             name: "Giant Mushrooms",
             position: [
-                [
-                    585.75,
-                    22.5
-                ]
+                [586, 57.5]
             ],
             type: MarkerType.Entrance
         },
         {
             name: "Serbule Graveyard",
             position: [
-                [
-                    132,
-                    116.5
-                ]
+                [119.5, 113.8125]
             ],
             type: MarkerType.Location
         },
         {
             name: "Serbule Crypt",
             position: [
-                [
-                    104,
-                    76
-                ]
+                [103.75, 94.25]
             ],
             type: MarkerType.Location
         },

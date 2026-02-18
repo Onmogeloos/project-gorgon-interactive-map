@@ -1,7 +1,6 @@
 import { Area, GlobalData, GlobalMapData, MarkerType } from "@localtypes/Map";
 import AnagogeIslandData from "./areas/anagoge/AnagogeIslandData";
 import AnagogeRecordsFacilityData from "./areas/anagoge/AnagogeRecordsFacility";
-import SpiderCaveData from "./areas/anagoge/SpiderCaveData";
 import CasinoData from "./areas/casino/CasinoData";
 import BoardedUpBasementData from "./areas/eltibule/BoardedUpBasementData";
 import DarkChapelData from "./areas/eltibule/DarkChapelData";
@@ -34,7 +33,6 @@ import PovusCavesLevel3Data from "./areas/povus/PovusCavesLevel3Data";
 import PovusCavesLevel4Data from "./areas/povus/PovusCavesLevel4Data";
 import PovusCavesNightmareCavesData from "./areas/povus/PovusCavesNightmareCavesData";
 import PovusData from "./areas/povus/PovusData";
-import PuckHallsData from "./areas/PuckHallsData";
 import RahuData from "./areas/rahu/RahuData";
 import RahuSewerData from "./areas/rahu/RahuSewerData";
 import BorghildData from "./areas/serbule/BorghildData";
@@ -48,6 +46,7 @@ import SerbuleData from "./areas/serbule/SerbuleData";
 import SerbuleSewerData from "./areas/serbule/SerbuleSewerData";
 import RanalonBaseData from "./areas/serbulehills/RanalonBaseData";
 import SerbuleHillsData from "./areas/serbulehills/SerbuleHillsData";
+import SpiderCaveData from "./areas/serbulehills/SpiderCaveData";
 import StatehelmCavesSafeHouseAData from "./areas/statehelm/StatehelmCavesSafeHouseAData";
 import StatehelmData from "./areas/statehelm/StatehelmData";
 import VidariaData from "./areas/statehelm/VidariaData";
@@ -56,8 +55,6 @@ import SunValeCave2Data from "./areas/sunvale/SunValeCave2Data";
 import SunValeCave3Data from "./areas/sunvale/SunValeCave3Data";
 import SunValeData from "./areas/sunvale/SunValeData";
 import WinterNexusData from "./areas/sunvale/WinterNexusData";
-import TowerViewData from "./areas/TowerViewData";
-import WardenCaveData from "./areas/WardenCaveData";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
@@ -180,7 +177,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.PovusCavesLevel3]: PovusCavesLevel3Data,
         [Area.PovusCavesLevel4]: PovusCavesLevel4Data,
         [Area.PovusCavesNightmareCaves]: PovusCavesNightmareCavesData,
-        [Area.PuckHalls]: PuckHallsData,
+        // [Area.PuckHalls]: PuckHallsData,
         [Area.RahuSewer]: RahuSewerData,
         [Area.RanalonBase]: RanalonBaseData,
         [Area.SerbuleSewer]: SerbuleSewerData,
@@ -191,8 +188,8 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.SunValeCave2]: SunValeCave2Data,
         [Area.SunValeCave3]: SunValeCave3Data,
         [Area.TheWintertide]: TheWintertideData,
-        [Area.TowerView]: TowerViewData,
-        [Area.WardenCave]: WardenCaveData,
+        // [Area.TowerView]: TowerViewData,
+        // [Area.WardenCave]: WardenCaveData,
         [Area.WindyViewCave]: WindyViewCaveData,
         [Area.WinterNexus]: WinterNexusData,
         [Area.WolfCave]: WolfCaveData,

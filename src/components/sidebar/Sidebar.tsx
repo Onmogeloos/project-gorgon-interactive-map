@@ -1,7 +1,7 @@
 import logo from "@assets/images/logo.png";
 import { Form } from "@base-ui-components/react";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { Autocomplete, Button, Drawer, MenuItem, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, Drawer, IconButton, MenuItem, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Joi from "joi";
 import { useContext, useState } from "react";
@@ -11,10 +11,11 @@ import styled, { useTheme } from "styled-components";
 import { MapContext } from "../../main";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setIsMarkerProposalOpen } from "../../store/mapSlice";
-import { FlexColumn } from "../Flex";
+import { FlexColumn, FlexRow } from "../Flex";
 import MarkerToggles from "./MarkerToggles";
 import SearchBar from "./SearchBar";
 import SidebarFooter from "./SidebarFooter";
+import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 
 const sidebarWidth = 350;
 
@@ -101,10 +102,21 @@ export default function Sidebar() {
                     <FlexColumn $gapY="0.5rem" $alignHorizontal="center">
                         <Typography variant="subtitle1">Project: Gorgon Interactive Map</Typography>
                     </FlexColumn>
-                    {/* Custom divider to avoid input label clipping */}
-                    <Box sx={{ width: "100%", borderBottom: "1px solid rgba(255, 255, 255, 0.2)", marginTop: "1rem" }} />
-                    <FlexColumn $gapY="0.5rem">
+                    <Divider />
+                    <FlexRow $alignVertical="center">
+                        <Box>
+                            <IconButton aria-label="previous" size="small"
+                                onClick={() => {
+                                    const currentIndex = areas.findIndex(area => area.slug === currentMapData.slug);
+                                    const previousIndex = (currentIndex - 1 + areas.length) % areas.length;
+                                    navigate(`/${areas[previousIndex].slug}`);
+                                }}>
+                                <NavigateBefore />
+                            </IconButton>
+                        </Box>
+                        &nbsp;
                         <Autocomplete
+                            sx={{ flexGrow: 1 }}
                             disableClearable={true}
                             value={areas.find(area => area.slug === currentMapData.slug)}
                             options={areas}
@@ -121,14 +133,28 @@ export default function Sidebar() {
                             }}
                             renderGroup={
                                 (params) => <Box key={params.group}>
-                                    <Box sx={{ padding: "0.5rem", backgroundColor: theme.palette.secondary.main }}>
-                                        <Typography variant="subtitle2">{params.group}</Typography>
+                                    <Box sx={{
+                                        padding: "0.5rem",
+                                        backgroundColor: theme.palette.secondary.main,
+                                    }}>
+                                        <Typography variant="subtitle2">{params.group} Region</Typography>
                                     </Box>
                                     {params.children}
                                 </Box>
                             }
                         />
-                    </FlexColumn>
+                        &nbsp;
+                        <Box>
+                            <IconButton aria-label="next" size="small"
+                                onClick={() => {
+                                    const currentIndex = areas.findIndex(area => area.slug === currentMapData.slug);
+                                    const nextIndex = (currentIndex + 1) % areas.length;
+                                    navigate(`/${areas[nextIndex].slug}`);
+                                }}>
+                                <NavigateNext />
+                            </IconButton>
+                        </Box>
+                    </FlexRow>
                     <Divider />
 
                     {

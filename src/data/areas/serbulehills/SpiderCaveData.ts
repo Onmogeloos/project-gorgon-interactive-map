@@ -4,7 +4,7 @@ const SpiderCaveData: MapData = {
     name: "Spider Cave",
     slug: "spidercave",
     description: "",
-    group: Area.AnagogeIsland,
+    group: Area.SerbuleHills,
     imageUrl: (await import("@assets/areas/Map_SpiderCave.png")).default,
     markers: [],
 };
