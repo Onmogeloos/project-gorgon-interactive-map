@@ -1,6 +1,6 @@
 import { MarkerData, MarkerType, MarkerTypeData } from "@localtypes/Map";
 import { useAppSelector } from "@store/hooks";
-import L from "leaflet";
+import L, { Marker } from "leaflet";
 import { useContext, useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
 import { MapContext } from "../../main";
@@ -136,11 +136,10 @@ export default function CanvasMarkerLayer() {
                     return [type, {
                         icon: img,
                         backgroundIcon: backgroundImg
-                    }] as [MarkerType, MarkerIcon];
+                    }]
                 })]);
-            const icons = Object.fromEntries(iconList);
+            const icons = Object.fromEntries(iconList) as { [type in MarkerType]: MarkerIcon };
 
-            const markerWrapperImg = await createImage(markerWrapper)
             const CustomCanvasLayer = createCanvasLayerClass(markers, icons);
             canvasLayer = new CustomCanvasLayer();
             layerRef.current = canvasLayer;
