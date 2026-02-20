@@ -1,10 +1,12 @@
-import { MarkerData, MarkerType, MarkerTypeData } from "@localtypes/Map";
+import markerWrapper from "@assets/icons/markerwrapper_template.svg?raw";
+import { MarkerData, MarkerType } from "@localtypes/Map";
 import { useAppSelector } from "@store/hooks";
-import L, { Marker } from "leaflet";
+import L, { marker } from "leaflet";
 import { useContext, useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
 import { MapContext } from "../../main";
-import markerWrapper from "@assets/icons/markerwrapper_template.svg?raw";
+import { createRoot } from 'react-dom/client';
+import Popup from "./Popup";
 
 type MarkerIcon = {
     icon: HTMLImageElement;
@@ -35,7 +37,7 @@ function drawIcon(ctx: CanvasRenderingContext2D, icon: MarkerIcon, point: L.Poin
     const size = 34
     const scaledPosition = { x: point.x / scale, y: point.y / scale }
     // The width is 27 and the height is 36 in the original SVG.
-    const markerAspectRatio = 27/36; 
+    const markerAspectRatio = 27 / 36;
     const offset = (size * markerAspectRatio) / 2;
     ctx.drawImage(icon.backgroundIcon,
         scaledPosition.x - offset,
@@ -48,6 +50,12 @@ function drawIcon(ctx: CanvasRenderingContext2D, icon: MarkerIcon, point: L.Poin
         size - 14, // Width 
         size - 14 // Height
     );
+}
+
+type ClickedMarker = {
+    marker: MarkerData;
+    position: [number, number];
+    distance: number;
 }
 
 function createCanvasLayerClass(markers: MarkerData[], icons: {
@@ -63,6 +71,7 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
 
             map.on('zoomend resize viewreset', this._reset, this);
             map.on('zoomanim', this._onZoomAnim, this);
+            map.on("click", this._onClick, this);
             this._reset();
         },
         onRemove: function (map: L.Map) {
@@ -71,6 +80,10 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
             }
             map.off('zoomend resize viewreset', this._reset, this);
             map.off('zoomanim', this._onZoomAnim, this);
+            map.off("click", this._onClick, this);
+            if (this._popup) {
+                map.closePopup(this._popup);
+            }
         },
         _onZoomAnim: function (e) {
             const scale = this._map.getZoomScale(e.zoom);
@@ -99,13 +112,55 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
             ctx.save();
             ctx.scale(scale, scale);
             markers.forEach(marker => {
-                marker.position.forEach(([lat, lng]) => {
+                marker.positions.forEach(([lat, lng]) => {
                     const point = this._map.latLngToContainerPoint([lat, lng]);
                     const icon = icons[marker.type];
                     drawIcon(ctx, icon, point, scale);
                 });
             });
             ctx.restore();
+        },
+        _onClick: function (e) {
+            console.log(e)
+            const { lat, lng } = e.latlng;
+            const clickedMarker = markers.reduce((closest, marker) => {
+                marker.positions.forEach(([mLat, mLng]) => {
+                    const point = this._map.latLngToContainerPoint([mLat, mLng]);
+                    const clickPoint = this._map.latLngToContainerPoint([lat, lng]);
+                    const distance = point.distanceTo(clickPoint);
+                    if ((distance < closest.distance) && distance < 15)
+                        closest = { marker, position: [mLat, mLng], distance };
+                });
+                return closest;
+            }, {
+                marker: null,
+                position: [0, 0],
+                distance: Infinity
+            } as ClickedMarker | {
+                marker: null;
+                position: [number, number];
+                distance: number;
+            }
+            );
+
+            if (!clickedMarker.marker) return;
+            const container = document.createElement("div");
+            createRoot(container).render(<Popup
+                markerData={clickedMarker.marker}
+                position={clickedMarker.position}
+                />);
+
+            if (this._popup) {
+                // Move existing popup instead of creating a new one
+                this._popup.setLatLng(clickedMarker.position).setContent(container).openOn(this._map);
+                return;
+            }
+            this._popup = L.popup({
+                minWidth: 200
+            })
+                .setLatLng(clickedMarker.position)
+                .setContent(container)
+                .openOn(this._map);
         }
     });
 }

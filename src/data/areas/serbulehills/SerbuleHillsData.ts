@@ -11,40 +11,40 @@ const data: MapData = {
         {
             name: "Paul Vaughn",
             type: MarkerType.NPC,
-            position: [
+            positions: [
                 [858.25, 205.125]
             ],
         },
         {
             name: "Stables Golem",
             type: MarkerType.NPC,
-            position: [
+            positions: [
                 [858.5625, 184.5625]
             ],
         },
         {
             name: "Teleport platform",
             type: MarkerType.TeleportPlatform,
-            position: [
+            positions: [
                 [863.5625, 209.25]
             ]
         },
         {
             name: "Path to Serbule",
-            position: [[988, 95]],
+            positions: [[988, 95]],
             type: MarkerType.ZonePortal
         },
         {
             name: "Serbule Hills Spider Cave",
             type: MarkerType.Entrance,
-            position: [
+            positions: [
                 [935.1875, 362]
             ],
         },
         {
             name: "Apple tree",
             type: MarkerType.FruitTree,
-            position: [
+            positions: [
                 [959.8125, 76.4375],
                 [928.3125, 32.8125],
                 [923.8125, 20.5],

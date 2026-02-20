@@ -11,7 +11,7 @@ const data: MapData = {
         {
             name: "Pudding",
             type: MarkerType.Boss,
-            position: [
+            positions: [
                 [480.3125, 880.1875]
             ]
         },

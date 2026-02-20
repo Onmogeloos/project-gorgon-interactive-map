@@ -31,7 +31,7 @@ export type Coordinate = [number, number];
 export type MarkerData = {
     name: string;
     type: MarkerType;
-    position: Coordinate[];
+    positions: Coordinate[];
 }
 
 export enum Area {

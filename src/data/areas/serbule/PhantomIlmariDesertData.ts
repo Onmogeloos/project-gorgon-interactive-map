@@ -9,7 +9,7 @@ const PhantomIlmariDesertData: GlobalMapData[Area.PhantomIlmariDesert] = {
     markers: [
         {
             name: "Miravelle",
-            position: [[353.625, 494.625]],
+            positions: [[353.625, 494.625]],
             type: MarkerType.NPC
         }
     ]
