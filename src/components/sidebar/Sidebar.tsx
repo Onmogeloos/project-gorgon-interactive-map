@@ -255,7 +255,7 @@ function MarkerProposalSidebar() {
                             {...form.register("type")}
                         >
                             {
-                                Object.entries(globalData.markerGroups).map(([key, group]) => (
+                                Object.entries(globalData.markerTypes).map(([key, group]) => (
                                     <MenuItem key={key} value={key}>{group.label}</MenuItem>
                                 ))
                             }

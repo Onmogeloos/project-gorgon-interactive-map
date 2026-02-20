@@ -3,7 +3,7 @@ import { setMapClickPosition } from "@store/mapSlice";
 import { useContext, useMemo } from "react";
 import { ImageOverlay, useMapEvents, ZoomControl } from "react-leaflet";
 import { MapContext } from "../../main";
-import MarkerLayer from "./MarkerLayer";
+import CanvasMarkerLayer from "./CanvasMarkerLayer";
 
 export default function Map() {
     const { currentMapData } = useContext(MapContext);
@@ -41,6 +41,6 @@ export default function Map() {
             url={currentMapData.imageUrl}
             bounds={imageBounds}
         />
-        <MarkerLayer />
+        <CanvasMarkerLayer />
     </>
 }

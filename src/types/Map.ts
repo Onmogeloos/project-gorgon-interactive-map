@@ -97,13 +97,15 @@ export enum Area {
     AnimalNexus = "Animal Nexus",
 }
 
+export type MarkerTypeData = {
+    icon: string;
+    label: string;
+    color: string;
+}
+
 export type GlobalData = {
-    markerGroups: {
-        [key in MarkerType]: {
-            icon: string;
-            label: string;
-            color: string;
-        }
+    markerTypes: {
+        [key in MarkerType]: MarkerTypeData
     }
 }
 export type GlobalMapData = { [key in Area]: MapData }

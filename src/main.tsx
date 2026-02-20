@@ -109,6 +109,7 @@ function Page({ map: mapData, area, isLoading }: { map: MapData, area: Area, isL
                     minZoom={-1}
                     maxZoom={5}
                     zoom={0}
+                    zoomAnimation={false}
                     attributionControl={false}
                     zoomControl={false}
                 >

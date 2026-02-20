@@ -39,6 +39,10 @@ h3 {
   background: inherit !important;
   user-select: none;
 
+  .leaflet-zoom-anim {
+    transition: none !important;
+  }
+
   .leaflet-top .leaflet-control {
     margin-top: 4rem;
     border-radius: 8px;
@@ -63,32 +67,5 @@ h3 {
 
   .leaflet-tooltip {
     padding: 2px;
-  }
-
-  .leaflet-marker-icon {
-    background: transparent;
-    border: none;
-
-    .icon-wrapper {
-      position: relative;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .icon-marker {
-        height: 100%;
-        width: 100%;
-      }
-
-      svg:not(.icon-marker) {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        fill: black;
-        top: 3px;
-      }
-    }
   }
 }
