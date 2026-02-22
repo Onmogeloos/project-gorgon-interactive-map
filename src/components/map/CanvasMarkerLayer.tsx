@@ -61,6 +61,7 @@ type ClickedMarker = {
 function createCanvasLayerClass(markers: MarkerData[], icons: {
     [type in MarkerType]: MarkerIcon
 }) {
+    let interval;
     return L.Layer.extend({
         onAdd: function (map: L.Map) {
             this._canvas = L.DomUtil.create('canvas', 'leaflet-canvas-marker-layer');
@@ -69,30 +70,32 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
 
             map.getPanes().overlayPane.appendChild(this._canvas);
 
-            map.on('zoomend resize viewreset', this._reset, this);
-            map.on('zoomanim', this._onZoomAnim, this);
+            map.on('zoomend resize viewreset moveend', this._reset, this);
+            map.on('movestart', this._movestart, this);
+            map.on('moveend', this._moveend, this);
             map.on("click", this._onClick, this);
             this._reset();
+        },
+        _movestart: function () {
+            interval = setInterval(() => {
+                console.log("Updating canvas during move...");
+                this._reset();
+            }, 250);
+        },
+        _moveend: function () {
+            clearInterval(interval);
         },
         onRemove: function (map: L.Map) {
             if (this._canvas && this._canvas.parentNode) {
                 this._canvas.remove();
             }
-            map.off('zoomend resize viewreset', this._reset, this);
-            map.off('zoomanim', this._onZoomAnim, this);
+            map.off('zoomend resize viewreset moveend', this._reset, this);
             map.off("click", this._onClick, this);
+            map.off('movestart', this._movestart, this);
+            map.off('moveend', this._moveend, this);
             if (this._popup) {
                 map.closePopup(this._popup);
             }
-        },
-        _onZoomAnim: function (e) {
-            const scale = this._map.getZoomScale(e.zoom);
-            const offset = this._map._latLngToNewLayerPoint(this._map.getBounds().getNorthWest(), e.zoom, e.center);
-            this._canvas.style.transformOrigin = 'top left';
-            this._canvas.style.transform = `translate(${offset.x}px,${offset.y}px) scale(${scale})`;
-
-            // Invert scale for dot size
-            this._draw(1 / scale);
         },
         _reset: function () {
             const map = this._map;
