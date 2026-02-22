@@ -1,11 +1,11 @@
 import markerWrapper from "@assets/icons/markerwrapper_template.svg?raw";
 import { MarkerData, MarkerType } from "@localtypes/Map";
 import { useAppSelector } from "@store/hooks";
-import L, { marker } from "leaflet";
+import L from "leaflet";
 import { useContext, useEffect, useRef } from "react";
+import { createRoot } from 'react-dom/client';
 import { useMap } from "react-leaflet";
 import { MapContext } from "../../main";
-import { createRoot } from 'react-dom/client';
 import Popup from "./Popup";
 
 type MarkerIcon = {
