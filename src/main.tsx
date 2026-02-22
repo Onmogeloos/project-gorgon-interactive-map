@@ -122,7 +122,10 @@ function Page({ map: mapData, area, isLoading }: { map: MapData, area: Area, isL
     </>
 }
 
-
-createRoot(document.getElementById("root") as HTMLElement).render(
-    <App />,
-);
+const container = document.getElementById("root") as HTMLElement;
+let root = (container as any)._root || null;
+if (!root) {
+  root = createRoot(container);
+  (container as any)._root = root;
+}
+root.render(<App />);
