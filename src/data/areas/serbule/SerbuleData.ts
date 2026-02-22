@@ -3115,8 +3115,8 @@ const data: MapData = {
             "type": MarkerType.Enemy,
             "positions": [
                 [
-                    426.03999999999996,
-                    354.02799999999996
+                    430.5,
+                    348.75
                 ]
             ]
         },
@@ -3135,8 +3135,8 @@ const data: MapData = {
             "type": MarkerType.Enemy,
             "positions": [
                 [
-                    415.9,
-                    355.08399999999995
+                    404.75,
+                    352
                 ]
             ]
         },

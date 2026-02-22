@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-dotenv.config({ path: './scripts/.env' })
+dotenv.config({ path: './scripts/.env.local' })
 import { writeFileSync, rmSync, rm } from 'fs';
 
 const baseUrl = `https://api.cloudflare.com/client/v4`;

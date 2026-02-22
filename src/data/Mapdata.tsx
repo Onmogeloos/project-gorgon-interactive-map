@@ -129,6 +129,16 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 icon: (await import("@assets/icons/elite.svg?raw")).default,
                 label: "Elite enemies",
                 color: "#A05858"
+            },
+            [MarkerType.Treasure]: {
+                icon: (await import("@assets/icons/treasure.svg?raw")).default,
+                label: "Treasures",
+                color: "#ecdf90"
+            },
+            [MarkerType.Lore]: {
+                icon: (await import("@assets/icons/scroll.svg?raw")).default,
+                label: "Lore",
+                color: "#b97960"
             }
         }
     }

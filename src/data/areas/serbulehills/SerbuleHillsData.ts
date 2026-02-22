@@ -5,7 +5,7 @@ const data: MapData = {
     slug: "serbulehills",
     description: "",
     group: Area.SerbuleHills,
-    aspectRatio: 2048/1988,
+    aspectRatio: 2048 / 1988,
     imageUrl: (await import("@assets/areas/Map_AreaSerbule2.png")).default,
     markers: [
         {
@@ -53,10 +53,47 @@ const data: MapData = {
                 [867.25, 18.5],
 
                 [844.125, 55.625],
-                [845, 49.125],
-                // [895, 241.75],
-                // [936, 306.5]
-
+                [845, 49.125]
+            ]
+        },
+        {
+            "name": "Control Bowl",
+            "type": MarkerType.Location,
+            "positions": [
+                [
+                    359.75,
+                    237
+                ]
+            ]
+        },
+        {
+            "name": "Gershok",
+            "type": MarkerType.NPC,
+            "positions": [
+                [
+                    716,
+                    559
+                ]
+            ]
+        },
+        {
+            "name": "Meditation Pillar",
+            "type": MarkerType.MeditationPillar,
+            "positions": [
+                [
+                    722,
+                    561
+                ]
+            ]
+        },
+        {
+            "name": "The Wooly Bastard",
+            "type": MarkerType.Boss,
+            "positions": [
+                [
+                    461,
+                    253
+                ]
             ]
         }
     ]

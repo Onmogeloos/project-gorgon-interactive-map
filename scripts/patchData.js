@@ -2,38 +2,65 @@ import fs from "fs";
 import { coordinateToMapPosition } from "./functions.js";
 
 const MarkerType = {
-        Location: "{{location}}",
-        NPC: "{{npc}}",
-        Boss: "{{boss}}",
-        FruitTree: "{{fruitTree}}",
-        Altar: "{{altar}}",
-        Object: "{{object}}",
-        MeditationPillar: "{{meditationPillar}}",
-        Entrance: "{{entrance}}",
-        ZonePortal: "{{zonePortal}}",
-        TeleportPlatform: "{{teleportPlatform}}",
-        Enemy: "{{enemy}}"
+  Location: "location",
+  NPC: "npc",
+  Boss: "boss",
+  FruitTree: "fruittree",
+  Altar: "altar",
+  Object: "object",
+  MeditationPillar: "meditationpillar",
+  Entrance: "entrance",
+  ZonePortal: "zoneportal",
+  TeleportPlatform: "teleportplatform",
+  Enemy: "enemy",
+  Elite: "elite"
 }
 
 
 let objects = []
 
 
-// Map and group by name, merging positions
+// Group by name and combine positions.
+// E.g. {name: "Bla", type: "npc", positions: [[1,2]], map: "serbule"}
 const grouped = {};
 for (const obj of objects) {
-    const name = obj.name.replace(/.*\[(.*)\].*/, "[$1]");
-    if (!grouped[name]) {
-        grouped[name] = { ...obj, name, positions: [...(obj.positions || [])] };
-    } else {
-        grouped[name].positions = grouped[name].positions.concat(obj.positions || []);
-    }
+  const name = obj.name;
+  grouped[name] = {
+    name,
+    type: obj.type,
+    positions: [...grouped?.[name]?.positions ?? [], obj.position],
+    map: obj.map
+  }
 }
-const newObjects = Object.values(grouped).sort((a, b) => a.name.localeCompare(b.name));
+const groupedList = Object.values(grouped).sort((a, b) => a.name.localeCompare(b.name));
 
-let string = JSON.stringify(newObjects, null, 2);
-Object.entries(MarkerType).forEach(([key, value]) => {
-        string = string.replaceAll(`"${value}"`, `MarkerType.${key}`)
-});
+// Group by map.
+// E.g. {"serbule": {name: "Bla", type: "npc", positions: [[1,2]], map: "serbule"}}
+const groupedByMap = {};
+for (const obj of groupedList) {
+  const map = obj.map;
+  groupedByMap[map] = [...groupedByMap?.[map] ?? [], obj]
+}
 
-fs.writeFileSync("scripts/objects.json", string)
+// Maps to correct type.
+// E.g. {"serbule": [{name: "Bla", type: "npc", positions: [[1,2]]}]}
+const mapDatasGroupedByMap = {}
+for (const obj of groupedList) {
+  mapDatasGroupedByMap[obj.map] = [...mapDatasGroupedByMap?.[obj.map] ?? [], {
+    name: obj.name,
+    type: obj.type,
+    positions: obj.positions
+  }]
+}
+
+// Write to file as string, replacing type values with enum references.
+Object.entries(mapDatasGroupedByMap).forEach(([map, objects]) => {
+  let jsonString = JSON.stringify(objects, null, 2);
+
+  // Patch string values to enum references.
+  Object.entries(MarkerType).forEach(([key, value]) => {
+    jsonString = jsonString.replaceAll(`"type": "${value}",`, `"type": MarkerType.${key},`)
+  });
+
+  fs.writeFileSync(`./scripts/data/${map}.js`, jsonString);
+})
