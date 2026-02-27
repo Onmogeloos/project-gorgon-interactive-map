@@ -8,3 +8,4 @@ scripts/data.json
 .env
 .env.local
 .eslintcache
+test-results

@@ -6,7 +6,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "eslint": "eslint --fix",
-    "fetch-data": "node scripts/fetchData.js"
+    "fetch-data": "node scripts/fetchData.js",
+    "test": "npx playwright test --ui"
   },
   "dependencies": {
     "@base-ui-components/react": "1.0.0-alpha.6",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.58.2",
     "@types/leaflet": "^1.9.21",
     "@types/node": "^25.2.3",
     "@types/react": "^19.0.0",
@@ -44,6 +46,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.3.0",
+    "playwright": "^1.58.2",
     "typescript": "^5.9.3",
     "vite": "^6.2.0",
     "vite-plugin-eslint2": "^5.0.5"

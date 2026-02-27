@@ -1,4 +1,4 @@
-import { GlobalMapData, Area, MarkerType } from "@localtypes/Map";
+import { Area, GlobalMapData } from "@localtypes/Map";
 
 const VidariaData: GlobalMapData[Area.Vidaria] = {
     name: "Vidaria",

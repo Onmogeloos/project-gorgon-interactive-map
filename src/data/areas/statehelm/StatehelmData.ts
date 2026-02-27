@@ -1,4 +1,4 @@
-import { GlobalMapData, Area, MarkerType } from "@localtypes/Map";
+import { Area, GlobalMapData } from "@localtypes/Map";
 
 const StatehelmData: GlobalMapData[Area.Statehelm] = {
     name: "Statehelm",
