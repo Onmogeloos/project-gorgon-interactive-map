@@ -32,7 +32,7 @@ export default function SidebarFooter() {
                     <Typography sx={{ mt: 2 }}>
                         This website is currently in very early development. Bugs may occur during this time.
                         Feel free to propose map markers for any object in the game.
-                        If you have any feedback or ideas, feel free to reach out to me on Discord.
+                        If you have any feedback or ideas, please reach out to me on Discord.
                         <br />
                         <br />
                         - Onmo

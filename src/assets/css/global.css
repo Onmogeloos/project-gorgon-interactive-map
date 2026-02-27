@@ -34,6 +34,10 @@ h3 {
   margin-bottom: 1rem;
 }
 
+iframe {
+  border: none;
+}
+
 /* Style Leaflet */
 .leaflet-container {
   background: inherit !important;
@@ -67,6 +71,10 @@ h3 {
 
   .leaflet-tooltip {
     padding: 2px;
+  }
+
+  .leaflet-popup-content {
+    width: inherit !important;
   }
 
 

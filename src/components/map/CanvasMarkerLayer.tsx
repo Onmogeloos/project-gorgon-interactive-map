@@ -196,7 +196,7 @@ export default function CanvasMarkerLayer() {
         addLayer();
 
         return () => canvasLayer?.remove();
-    }, [map, currentMapData, hiddenGroups, searchQuery, globalData.markerTypes]);
+    }, [map, currentMapData, hiddenGroups, searchQuery, globalData.markerTypes, navigate, mapData]);
 
     return null;
 }

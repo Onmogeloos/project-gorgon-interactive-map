@@ -1,42 +1,30 @@
-import { FlexColumn, FlexRow } from "@components/Flex";
-import { MarkerData, MarkerType } from "@localtypes/Map";
-import { Typography } from "@mui/material";
+import { FlexRow } from "@components/Flex";
+import { MarkerData } from "@localtypes/Map";
+import { Box } from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
     user-select: text;
+    overflow: auto;
+    height: 500px;
+    width: 400px;
+    overflow: hidden;
+`
+
+const WikiIframe = styled.iframe`
+    height: 100%;
+    width: 100%;
 `
 
 export default function Popup({ markerData: marker, position }: { markerData: MarkerData, position: [number, number] }) {
     const { name, type } = marker;
+    const toWiki = (name: string) => `https://wiki.projectgorgon.com/wiki/${name}`
 
-    const toWiki = (name: string) => `https://wiki.projectgorgon.com/w/index.php?search=${name}`
     const roundedPosition = [position[0].toFixed(2), position[1].toFixed(2)] as [string, string];
     return <Container>
-        <FlexRow>
-            <FlexColumn>
-                <Typography variant="h6">{name}</Typography>
-                <Typography variant="body1">{type}</Typography>
-                <Typography variant="body2">
-                    Wiki: <a href={toWiki(name)}>{name}</a>
-                </Typography>
-
-                <br />
-                <TypeSpecificData markerData={marker} />
-                <Typography variant="body2">
-                    Position: {`[${roundedPosition[0]}, ${roundedPosition[1]}]`}
-                </Typography>
-            </FlexColumn>
-        </FlexRow>
+        <WikiIframe
+            title={name}
+            src={`${toWiki(name)}?mobileaction=toggle_view_mobile`}
+        />
     </Container>
-}
-
-function TypeSpecificData({ markerData }: { markerData: MarkerData }) {
-    switch (markerData.type) {
-        case MarkerType.Entrance:
-        case MarkerType.ZonePortal:
-            return <Typography variant="body2">Leads to: {markerData.data.leadsTo}</Typography>
-        default:
-            return null;
-    }
 }
