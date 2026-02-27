@@ -8,6 +8,7 @@
     "baseUrl": ".",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@localtypes/*": ["./src/types/*"],

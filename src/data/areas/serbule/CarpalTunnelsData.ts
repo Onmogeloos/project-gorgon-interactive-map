@@ -43,7 +43,8 @@ const CarpalTunnelsData: MapData = {
                     530.0392467689392,
                     650.0194251684647
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.CarpalTunnels }
         },
         {
             "name": "The Big Slime",

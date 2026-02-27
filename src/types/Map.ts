@@ -12,8 +12,9 @@ export type MapData = {
 export enum MarkerType {
     Altar = "altar",
     Boss = 'boss',
-    Elite = 'elite',
-    Enemy = 'enemy',
+    MiniBoss = 'miniboss',
+    UniqueEnemy = 'uniqueenemy',
+
     Entrance = 'entrance',
     ForageSpots = "foragespots",
     FruitTree = "fruittree",
@@ -30,11 +31,29 @@ export enum MarkerType {
 
 export type Coordinate = [number, number];
 
-export type MarkerData = {
-    name: string;
-    type: MarkerType;
-    positions: Coordinate[];
-}
+// Types that require a data property
+type MarkerDataWithData =
+  | {
+      type: MarkerType.Entrance;
+      name: string;
+      positions: Coordinate[];
+      data: { leadsTo: Area };
+    }
+  | {
+      type: MarkerType.ZonePortal;
+      name: string;
+      positions: Coordinate[];
+      data: { leadsTo: Area };
+    };
+
+// All other types do not have a data property
+export type MarkerData =
+  | MarkerDataWithData
+  | {
+      type: Exclude<MarkerType, MarkerDataWithData extends { type: infer T } ? T : never>;
+      name: string;
+      positions: Coordinate[];
+    };
 
 export enum Area {
     AnagogeIsland = "Anagoge Island",
@@ -99,7 +118,7 @@ export enum Area {
     AnimalNexus = "Animal Nexus",
 }
 
-export type MarkerTypeData = {
+export type TypeRelatedData = {
     icon: string;
     label: string;
     color: string;
@@ -107,7 +126,7 @@ export type MarkerTypeData = {
 
 export type GlobalData = {
     markerTypes: {
-        [key in MarkerType]: MarkerTypeData
+        [key in MarkerType]: TypeRelatedData
     }
 }
 export type GlobalMapData = { [key in Area]: MapData }

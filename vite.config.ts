@@ -3,9 +3,17 @@ import react from '@vitejs/plugin-react'
 import eslint from 'vite-plugin-eslint2';
 import path from 'path';
 import svgr from 'vite-plugin-svgr';
+import checker from 'vite-plugin-checker';
 
 export default defineConfig({
-  plugins: [react(), eslint(), svgr()],
+  plugins: [
+    react(),
+    eslint(),
+    svgr(),
+    checker({
+      typescript: true
+    })
+  ],
   resolve: {
     alias: {
       '@assets': path.resolve(__dirname, './src/assets'),

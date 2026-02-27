@@ -8,14 +8,15 @@ const SerbuleSewerData: MapData = {
     imageUrl: (await import("@assets/areas/Map_SerbuleSewer.png")).default,
     markers: [
         {
-            "name": "Serbule Crypt Portal",
-            "type": MarkerType.ZonePortal,
+            "name": "Serbule Exit",
+            "type": MarkerType.Entrance,
             "positions": [
                 [
                     977,
                     787
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.Serbule }
         }
     ],
     group: Area.Serbule,

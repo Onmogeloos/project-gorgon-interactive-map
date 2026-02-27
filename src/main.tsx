@@ -29,10 +29,6 @@ const MainContainer = styled.div`
 const MAP_DATA = await loadMapData();
 const GLOBAL_DATA = await loadGlobalData();
 
-type ImageCache = {
-    [area in Area]?: HTMLImageElement
-};
-
 export const MapContext = createContext<{
     currentMapData: MapData;
     currentArea: Area;
@@ -103,6 +99,7 @@ function Page({ map: mapData, area, isLoading }: { map: MapData, area: Area, isL
             <Sidebar />
             {
                 !isLoading && <MapContainer
+                    key={mapData.slug}
                     crs={CRS.Simple}
                     bounds={[[0, 0], [1000, 1000]]}
                     style={{ height: '100vh', width: '100vw' }}

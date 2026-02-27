@@ -32,7 +32,8 @@ const data: MapData = {
         {
             name: "Path to Serbule",
             positions: [[988, 95]],
-            type: MarkerType.ZonePortal
+            type: MarkerType.ZonePortal,
+            data: { leadsTo: Area.Serbule }
         },
         {
             name: "Serbule Hills Spider Cave",
@@ -40,6 +41,7 @@ const data: MapData = {
             positions: [
                 [935.1875, 362]
             ],
+            data: { leadsTo: Area.SpiderCave }
         },
         {
             name: "Apple tree",

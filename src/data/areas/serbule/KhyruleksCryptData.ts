@@ -25,7 +25,8 @@ const KhyruleksCryptData: MapData = {
                     838.0392467689392,
                     417.01942516846475
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.Serbule }
         },
         {
             "name": "Feverdance",
@@ -65,7 +66,8 @@ const KhyruleksCryptData: MapData = {
                     707.0392467689392,
                     711.0194251684647
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.KhyruleksCrypt }
         },
         {
             "name": "Khyrulek's True Form",
@@ -145,7 +147,8 @@ const KhyruleksCryptData: MapData = {
                     466.03924676893917,
                     487.01942516846475
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.SerbuleSewer }
         },
         {
             "name": "Sir Arif",
@@ -168,8 +171,8 @@ const KhyruleksCryptData: MapData = {
             ]
         },
         {
-            "name": "Superspider x3",
-            "type": MarkerType.Enemy,
+            "name": "Superspider",
+            "type": MarkerType.Boss,
             "positions": [
                 [
                     870.0392467689392,

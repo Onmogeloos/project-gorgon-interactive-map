@@ -120,12 +120,12 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 label: "Altars",
                 color: "#A89BC7"
             },
-            [MarkerType.Enemy]: {
-                icon: (await import("@assets/icons/enemy.svg?raw")).default,
+            [MarkerType.UniqueEnemy]: {
+                icon: (await import("@assets/icons/user.svg?raw")).default,
                 label: "Enemies",
                 color: "#B87070"
             },
-            [MarkerType.Elite]: {
+            [MarkerType.MiniBoss]: {
                 icon: (await import("@assets/icons/elite.svg?raw")).default,
                 label: "Elite enemies",
                 color: "#A05858"

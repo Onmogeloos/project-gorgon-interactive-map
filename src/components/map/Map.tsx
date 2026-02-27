@@ -44,7 +44,8 @@ export default function Map() {
                 y: e.latlng.lat,
                 x: e.latlng.lng
             }));
-            console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
+            // console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
+            console.log(`{ name: "", type: MarkerType., positions: [[${e.latlng.lat}, ${e.latlng.lng}]] },`)
         }
     });
 

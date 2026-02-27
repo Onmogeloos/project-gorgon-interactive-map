@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MarkerType, ZoneType } from '@localtypes/Map';
+import { MarkerType } from '@localtypes/Map';
 
 export interface MapClickPosition {
     y: number;

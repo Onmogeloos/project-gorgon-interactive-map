@@ -55,7 +55,8 @@ const MyconianCaveData: MapData = {
                     846.5196233844696,
                     490.0097125842324
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.Serbule }
         },
         {
             "name": "Tidal",

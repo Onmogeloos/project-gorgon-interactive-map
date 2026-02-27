@@ -1,5 +1,5 @@
 import markerWrapper from "@assets/icons/markerwrapper_template.svg?raw";
-import { MarkerData, MarkerType } from "@localtypes/Map";
+import { GlobalData, GlobalMapData, MarkerData, MarkerType } from "@localtypes/Map";
 import { useAppSelector } from "@store/hooks";
 import L from "leaflet";
 import { useContext, useEffect, useRef } from "react";
@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 import { useMap } from "react-leaflet";
 import { MapContext } from "../../main";
 import Popup from "./Popup";
+import { useNavigate } from "react-router";
 
 type MarkerIcon = {
     icon: HTMLImageElement;
@@ -58,9 +59,14 @@ type ClickedMarker = {
     distance: number;
 }
 
-function createCanvasLayerClass(markers: MarkerData[], icons: {
-    [type in MarkerType]: MarkerIcon
-}) {
+function createCanvasLayerClass(
+    markers: MarkerData[],
+    icons: {
+        [type in MarkerType]: MarkerIcon;
+    },
+    navigate: (path: string) => void,
+    mapData: GlobalMapData,
+) {
     let interval;
     return L.Layer.extend({
         onAdd: function (map: L.Map) {
@@ -78,7 +84,6 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
         },
         _movestart: function () {
             interval = setInterval(() => {
-                console.log("Updating canvas during move...");
                 this._reset();
             }, 250);
         },
@@ -124,7 +129,6 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
             ctx.restore();
         },
         _onClick: function (e) {
-            console.log(e)
             const { lat, lng } = e.latlng;
             const clickedMarker = markers.reduce((closest, marker) => {
                 marker.positions.forEach(([mLat, mLng]) => {
@@ -147,23 +151,9 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
             );
 
             if (!clickedMarker.marker) return;
-            const container = document.createElement("div");
-            createRoot(container).render(<Popup
-                markerData={clickedMarker.marker}
-                position={clickedMarker.position}
-                />);
-
-            if (this._popup) {
-                // Move existing popup instead of creating a new one
-                this._popup.setLatLng(clickedMarker.position).setContent(container).openOn(this._map);
-                return;
-            }
-            this._popup = L.popup({
-                minWidth: 200
-            })
-                .setLatLng(clickedMarker.position)
-                .setContent(container)
-                .openOn(this._map);
+            if (clickedMarker.marker.type === MarkerType.ZonePortal || clickedMarker.marker.type === MarkerType.Entrance)
+                return navigate(`/${mapData[clickedMarker.marker.data.leadsTo].slug}`);
+            this._popup = createPopup(clickedMarker, this._popup, this._map);
         }
     });
 }
@@ -171,9 +161,9 @@ function createCanvasLayerClass(markers: MarkerData[], icons: {
 export default function CanvasMarkerLayer() {
     const map = useMap();
     const layerRef = useRef<L.Layer | null>(null);
-    const { currentMapData, globalData } = useContext(MapContext);
+    const { currentMapData, globalData, mapData } = useContext(MapContext);
     const { hiddenMarkerTypes: hiddenGroups, searchQuery } = useAppSelector((state) => state.map);
-
+    const navigate = useNavigate();
     useEffect(() => {
         let canvasLayer;
         const addLayer = async () => {
@@ -198,7 +188,7 @@ export default function CanvasMarkerLayer() {
                 })]);
             const icons = Object.fromEntries(iconList) as { [type in MarkerType]: MarkerIcon };
 
-            const CustomCanvasLayer = createCanvasLayerClass(markers, icons);
+            const CustomCanvasLayer = createCanvasLayerClass(markers, icons, navigate, mapData);
             canvasLayer = new CustomCanvasLayer();
             layerRef.current = canvasLayer;
             canvasLayer.addTo(map);
@@ -209,4 +199,29 @@ export default function CanvasMarkerLayer() {
     }, [map, currentMapData, hiddenGroups, searchQuery, globalData.markerTypes]);
 
     return null;
+}
+
+function createPopup(clickedMarker: {
+    marker: MarkerData;
+    position: [number, number];
+},
+    popup: L.Popup | null,
+    map: L.Map) {
+    const container = document.createElement("div");
+    createRoot(container).render(<Popup
+        markerData={clickedMarker.marker}
+        position={clickedMarker.position}
+    />);
+
+    if (popup) {
+        // Move existing popup instead of creating a new one
+        popup.setLatLng(clickedMarker.position).setContent(container).openOn(map);
+        return;
+    }
+    return L.popup({
+        minWidth: 200
+    })
+        .setLatLng(clickedMarker.position)
+        .setContent(container)
+        .openOn(map);
 }

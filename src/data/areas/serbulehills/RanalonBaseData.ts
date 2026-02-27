@@ -55,7 +55,8 @@ const RanalonBaseData: MapData = {
                     203,
                     438
                 ]
-            ]
+            ],
+            data: { leadsTo: Area.SerbuleHills }
         }
     ],
     group: Area.SerbuleHills,
