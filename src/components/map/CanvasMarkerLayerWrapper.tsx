@@ -54,10 +54,10 @@ export default function CanvasMarkerLayer() {
 
             canvasLayer = new CanvasMarkerLayerClass(
                 markers,
-                icons!,
+                icons,
                 (area) => {
                     const areaData = mapData[area];
-                    if (areaData) navigate(areaData.slug);
+                    if (areaData) navigate(`/${areaData.slug}`);
                 });
             layerRef.current = canvasLayer;
             canvasLayer.addTo(map);
