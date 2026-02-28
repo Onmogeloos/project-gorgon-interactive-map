@@ -63,7 +63,7 @@ export async function loadGlobalData(): Promise<GlobalData> {
             [MarkerType.Boss]: {
                 icon: (await import("@assets/icons/boss.svg?raw")).default,
                 label: "Bosses",
-                color: "#A85C5C"
+                color: "#FF4444"
             },
             [MarkerType.Resource]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
@@ -73,32 +73,32 @@ export async function loadGlobalData(): Promise<GlobalData> {
             [MarkerType.Entrance]: {
                 icon: (await import("@assets/icons/cave.svg?raw")).default,
                 label: "Entrances",
-                color: "#7A7A7A"
+                color: "#ff00ffbe"
             },
             [MarkerType.NPC]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
                 label: "NPCs",
-                color: "#6A8BA8"
+                color: "#42B0FF"
             },
             [MarkerType.Location]: {
                 icon: (await import("@assets/icons/marker.svg?raw")).default,
                 label: "Locations",
-                color: "#9B9B9B"
+                color: "#FFFFFF"
             },
             [MarkerType.Object]: {
                 icon: (await import("@assets/icons/hexagon.svg?raw")).default,
                 label: "Objects",
-                color: "#8B7355"
+                color: "#ff8c00ff"
             },
             [MarkerType.ZonePortal]: {
                 icon: (await import("@assets/icons/road.svg?raw")).default,
                 label: "Zone Portals",
-                color: "#B8825C"
+                color: "#00FF00be"
             },
             [MarkerType.TeleportPlatform]: {
                 icon: (await import("@assets/icons/teleport.svg?raw")).default,
                 label: "Teleport Platforms",
-                color: "#7A9B7F"
+                color: "#FFD700"
             },
             [MarkerType.MeditationPillar]: {
                 icon: (await import("@assets/icons/meditate.svg?raw")).default,
@@ -128,7 +128,7 @@ export async function loadGlobalData(): Promise<GlobalData> {
             [MarkerType.MiniBoss]: {
                 icon: (await import("@assets/icons/elite.svg?raw")).default,
                 label: "Elite enemies",
-                color: "#A05858"
+                color: "#FF4444"
             },
             [MarkerType.Treasure]: {
                 icon: (await import("@assets/icons/treasure.svg?raw")).default,
@@ -139,6 +139,11 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 icon: (await import("@assets/icons/scroll.svg?raw")).default,
                 label: "Lore",
                 color: "#b97960"
+            },
+            [MarkerType.PlayerShop]: {
+                icon: (await import("@assets/icons/user.svg?raw")).default,
+                label: "Player Shops",
+                color: "#5C8B8B"
             }
         }
     }

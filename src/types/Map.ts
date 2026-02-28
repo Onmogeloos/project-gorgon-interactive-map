@@ -27,32 +27,33 @@ export enum MarkerType {
     ZonePortal = 'zoneportal',
     Treasure = 'treasure',
     Lore = 'lore',
+    PlayerShop = 'playershop',
 }
 
 export type Coordinate = [number, number];
 
 // Types that require a data property
 type MarkerDataWithData =
-  | {
-      type: MarkerType.Entrance;
-      name: string;
-      positions: Coordinate[];
-      data: { leadsTo: Area };
+    | {
+        type: MarkerType.Entrance;
+        name: string;
+        positions: Coordinate[];
+        data: { leadsTo: Area };
     }
-  | {
-      type: MarkerType.ZonePortal;
-      name: string;
-      positions: Coordinate[];
-      data: { leadsTo: Area };
+    | {
+        type: MarkerType.ZonePortal;
+        name: string;
+        positions: Coordinate[];
+        data: { leadsTo: Area };
     };
 
 // All other types do not have a data property
 export type MarkerData =
-  | MarkerDataWithData
-  | {
-      type: Exclude<MarkerType, MarkerDataWithData extends { type: infer T } ? T : never>;
-      name: string;
-      positions: Coordinate[];
+    | MarkerDataWithData
+    | {
+        type: Exclude<MarkerType, MarkerDataWithData extends { type: infer T } ? T : never>;
+        name: string;
+        positions: Coordinate[];
     };
 
 export enum Area {

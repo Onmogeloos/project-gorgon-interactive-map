@@ -8,13 +8,26 @@ export interface MapClickPosition {
 
 interface MapState {
     hiddenMarkerTypes: MarkerType[];
+    showLabelMarkerTypes: MarkerType[];
     searchQuery: string;
     isMarkerProposalOpen: boolean;
     mapClickPosition: MapClickPosition | null;
 }
 
 const initialState: MapState = {
-    hiddenMarkerTypes: [],
+    hiddenMarkerTypes: [MarkerType.PlayerShop, MarkerType.UniqueEnemy],
+    showLabelMarkerTypes: [
+        MarkerType.Boss,
+        MarkerType.MiniBoss,
+        MarkerType.Entrance,
+        MarkerType.Location,
+        MarkerType.NPC,
+        MarkerType.Object,
+        MarkerType.Resource,
+        MarkerType.ZonePortal,
+        MarkerType.Treasure,
+        MarkerType.Lore
+    ],
     searchQuery: '',
     isMarkerProposalOpen: false,
     mapClickPosition: null,
@@ -26,6 +39,9 @@ const mapSlice = createSlice({
     reducers: {
         setHiddenGroups: (state, action: PayloadAction<MarkerType[]>) => {
             state.hiddenMarkerTypes = action.payload;
+        },
+        setShowLabelGroups: (state, action: PayloadAction<MarkerType[]>) => {
+            state.showLabelMarkerTypes = action.payload;
         },
         setSearchQuery: (state, action: PayloadAction<string>) => {
             state.searchQuery = action.payload;
@@ -42,5 +58,5 @@ const mapSlice = createSlice({
     },
 });
 
-export const { setHiddenGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition } = mapSlice.actions;
+export const { setHiddenGroups, setShowLabelGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition } = mapSlice.actions;
 export default mapSlice.reducer;

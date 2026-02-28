@@ -10,7 +10,7 @@ const data: MapData = {
     markers: [
         {
             "name": "[A-1]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     412.996,
@@ -20,7 +20,7 @@ const data: MapData = {
         },
         {
             "name": "[A-10]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     406.36,
@@ -30,7 +30,7 @@ const data: MapData = {
         },
         {
             "name": "[A-11]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     407.96400000000006,
@@ -40,7 +40,7 @@ const data: MapData = {
         },
         {
             "name": "[A-12]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     409.41200000000003,
@@ -50,7 +50,7 @@ const data: MapData = {
         },
         {
             "name": "[A-14]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     414.86400000000003,
@@ -60,7 +60,7 @@ const data: MapData = {
         },
         {
             "name": "[A-15]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     415.60799999999995,
@@ -70,7 +70,7 @@ const data: MapData = {
         },
         {
             "name": "[A-16]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     416.25200000000007,
@@ -80,7 +80,7 @@ const data: MapData = {
         },
         {
             "name": "[A-17]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     417.01599999999996,
@@ -90,7 +90,7 @@ const data: MapData = {
         },
         {
             "name": "[A-18]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     417.53599999999994,
@@ -100,7 +100,7 @@ const data: MapData = {
         },
         {
             "name": "[A-19]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     418.284,
@@ -110,7 +110,7 @@ const data: MapData = {
         },
         {
             "name": "[A-2]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     412.264,
@@ -120,7 +120,7 @@ const data: MapData = {
         },
         {
             "name": "[A-20]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     418.9,
@@ -130,7 +130,7 @@ const data: MapData = {
         },
         {
             "name": "[A-3]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     411.576,
@@ -140,7 +140,7 @@ const data: MapData = {
         },
         {
             "name": "[A-4]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     410.86800000000005,
@@ -150,7 +150,7 @@ const data: MapData = {
         },
         {
             "name": "[A-5]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     410.172,
@@ -160,7 +160,7 @@ const data: MapData = {
         },
         {
             "name": "[A-6]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     409.41599999999994,
@@ -170,7 +170,7 @@ const data: MapData = {
         },
         {
             "name": "[A-7]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     408.616,
@@ -180,7 +180,7 @@ const data: MapData = {
         },
         {
             "name": "[A-8]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     407.9,
@@ -190,7 +190,7 @@ const data: MapData = {
         },
         {
             "name": "[A-9]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     407.092,
@@ -200,7 +200,7 @@ const data: MapData = {
         },
         {
             "name": "[B-1]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     409.808,
@@ -210,7 +210,7 @@ const data: MapData = {
         },
         {
             "name": "[B-10]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     397.288,
@@ -220,7 +220,7 @@ const data: MapData = {
         },
         {
             "name": "[B-11]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     396.74399999999997,
@@ -230,7 +230,7 @@ const data: MapData = {
         },
         {
             "name": "[B-12]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     396.03999999999996,
@@ -240,7 +240,7 @@ const data: MapData = {
         },
         {
             "name": "[B-13]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     395.2,
@@ -250,7 +250,7 @@ const data: MapData = {
         },
         {
             "name": "[B-14]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     394.592,
@@ -260,7 +260,7 @@ const data: MapData = {
         },
         {
             "name": "[B-15]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     393.956,
@@ -270,7 +270,7 @@ const data: MapData = {
         },
         {
             "name": "[B-16]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     393.25200000000007,
@@ -280,7 +280,7 @@ const data: MapData = {
         },
         {
             "name": "[B-2]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     409.15600000000006,
@@ -290,7 +290,7 @@ const data: MapData = {
         },
         {
             "name": "[B-3]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     408.41200000000003,
@@ -300,7 +300,7 @@ const data: MapData = {
         },
         {
             "name": "[B-5]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     407.03999999999996,
@@ -310,7 +310,7 @@ const data: MapData = {
         },
         {
             "name": "[B-6]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     406.28,
@@ -320,7 +320,7 @@ const data: MapData = {
         },
         {
             "name": "[B-7]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     399.512,
@@ -330,7 +330,7 @@ const data: MapData = {
         },
         {
             "name": "[B-9]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     398.15200000000004,
@@ -340,7 +340,7 @@ const data: MapData = {
         },
         {
             "name": "[C-10]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     388.296,
@@ -350,7 +350,7 @@ const data: MapData = {
         },
         {
             "name": "[C-11]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     386.61199999999997,
@@ -360,7 +360,7 @@ const data: MapData = {
         },
         {
             "name": "[C-12]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     384.82399999999996,
@@ -370,7 +370,7 @@ const data: MapData = {
         },
         {
             "name": "[C-13]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     383.128,
@@ -380,7 +380,7 @@ const data: MapData = {
         },
         {
             "name": "[C-14]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     382.456,
@@ -390,7 +390,7 @@ const data: MapData = {
         },
         {
             "name": "[C-15]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     381.77200000000005,
@@ -400,7 +400,7 @@ const data: MapData = {
         },
         {
             "name": "[C-16]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     381.03999999999996,
@@ -410,7 +410,7 @@ const data: MapData = {
         },
         {
             "name": "[C-17]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     380.296,
@@ -420,7 +420,7 @@ const data: MapData = {
         },
         {
             "name": "[C-19]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     378.82399999999996,
@@ -430,7 +430,7 @@ const data: MapData = {
         },
         {
             "name": "[C-21]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     377.46400000000006,
@@ -440,7 +440,7 @@ const data: MapData = {
         },
         {
             "name": "[C-22]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     376.7,
@@ -450,7 +450,7 @@ const data: MapData = {
         },
         {
             "name": "[C-23]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     379.88800000000003,
@@ -460,7 +460,7 @@ const data: MapData = {
         },
         {
             "name": "[C-24]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     381.436,
@@ -470,7 +470,7 @@ const data: MapData = {
         },
         {
             "name": "[C-25]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     382.968,
@@ -480,7 +480,7 @@ const data: MapData = {
         },
         {
             "name": "[C-26]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     384.56000000000006,
@@ -490,7 +490,7 @@ const data: MapData = {
         },
         {
             "name": "[C-3]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     391.14799999999997,
@@ -500,7 +500,7 @@ const data: MapData = {
         },
         {
             "name": "[C-4]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     391.85200000000003,
@@ -510,7 +510,7 @@ const data: MapData = {
         },
         {
             "name": "[C-5]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     392.51599999999996,
@@ -520,7 +520,7 @@ const data: MapData = {
         },
         {
             "name": "[C-6]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     393.224,
@@ -530,7 +530,7 @@ const data: MapData = {
         },
         {
             "name": "[C-7]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     393.956,
@@ -540,7 +540,7 @@ const data: MapData = {
         },
         {
             "name": "[C-8]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     391.28000000000003,
@@ -550,7 +550,7 @@ const data: MapData = {
         },
         {
             "name": "[D-1]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     398.084,
@@ -560,7 +560,7 @@ const data: MapData = {
         },
         {
             "name": "[D-10]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     401.104,
@@ -570,7 +570,7 @@ const data: MapData = {
         },
         {
             "name": "[D-11]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     399.616,
@@ -580,7 +580,7 @@ const data: MapData = {
         },
         {
             "name": "[D-12]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     398.116,
@@ -590,7 +590,7 @@ const data: MapData = {
         },
         {
             "name": "[D-13]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     396.736,
@@ -600,7 +600,7 @@ const data: MapData = {
         },
         {
             "name": "[D-14]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     395.25200000000007,
@@ -610,7 +610,7 @@ const data: MapData = {
         },
         {
             "name": "[D-15]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     393.716,
@@ -620,7 +620,7 @@ const data: MapData = {
         },
         {
             "name": "[D-16]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     392.408,
@@ -630,7 +630,7 @@ const data: MapData = {
         },
         {
             "name": "[D-17]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     391.79200000000003,
@@ -640,7 +640,7 @@ const data: MapData = {
         },
         {
             "name": "[D-18]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     390.956,
@@ -650,7 +650,7 @@ const data: MapData = {
         },
         {
             "name": "[D-19]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     390.276,
@@ -660,7 +660,7 @@ const data: MapData = {
         },
         {
             "name": "[D-2]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     398.79200000000003,
@@ -670,7 +670,7 @@ const data: MapData = {
         },
         {
             "name": "[D-20]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     389.592,
@@ -680,7 +680,7 @@ const data: MapData = {
         },
         {
             "name": "[D-21]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     388.79200000000003,
@@ -690,7 +690,7 @@ const data: MapData = {
         },
         {
             "name": "[D-23]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     387.4,
@@ -700,7 +700,7 @@ const data: MapData = {
         },
         {
             "name": "[D-3]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     399.576,
@@ -710,7 +710,7 @@ const data: MapData = {
         },
         {
             "name": "[D-5]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     400.968,
@@ -720,7 +720,7 @@ const data: MapData = {
         },
         {
             "name": "[D-6]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     401.70799999999997,
@@ -730,7 +730,7 @@ const data: MapData = {
         },
         {
             "name": "[D-7]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     402.44399999999996,
@@ -740,7 +740,7 @@ const data: MapData = {
         },
         {
             "name": "[D-8]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     403.1600000000001,
@@ -750,7 +750,7 @@ const data: MapData = {
         },
         {
             "name": "[D-9]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     403.924,
@@ -760,7 +760,7 @@ const data: MapData = {
         },
         {
             "name": "[E-1]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     423.548,
@@ -770,7 +770,7 @@ const data: MapData = {
         },
         {
             "name": "[E-10]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     413.28,
@@ -780,7 +780,7 @@ const data: MapData = {
         },
         {
             "name": "[E-12]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     414.616,
@@ -790,7 +790,7 @@ const data: MapData = {
         },
         {
             "name": "[E-13]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     415.36800000000005,
@@ -800,7 +800,7 @@ const data: MapData = {
         },
         {
             "name": "[E-14]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     416.1,
@@ -810,7 +810,7 @@ const data: MapData = {
         },
         {
             "name": "[E-15]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     416.81600000000003,
@@ -820,7 +820,7 @@ const data: MapData = {
         },
         {
             "name": "[E-16]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     417.528,
@@ -830,7 +830,7 @@ const data: MapData = {
         },
         {
             "name": "[E-17]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     418.29600000000005,
@@ -840,7 +840,7 @@ const data: MapData = {
         },
         {
             "name": "[E-18]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     421.36800000000005,
@@ -850,7 +850,7 @@ const data: MapData = {
         },
         {
             "name": "[E-2]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     422.052,
@@ -860,7 +860,7 @@ const data: MapData = {
         },
         {
             "name": "[E-20]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     424.284,
@@ -870,7 +870,7 @@ const data: MapData = {
         },
         {
             "name": "[E-21]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     425.76,
@@ -880,7 +880,7 @@ const data: MapData = {
         },
         {
             "name": "[E-22]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     427.312,
@@ -890,7 +890,7 @@ const data: MapData = {
         },
         {
             "name": "[E-23]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     428.808,
@@ -900,7 +900,7 @@ const data: MapData = {
         },
         {
             "name": "[E-24]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     430.308,
@@ -910,7 +910,7 @@ const data: MapData = {
         },
         {
             "name": "[E-3]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     420.548,
@@ -920,7 +920,7 @@ const data: MapData = {
         },
         {
             "name": "[E-4]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     419.15600000000006,
@@ -930,7 +930,7 @@ const data: MapData = {
         },
         {
             "name": "[E-5]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     417.60400000000004,
@@ -940,7 +940,7 @@ const data: MapData = {
         },
         {
             "name": "[E-6]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     416.10799999999995,
@@ -950,7 +950,7 @@ const data: MapData = {
         },
         {
             "name": "[E-7]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     414.70000000000005,
@@ -960,7 +960,7 @@ const data: MapData = {
         },
         {
             "name": "[E-8]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     413.196,
@@ -970,7 +970,7 @@ const data: MapData = {
         },
         {
             "name": "[E-9]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     411.784,
@@ -980,7 +980,7 @@ const data: MapData = {
         },
         {
             "name": "[F-10]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     425.948,
@@ -990,7 +990,7 @@ const data: MapData = {
         },
         {
             "name": "[F-11]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     424.472,
@@ -1000,7 +1000,7 @@ const data: MapData = {
         },
         {
             "name": "[F-12]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     423.044,
@@ -1010,7 +1010,7 @@ const data: MapData = {
         },
         {
             "name": "[F-13]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     421.46000000000004,
@@ -1020,7 +1020,7 @@ const data: MapData = {
         },
         {
             "name": "[F-14]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     419.98,
@@ -1030,7 +1030,7 @@ const data: MapData = {
         },
         {
             "name": "[F-15]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     420.8399999999999,
@@ -1040,7 +1040,7 @@ const data: MapData = {
         },
         {
             "name": "[F-16]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     421.596,
@@ -1050,7 +1050,7 @@ const data: MapData = {
         },
         {
             "name": "[F-17]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     422.27600000000007,
@@ -1060,7 +1060,7 @@ const data: MapData = {
         },
         {
             "name": "[F-18]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     423,
@@ -1070,7 +1070,7 @@ const data: MapData = {
         },
         {
             "name": "[F-19]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     423.644,
@@ -1080,7 +1080,7 @@ const data: MapData = {
         },
         {
             "name": "[F-2]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     436.196,
@@ -1090,7 +1090,7 @@ const data: MapData = {
         },
         {
             "name": "[F-20]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     424.34399999999994,
@@ -1100,7 +1100,7 @@ const data: MapData = {
         },
         {
             "name": "[F-22]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     425.75200000000007,
@@ -1110,7 +1110,7 @@ const data: MapData = {
         },
         {
             "name": "[F-23]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     426.48400000000004,
@@ -1120,7 +1120,7 @@ const data: MapData = {
         },
         {
             "name": "[F-24]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     427.24,
@@ -1130,7 +1130,7 @@ const data: MapData = {
         },
         {
             "name": "[F-25]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     427.91599999999994,
@@ -1140,7 +1140,7 @@ const data: MapData = {
         },
         {
             "name": "[F-4]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     434.70000000000005,
@@ -1150,7 +1150,7 @@ const data: MapData = {
         },
         {
             "name": "[F-5]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     434.06000000000006,
@@ -1160,7 +1160,7 @@ const data: MapData = {
         },
         {
             "name": "[F-8]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     428.9,
@@ -1170,7 +1170,7 @@ const data: MapData = {
         },
         {
             "name": "[F-9]",
-            "type": MarkerType.NPC,
+            "type": MarkerType.PlayerShop,
             "positions": [
                 [
                     427.41200000000003,
