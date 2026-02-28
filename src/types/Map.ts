@@ -27,6 +27,7 @@ export enum MarkerType {
     ZonePortal = 'zoneportal',
     Treasure = 'treasure',
     Lore = 'lore',
+    PlayerShop = "playershop",
 }
 
 export type Coordinate = [number, number];

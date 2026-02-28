@@ -139,7 +139,12 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 icon: (await import("@assets/icons/scroll.svg?raw")).default,
                 label: "Lore",
                 color: "#b97960"
-            }
+            },
+            [MarkerType.PlayerShop]: {
+                icon: (await import("@assets/icons/user.svg?raw")).default,
+                label: "Player Shops",
+                color: "#7A9B7F"
+            },
         }
     }
 }
