@@ -22,7 +22,6 @@ export enum MarkerType {
     MeditationPillar = 'meditationpillar',
     NPC = 'npc',
     Object = 'object',
-    Resource = 'resource',
     TeleportPlatform = 'teleportplatform',
     ZonePortal = 'zoneportal',
     Treasure = 'treasure',
@@ -121,8 +120,12 @@ export enum Area {
 
 export type MarkerTypeData = {
     icon: string;
+    iconElement: string;
     label: string;
     color: string;
+    type: "label" | "icon";
+    scale?: number;
+    zIndex?: number;
 }
 
 export type AllMarkerTypeData = {

@@ -14,7 +14,9 @@ interface MapState {
 }
 
 const initialState: MapState = {
-    hiddenMarkerTypes: [],
+    hiddenMarkerTypes: [
+        MarkerType.PlayerShop
+    ],
     searchQuery: '',
     isMarkerProposalOpen: false,
     mapClickPosition: null,
@@ -24,7 +26,7 @@ const mapSlice = createSlice({
     name: 'map',
     initialState,
     reducers: {
-        setHiddenGroups: (state, action: PayloadAction<MarkerType[]>) => {
+        setHiddenMarkerTypes: (state, action: PayloadAction<MarkerType[]>) => {
             state.hiddenMarkerTypes = action.payload;
         },
         setSearchQuery: (state, action: PayloadAction<string>) => {
@@ -42,5 +44,5 @@ const mapSlice = createSlice({
     },
 });
 
-export const { setHiddenGroups, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition } = mapSlice.actions;
+export const { setHiddenMarkerTypes, setSearchQuery, setIsMarkerProposalOpen, setMapClickPosition } = mapSlice.actions;
 export default mapSlice.reducer;

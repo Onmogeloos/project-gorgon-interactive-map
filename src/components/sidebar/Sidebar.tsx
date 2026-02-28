@@ -17,7 +17,7 @@ import SearchBar from "./SearchBar";
 import SidebarFooter from "./SidebarFooter";
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 
-const sidebarWidth = 350;
+const sidebarWidth = 400;
 
 const CollapseButton = styled.div<{ $isOpen: boolean }>`
     z-index: 99999999;

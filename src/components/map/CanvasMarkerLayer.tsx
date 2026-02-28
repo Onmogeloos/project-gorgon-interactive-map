@@ -1,7 +1,7 @@
 import { Area, MarkerData, MarkerType } from "@localtypes/Map";
 import L from "leaflet";
 import { createRoot } from "react-dom/client";
-import { MarkerIcon } from "./CanvasMarkerLayerWrapper";
+import { MarkerIcon, MarkerItemData, MarkerLabel } from "./CanvasMarkerLayerWrapper";
 import Popup from "./Popup";
 
 
@@ -24,7 +24,7 @@ export default class CanvasMarkerLayerClass extends L.Layer {
 
     constructor(
         private markers: MarkerData[],
-        private icons: { [type in MarkerType]: MarkerIcon },
+        private iconData: { [type in MarkerType]: MarkerItemData },
         private navigateToArea: (area: Area) => void,
     ) {
         super();
@@ -96,15 +96,47 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.save();
         ctx.scale(scale, scale);
-        this.markers.forEach(marker => {
-            marker.positions.forEach(([lat, lng]) => {
-                const point = map.latLngToContainerPoint([lat, lng]);
-                const iconData = this.icons[marker.type];
-                this.drawIcon(ctx, iconData, point, scale);
+        Object.entries(this.iconData)
+            // Draw higher zIndex first
+            .sort((a, b) => (a[1].zIndex ?? 0) - (b[1].zIndex ?? 0))
+            .forEach(([type, iconData]) => {
+                this.markers
+                    .filter(marker => marker.type === type)
+                    .forEach(marker => {
+                        console.log(marker.name)
+                        marker.positions.forEach(([lat, lng]) => {
+                            const point = map.latLngToContainerPoint([lat, lng]);
+                            switch (iconData.type) {
+                                case "icon":
+                                    this.drawIcon(ctx, iconData, point, scale);
+                                    break;
+                                case "label":
+                                    this.drawLabel(marker, iconData, point);
+                                    break;
+                            }
+                        });
+                    });
             });
-        });
         ctx.restore();
     }
+
+    drawLabel(marker: MarkerData, iconData: MarkerLabel, point: L.Point) {
+        const ctx = this.ctx as CanvasRenderingContext2D;
+        const sizeMultiplier = iconData.scale;
+        const fontSize = Math.round(12 * sizeMultiplier);
+        ctx.font = `bold ${fontSize}px Roboto, sans-serif`;
+        ctx.textAlign = "center";
+
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.8)";
+        const labelY = point.y + (4 * sizeMultiplier);
+        ctx.strokeText(marker.name, point.x, labelY);
+
+        ctx.fillStyle = iconData.color;
+        ctx.fillText(marker.name, point.x, labelY);
+    }
+
+    private
 
     private drawIcon(ctx: CanvasRenderingContext2D, icon: MarkerIcon, point: L.Point, scale: number) {
         const size = 34

@@ -62,88 +62,122 @@ export async function loadGlobalData(): Promise<GlobalData> {
         markerTypes: {
             [MarkerType.Boss]: {
                 icon: (await import("@assets/icons/boss.svg?raw")).default,
+                iconElement: (await import("@assets/icons/boss.svg")).default,
                 label: "Bosses",
-                color: "#A85C5C"
-            },
-            [MarkerType.Resource]: {
-                icon: (await import("@assets/icons/user.svg?raw")).default,
-                label: "Resources",
-                color: "#6B8E7C"
+                color: "#A85C5C",
+                type: "label",
+                scale: 1
             },
             [MarkerType.Entrance]: {
                 icon: (await import("@assets/icons/cave.svg?raw")).default,
+                iconElement: (await import("@assets/icons/cave.svg")).default,
                 label: "Entrances",
-                color: "#7A7A7A"
+                color: "#7A7A7A",
+                type: "icon"
             },
             [MarkerType.NPC]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
+                iconElement: (await import("@assets/icons/user.svg")).default,
                 label: "NPCs",
-                color: "#6A8BA8"
+                color: "#6A8BA8",
+                type: "label",
+                scale: 1
             },
             [MarkerType.Location]: {
                 icon: (await import("@assets/icons/marker.svg?raw")).default,
+                iconElement: (await import("@assets/icons/marker.svg")).default,
                 label: "Locations",
-                color: "#9B9B9B"
+                color: "#9B9B9B",
+                type: "label",
+                scale: 1.5,
+                zIndex: 5
             },
             [MarkerType.Object]: {
                 icon: (await import("@assets/icons/hexagon.svg?raw")).default,
+                iconElement: (await import("@assets/icons/hexagon.svg")).default,
                 label: "Objects",
-                color: "#8B7355"
+                color: "#8B7355",
+                type: "icon"
             },
             [MarkerType.ZonePortal]: {
                 icon: (await import("@assets/icons/road.svg?raw")).default,
+                iconElement: (await import("@assets/icons/road.svg")).default,
                 label: "Zone Portals",
-                color: "#B8825C"
+                color: "#B8825C",
+                type: "icon"
             },
             [MarkerType.TeleportPlatform]: {
                 icon: (await import("@assets/icons/teleport.svg?raw")).default,
+                iconElement: (await import("@assets/icons/teleport.svg")).default,
                 label: "Teleport Platforms",
-                color: "#7A9B7F"
+                color: "#7A9B7F",
+                type: "icon"
             },
             [MarkerType.MeditationPillar]: {
                 icon: (await import("@assets/icons/meditate.svg?raw")).default,
+                iconElement: (await import("@assets/icons/meditate.svg")).default,
                 label: "Meditation Pillars",
-                color: "#9178A8"
+                color: "#9178A8",
+                type: "icon"
             },
             [MarkerType.FruitTree]: {
                 icon: (await import("@assets/icons/fruittree.svg?raw")).default,
+                iconElement: (await import("@assets/icons/fruittree.svg")).default,
                 label: "Fruit trees",
-                color: "#7F9C6E"
+                color: "#7F9C6E",
+                type: "icon"
             },
             [MarkerType.ForageSpots]: {
                 icon: (await import("@assets/icons/plant.svg?raw")).default,
+                iconElement: (await import("@assets/icons/plant.svg")).default,
                 label: "Foraging Spots",
-                color: "#8FA87D"
+                color: "#8FA87D",
+                type: "icon"
             },
             [MarkerType.Altar]: {
                 icon: (await import("@assets/icons/shrine.svg?raw")).default,
+                iconElement: (await import("@assets/icons/shrine.svg")).default,
                 label: "Altars",
-                color: "#A89BC7"
+                color: "#A89BC7",
+                type: "icon"
             },
             [MarkerType.UniqueEnemy]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
+                iconElement: (await import("@assets/icons/user.svg")).default,
                 label: "Enemies",
-                color: "#B87070"
+                color: "#B87070",
+                type: "label",
+                scale: 1
             },
             [MarkerType.MiniBoss]: {
                 icon: (await import("@assets/icons/elite.svg?raw")).default,
+                iconElement: (await import("@assets/icons/elite.svg")).default,
                 label: "Elite enemies",
-                color: "#A05858"
+                color: "#A05858",
+                type: "label",
+                zIndex: -1
             },
             [MarkerType.Treasure]: {
                 icon: (await import("@assets/icons/treasure.svg?raw")).default,
+                iconElement: (await import("@assets/icons/treasure.svg")).default,
                 label: "Treasures",
-                color: "#ecdf90"
+                color: "#ecdf90",
+                type: "icon"
             },
             [MarkerType.Lore]: {
                 icon: (await import("@assets/icons/scroll.svg?raw")).default,
+                iconElement: (await import("@assets/icons/scroll.svg")).default,
                 label: "Lore",
-                color: "#b97960"
+                color: "#b97960",
+                type: "icon"
             },
             [MarkerType.PlayerShop]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
+                iconElement: (await import("@assets/icons/user.svg")).default,
                 label: "Player Shops",
-                color: "#7A9B7F"
+                color: "#7A9B7F",
+                type: "label",
+                zIndex: -1
             },
         }
     }

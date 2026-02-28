@@ -3,9 +3,22 @@ import { Box, Checkbox, Typography } from "@mui/material";
 import { useContext } from "react";
 import { MapContext } from "../../main";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setHiddenGroups } from "../../store/mapSlice";
+import { setHiddenMarkerTypes } from "../../store/mapSlice";
 import { FlexRow } from "../Flex";
-import Label from "@components/Label";
+import styled from "styled-components";
+
+const Label = styled.label<{ $active: boolean }>`
+    cursor: pointer;
+    text-decoration: ${(props) => (props.$active ? "none" : "line-through")};
+`
+
+const Icon = styled.img`
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    // Recolor using filter
+    filter: grayscale(100%) brightness(0) invert(1);
+`
 
 export default function MarkerToggles() {
     const { globalData } = useContext(MapContext);
@@ -13,21 +26,22 @@ export default function MarkerToggles() {
     const hiddenGroups = useAppSelector((state) => state.map.hiddenMarkerTypes);
 
     const toggleGroup = (group: MarkerType) => {
-        dispatch(setHiddenGroups(
-            hiddenGroups.includes(group) 
+        dispatch(setHiddenMarkerTypes(
+            hiddenGroups.includes(group)
                 ? hiddenGroups.filter((g) => g !== group)
                 : [...hiddenGroups, group]
         ));
     };
 
     return (
-        <Box sx={{marginBottom: "1rem"}}>
-            <Typography variant="h6">Marker types</Typography>
-            <FlexRow $wrap>
+        <Box sx={{ marginBottom: "1rem" }}>
+            <Typography variant="h6" sx={{marginBottom: "1rem"}}>Marker types</Typography>
+            <FlexRow $wrap $gapY="0.5rem">
                 {Object.entries(globalData.markerTypes).map(([key, data]) => (
-                    <Box key={key} sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-                        <Checkbox size="small" id={key} checked={!hiddenGroups.includes(key as MarkerType)} onChange={() => toggleGroup(key as MarkerType)} />
-                        <Label htmlFor={key}>{data.label}</Label>
+                    <Box key={key} sx={{ display: "flex", alignItems: "center", width: "50%" }}>
+                        <Checkbox sx={{ display: "none" }} id={key} onChange={() => toggleGroup(key as MarkerType)} />
+                        <Icon src={data.iconElement} alt={data.label} />
+                        <Label $active={!hiddenGroups.includes(key as MarkerType)} htmlFor={key}>{data.label}</Label>
                     </Box>
                 ))}
             </FlexRow>

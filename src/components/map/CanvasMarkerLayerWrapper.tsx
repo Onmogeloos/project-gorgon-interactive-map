@@ -6,11 +6,25 @@ import { useMap } from "react-leaflet";
 import { useNavigate } from "react-router";
 import { MapContext } from "../../main";
 import CanvasMarkerLayerClass from "./CanvasMarkerLayer";
+import zIndex from "@mui/material/styles/zIndex";
 
 export type MarkerIcon = {
     icon: HTMLImageElement;
     backgroundIcon: HTMLImageElement;
+    color: string;
+    type: "icon"
+    zIndex?: number;
 }
+
+export type MarkerLabel = {
+    type: "label"
+    color: string;
+    text: string;
+    scale: number;
+    zIndex?: number;
+}
+
+export type MarkerItemData = MarkerIcon | MarkerLabel;
 
 /**
  * A React component that integrates a custom Leaflet layer for rendering markers on a map using a canvas element.
@@ -23,7 +37,7 @@ export default function CanvasMarkerLayer() {
     const { currentMapData, globalData, mapData } = useContext(MapContext);
     const { hiddenMarkerTypes: hiddenGroups, searchQuery } = useAppSelector((state) => state.map);
     const navigate = useNavigate();
-    const [icons, setIcons] = useState<{ [type in MarkerType]: MarkerIcon } | null>(null);
+    const [icons, setIcons] = useState<{ [type in MarkerType]: MarkerItemData } | null>(null);
 
     useEffect(() => {
         const loadIcons = async () => {
@@ -35,8 +49,12 @@ export default function CanvasMarkerLayer() {
                         type,
                         {
                             icon: await createImage(data.icon),
-                            backgroundIcon: await createImage(colorBackground(data.color))
-                        }]
+                            backgroundIcon: await createImage(colorBackground(data.color)),
+                            color: data.color,
+                            type: data.type,
+                            scale: data.scale ?? 1,
+                            zIndex: data.zIndex ?? 0
+                        } as MarkerItemData]
                 })]);
             setIcons(Object.fromEntries(iconList));
         };
