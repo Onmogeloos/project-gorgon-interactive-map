@@ -6,7 +6,7 @@ import { Marker } from "react-leaflet";
 import { useContext, useMemo } from "react";
 import { ImageOverlay, useMapEvents, ZoomControl } from "react-leaflet";
 import { MapContext } from "../../main";
-import CanvasMarkerLayer from "./CanvasMarkerLayer";
+import CanvasMarkerLayer from "./CanvasMarkerLayerWrapper";
 import plus from "@assets/icons/plus.svg?raw";
 
 const wrapIcon = (svg: string, color: string): string => `
