@@ -9,3 +9,5 @@ scripts/data.json
 .env.local
 .eslintcache
 test-results
+.devlog
+logs.txt
