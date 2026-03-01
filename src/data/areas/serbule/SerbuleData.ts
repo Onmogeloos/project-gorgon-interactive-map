@@ -1217,6 +1217,11 @@ const data: MapData = {
         {
             "name": "Angry Bear",
             "type": MarkerType.MiniBoss,
+            description: `
+            HP: 273
+            Armor: 233
+            Rage: 385
+            `,
             "positions": [
                 [
                     412.31600000000003,
@@ -1689,16 +1694,6 @@ const data: MapData = {
                 [
                     504.98,
                     511.76800000000003
-                ]
-            ]
-        },
-        {
-            "name": "Norbert",
-            "type": MarkerType.NPC,
-            "positions": [
-                [
-                    590.876,
-                    490.70799999999997
                 ]
             ]
         },

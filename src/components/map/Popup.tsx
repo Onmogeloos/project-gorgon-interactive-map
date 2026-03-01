@@ -1,6 +1,6 @@
 import { FlexColumn, FlexRow } from "@components/Flex";
 import { MarkerData, MarkerType } from "@localtypes/Map";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -9,16 +9,16 @@ const Container = styled.div`
 
 export default function Popup({ markerData: marker, position }: { markerData: MarkerData, position: [number, number] }) {
     const { name, type } = marker;
-
     const toWiki = (name: string) => `https://wiki.projectgorgon.com/w/index.php?search=${name}`
-    const roundedPosition = [position[0].toFixed(2), position[1].toFixed(2)] as [string, string];
     return <Container>
         <FlexRow>
             <FlexColumn>
-                <Typography variant="body1"><a href={toWiki(name)}>{name}</a></Typography>
-                {
-                    !!marker.description && <Typography variant="body2">{marker.description}</Typography>
-                }
+                <Box style={{ whiteSpace: "pre-line" }}>
+                    <Typography variant="h6" component="div">
+                        <a href={toWiki(name)} target="_blank" rel="noopener noreferrer">{name}</a>
+                    </Typography>
+                    {marker.description}
+                </Box>
             </FlexColumn>
         </FlexRow>
     </Container>
