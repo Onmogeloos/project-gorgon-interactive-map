@@ -37,12 +37,14 @@ type MarkerDataWithData =
       type: MarkerType.Entrance;
       name: string;
       positions: Coordinate[];
+      description?: string;
       data: { leadsTo: Area };
     }
   | {
       type: MarkerType.ZonePortal;
       name: string;
       positions: Coordinate[];
+      description?: string;
       data: { leadsTo: Area };
     };
 
@@ -53,6 +55,7 @@ export type MarkerData =
       type: Exclude<MarkerType, MarkerDataWithData extends { type: infer T } ? T : never>;
       name: string;
       positions: Coordinate[];
+      description?: string;
     };
 
 export enum Area {

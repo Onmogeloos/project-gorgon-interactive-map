@@ -67,6 +67,10 @@ h3 {
 
   .leaflet-tooltip {
     padding: 2px;
+    &::before {
+      border: none;
+      display: none;
+    }
   }
 
 

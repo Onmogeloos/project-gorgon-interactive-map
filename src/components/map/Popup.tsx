@@ -15,28 +15,11 @@ export default function Popup({ markerData: marker, position }: { markerData: Ma
     return <Container>
         <FlexRow>
             <FlexColumn>
-                <Typography variant="h6">{name}</Typography>
-                <Typography variant="body1">{type}</Typography>
-                <Typography variant="body2">
-                    Wiki: <a href={toWiki(name)}>{name}</a>
-                </Typography>
-
-                <br />
-                <TypeSpecificData markerData={marker} />
-                <Typography variant="body2">
-                    Position: {`[${roundedPosition[0]}, ${roundedPosition[1]}]`}
-                </Typography>
+                <Typography variant="body1"><a href={toWiki(name)}>{name}</a></Typography>
+                {
+                    !!marker.description && <Typography variant="body2">{marker.description}</Typography>
+                }
             </FlexColumn>
         </FlexRow>
     </Container>
-}
-
-function TypeSpecificData({ markerData }: { markerData: MarkerData }) {
-    switch (markerData.type) {
-        case MarkerType.Entrance:
-        case MarkerType.ZonePortal:
-            return <Typography variant="body2">Leads to: {markerData.data.leadsTo}</Typography>
-        default:
-            return null;
-    }
 }

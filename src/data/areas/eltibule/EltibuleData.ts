@@ -64,6 +64,9 @@ const data: MapData = {
         {
             "name": "Orange tree",
             "type": MarkerType.FruitTree,
+            description: `
+            Min foraging level: 20
+            `,
             "positions": [
                 [
                     484,

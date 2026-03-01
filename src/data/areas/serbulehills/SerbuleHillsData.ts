@@ -45,6 +45,9 @@ const data: MapData = {
         },
         {
             name: "Apple tree",
+            description: `
+            Min forage level: 0
+            `,
             type: MarkerType.FruitTree,
             positions: [
                 [959.8125, 76.4375],

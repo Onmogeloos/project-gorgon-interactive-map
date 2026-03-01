@@ -1,14 +1,15 @@
 import { Area, MarkerData, MarkerType } from "@localtypes/Map";
-import L from "leaflet";
+import L, { LatLng } from "leaflet";
 import { createRoot } from "react-dom/client";
 import { MarkerIcon, MarkerItemData, MarkerLabel } from "./CanvasMarkerLayerWrapper";
 import Popup from "./Popup";
 
 
-type ClickedMarker = {
-    marker: MarkerData;
-    position: [number, number];
-    distance: number;
+type MarkerElement = {
+    marker: MarkerData,
+    latlng: LatLng,
+    zIndex: number,
+    size: { width: number, height: number }
 }
 
 /**
@@ -18,8 +19,10 @@ type ClickedMarker = {
  */
 export default class CanvasMarkerLayerClass extends L.Layer {
     private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D | null;
+    private ctx: CanvasRenderingContext2D;
     private popup: L.Popup | null = null;
+    private tooltip: L.Tooltip | null = null;
+    private markerElements: MarkerElement[] = []
     private interval: any;
 
     constructor(
@@ -38,11 +41,12 @@ export default class CanvasMarkerLayerClass extends L.Layer {
     override onAdd(map: L.Map) {
         this.canvas = L.DomUtil.create('canvas', 'leaflet-canvas-marker-layer');
         this.canvas.style.position = 'absolute';
-        this.ctx = this.canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
         map.getPanes().overlayPane.appendChild(this.canvas);
 
         map.on('zoomend resize viewreset moveend', this.reset, this);
         map.on('movestart', this.onMoveStart, this);
+        map.on('mousemove', this.onMouseMove, this);
         map.on('moveend', this.onMoveEnd, this);
         map.on('click', this.onClick, this);
         this.reset();
@@ -61,6 +65,7 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         map.off('zoomend resize viewreset moveend', this.reset, this);
         map.off('click', this.onClick, this);
         map.off('movestart', this.onMoveStart, this);
+        map.off('mousemove', this.onMouseMove, this);
         map.off('moveend', this.onMoveEnd, this);
         if (this.popup) {
             map.closePopup(this.popup);
@@ -73,6 +78,38 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         this.interval = setInterval(() => {
             this.reset();
         }, 250);
+    }
+
+    private async onMouseMove(e) {
+        const elementAtCursor = this.getMarkerAt(e.latlng);
+
+        // Remove existing tooltip
+        if (this.tooltip) {
+            this._map.removeLayer(this.tooltip);
+            this.tooltip = null;
+        }
+        // If hoverMarker is not found, reset cursor and return
+        if (!elementAtCursor) {
+            this.canvas.style.cursor = "default";
+            return;
+        }
+        this.canvas.style.cursor = "pointer";
+
+        if (this.iconData[elementAtCursor.marker.type].type === "label")
+            return;
+
+        this.tooltip = this.drawTooltip(elementAtCursor);
+    }
+
+    private drawTooltip(element: MarkerElement) {
+        // Create new tooltip
+        const tooltip = L.tooltip({
+            permanent: false,
+            direction: "top",
+            className: "custom-tooltip"
+        });
+        tooltip.setLatLng(element.latlng).setContent(element.marker.name).addTo(this._map);
+        return tooltip;
     }
 
     private onMoveEnd() {
@@ -103,15 +140,14 @@ export default class CanvasMarkerLayerClass extends L.Layer {
                 this.markers
                     .filter(marker => marker.type === type)
                     .forEach(marker => {
-                        console.log(marker.name)
                         marker.positions.forEach(([lat, lng]) => {
-                            const point = map.latLngToContainerPoint([lat, lng]);
+                            const latlng = new LatLng(lat, lng);
                             switch (iconData.type) {
                                 case "icon":
-                                    this.drawIcon(ctx, iconData, point, scale);
+                                    this.drawIcon(marker, iconData, latlng, scale);
                                     break;
                                 case "label":
-                                    this.drawLabel(marker, iconData, point);
+                                    this.drawLabel(marker, iconData, latlng);
                                     break;
                             }
                         });
@@ -120,8 +156,9 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         ctx.restore();
     }
 
-    drawLabel(marker: MarkerData, iconData: MarkerLabel, point: L.Point) {
-        const ctx = this.ctx as CanvasRenderingContext2D;
+    private drawLabel(marker: MarkerData, iconData: MarkerLabel, latlng: LatLng) {
+        const point = this._map.latLngToContainerPoint(latlng);
+        const ctx = this.ctx;
         const sizeMultiplier = iconData.scale;
         const fontSize = Math.round(12 * sizeMultiplier);
         ctx.font = `bold ${fontSize}px Roboto, sans-serif`;
@@ -134,82 +171,97 @@ export default class CanvasMarkerLayerClass extends L.Layer {
 
         ctx.fillStyle = iconData.color;
         ctx.fillText(marker.name, point.x, labelY);
+
+        this.markerElements.push({
+            marker,
+            zIndex: iconData.zIndex ?? 0,
+            latlng,
+            size: {
+                width: ctx.measureText(marker.name).width,
+                height: fontSize
+            }
+        });
     }
 
-    private
-
-    private drawIcon(ctx: CanvasRenderingContext2D, icon: MarkerIcon, point: L.Point, scale: number) {
+    private drawIcon(marker: MarkerData, iconData: MarkerIcon, latlng: LatLng, scale: number) {
+        const point = this._map.latLngToContainerPoint(latlng);
         const size = 34
-        const scaledPosition = { x: point.x / scale, y: point.y / scale }
         // The width is 27 and the height is 36 in the original SVG.
         const markerAspectRatio = 27 / 36;
         const offset = (size * markerAspectRatio) / 2;
         // Draw icon background
-        ctx.drawImage(icon.backgroundIcon,
-            scaledPosition.x - offset,
-            scaledPosition.y - offset,
+        const ctx = this.ctx;
+        ctx.drawImage(iconData.backgroundIcon,
+            point.x - offset,
+            point.y - offset,
             markerAspectRatio * size,
             size);
         // Draw icon foreground
-        ctx.drawImage(icon.icon,
-            scaledPosition.x - offset + 3, // x-axis offset
-            scaledPosition.y - offset + 3, // y-axis offset
+        ctx.drawImage(iconData.icon,
+            point.x - offset + 3, // x-axis offset
+            point.y - offset + 3, // y-axis offset
             size - 14, // Width 
             size - 14 // Height
         );
+
+        this.markerElements.push({
+            marker,
+            latlng,
+            zIndex: iconData.zIndex ?? 0,
+            size: {
+                width: size,
+                height: size
+            }
+        });
     }
 
     private onClick(e) {
-        const { lat, lng } = e.latlng;
-        const clickedMarker = this.getClickedMarker(lat, lng);
+        const clickedMarker = this.getMarkerAt(e.latlng);
         if (!clickedMarker) return;
         // If the clicked marker is a portal or entrance, navigate to the linked area instead of showing a popup
         if (clickedMarker.marker.type === MarkerType.ZonePortal || clickedMarker.marker.type === MarkerType.Entrance)
             return this.navigateToArea(clickedMarker.marker.data.leadsTo);
+        // Display popup
         this.popup = this.createPopup(clickedMarker, this.popup, this._map);
     }
 
-    /**
-     * Finds the marker closest to the clicked location within a certain threshold distance.
-     * @param lat The latitude of the clicked location.
-     * @param lng The longitude of the clicked location.
-     * @returns An object containing the closest marker, its position, and the distance to the clicked location, or null if no marker is close enough.
-     */
-    getClickedMarker(lat: number, lng: number): ClickedMarker | null {
-        return this.markers.reduce<ClickedMarker | null>((closest, marker) => {
-            marker.positions.forEach(([mLat, mLng]) => {
-                const point = this._map.latLngToContainerPoint([mLat, mLng]);
-                const clickPoint = this._map.latLngToContainerPoint([lat, lng]);
-                const distance = point.distanceTo(clickPoint);
-                if ((distance < (closest?.distance ?? Infinity)) && distance < 15)
-                    closest = { marker, position: [mLat, mLng], distance };
-            });
-            return closest;
-        }, null)
+    getMarkerAt(latlng: LatLng): MarkerElement | null {
+        return this.markerElements
+            .sort((a, b) => a.zIndex - b.zIndex)
+            .reduce((closest, element) => {
+                const markerPoint = this._map.latLngToContainerPoint(element.latlng);
+                const clickPoint = this._map.latLngToContainerPoint(latlng);
+
+                // Calculate hitbox bounds
+                const halfWidth = element.size.width / 2;
+                const halfHeight = element.size.height / 2;
+                const withinX = clickPoint.x >= (markerPoint.x - halfWidth) && clickPoint.x <= (markerPoint.x + halfWidth);
+                const withinY = clickPoint.y >= (markerPoint.y - halfHeight) && clickPoint.y <= (markerPoint.y + halfHeight);
+                return withinX && withinY ? element : closest;
+            }, null);
     }
 
-    private createPopup(clickedMarker: {
-        marker: MarkerData;
-        position: [number, number];
-    },
+    private createPopup(
+        clickedMarker: MarkerElement,
         popup: L.Popup | null,
         map: L.Map
     ) {
         const container = document.createElement("div");
+        const point = this._map.latLngToContainerPoint(clickedMarker.latlng);
         createRoot(container).render(<Popup
             markerData={clickedMarker.marker}
-            position={clickedMarker.position}
+            position={[point.y, point.x]}
         />);
 
         if (popup) {
             // Move existing popup instead of creating a new one
-            popup.setLatLng(clickedMarker.position).setContent(container).openOn(map);
+            popup.setLatLng(clickedMarker.latlng).setContent(container).openOn(map);
             return popup;
         }
         return L.popup({
             minWidth: 200
         })
-            .setLatLng(clickedMarker.position)
+            .setLatLng(clickedMarker.latlng)
             .setContent(container)
             .openOn(map);
     }
