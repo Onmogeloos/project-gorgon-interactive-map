@@ -60,11 +60,18 @@ import AnimalNexusData from "./areas/faerealm/AnimalNexusData";
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
         markerTypes: {
+            [MarkerType.Animal]: {
+                icon: (await import("@assets/icons/cow.svg?raw")).default,
+                iconElement: (await import("@assets/icons/cow.svg")).default,
+                label: "Animals",
+                color: "#b3ca75",
+                type: "icon",
+            },
             [MarkerType.Boss]: {
                 icon: (await import("@assets/icons/boss.svg?raw")).default,
                 iconElement: (await import("@assets/icons/boss.svg")).default,
                 label: "Bosses",
-                color: "#A85C5C",
+                color: "#a74343",
                 type: "label",
                 scale: 1
             },
