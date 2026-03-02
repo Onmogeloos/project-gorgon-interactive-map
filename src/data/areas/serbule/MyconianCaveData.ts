@@ -1,6 +1,6 @@
-import { Area, MapData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
-const MyconianCaveData: MapData = {
+const MyconianCaveData: AreaData = {
     name: "Myconian Cave",
     slug: "myconianCave",
     description: "",

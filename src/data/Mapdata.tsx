@@ -45,11 +45,12 @@ import PhantomIlmariDesertData from "./areas/serbule/PhantomIlmariDesertData";
 import SerbuleData from "./areas/serbule/SerbuleData";
 import SerbuleSewerData from "./areas/serbule/SerbuleSewerData";
 import RanalonBaseData from "./areas/serbulehills/RanalonBaseData";
+import TowerViewCave from "./areas/gazluk/TowerViewCave";   
 import SerbuleHillsData from "./areas/serbulehills/SerbuleHillsData";
 import SpiderCaveData from "./areas/serbulehills/SpiderCaveData";
 import StatehelmCavesSafeHouseAData from "./areas/statehelm/StatehelmCavesSafeHouseAData";
 import StatehelmData from "./areas/statehelm/StatehelmData";
-import VidariaData from "./areas/statehelm/VidariaData";
+import VidariaData from "./areas/vidaria/VidariaData";
 import SunValeCave1Data from "./areas/sunvale/SunValeCave1Data";
 import SunValeCave2Data from "./areas/sunvale/SunValeCave2Data";
 import SunValeCave3Data from "./areas/sunvale/SunValeCave3Data";
@@ -60,6 +61,13 @@ import AnimalNexusData from "./areas/faerealm/AnimalNexusData";
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
         markerTypes: {
+            [MarkerType.MushroomCircle]: {
+                icon: (await import("@assets/icons/mushrooms.svg?raw")).default,
+                iconElement: (await import("@assets/icons/mushrooms.svg")).default,
+                label: "Mushroom Circles",
+                color: "#dd93ec",
+                type: "icon"
+            },
             [MarkerType.Animal]: {
                 icon: (await import("@assets/icons/cow.svg?raw")).default,
                 iconElement: (await import("@assets/icons/cow.svg")).default,
@@ -246,7 +254,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.SunValeCave2]: SunValeCave2Data,
         [Area.SunValeCave3]: SunValeCave3Data,
         [Area.TheWintertide]: TheWintertideData,
-        // [Area.TowerView]: TowerViewData,
+        [Area.TowerView]: TowerViewCave,
         // [Area.WardenCave]: WardenCaveData,
         [Area.WindyViewCave]: WindyViewCaveData,
         [Area.WinterNexus]: WinterNexusData,

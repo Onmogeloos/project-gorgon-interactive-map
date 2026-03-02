@@ -1,4 +1,4 @@
-import { Area, MapData } from "@localtypes/Map";
+import { Area, AreaData } from "@localtypes/Map";
 
 // const WardenCaveData: MapData = {
 //     name: "Warden Cave",

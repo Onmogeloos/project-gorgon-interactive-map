@@ -6,6 +6,8 @@ const VidariaData: GlobalMapData[Area.Vidaria] = {
     description: "",
     aspectRatio: 1890/2048,
     group: Area.Statehelm,
+    minLevel: 90,
+    maxLevel: 95,
     imageUrl: (await import("@assets/areas/Map_Vidaria.png")).default,
     markers: [],
 };

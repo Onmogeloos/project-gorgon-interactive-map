@@ -1,6 +1,6 @@
-import { Area, MapData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
-const EltibuleCryptData: MapData = {
+const EltibuleCryptData: AreaData = {
     name: "Eltibule Crypt",
     slug: "eltibulecrypt",
     description: "",

@@ -1,5 +1,5 @@
 
-export type MapData = {
+export type AreaData = {
     name: string;
     slug: string;
     description: string;
@@ -7,6 +7,8 @@ export type MapData = {
     markers: MarkerData[];
     group: Area;
     aspectRatio?: number;
+    minLevel?: number;
+    maxLevel?: number;
 }
 
 export enum MarkerType {
@@ -27,7 +29,8 @@ export enum MarkerType {
     Treasure = 'treasure',
     Lore = 'lore',
     PlayerShop = "playershop",
-    Animal = "Animal",
+    Animal = "animal",
+    MushroomCircle = "mushroomcircle",
 }
 
 export type Coordinate = [number, number];
@@ -120,6 +123,7 @@ export enum Area {
     WolfCave = "Wolf Cave",
     YetiCave = "Yeti Cave",
     AnimalNexus = "Animal Nexus",
+    TowerView = "TowerView",
 }
 
 export type MarkerTypeData = {
@@ -139,4 +143,4 @@ export type AllMarkerTypeData = {
 export type GlobalData = {
     markerTypes: AllMarkerTypeData;
 }
-export type GlobalMapData = { [key in Area]: MapData }
+export type GlobalMapData = { [key in Area]: AreaData }

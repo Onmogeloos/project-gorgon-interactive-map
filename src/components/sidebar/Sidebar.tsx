@@ -120,9 +120,9 @@ export default function Sidebar() {
                             disableClearable={true}
                             value={areas.find(area => area.slug === currentMapData.slug)}
                             options={areas}
-                            getOptionLabel={(option) => option.name}
+                            getOptionLabel={(option) => option.minLevel && option.maxLevel ? `${option.name} (Level ${option.minLevel}-${option.maxLevel})` : option.name}
                             groupBy={(option) => option.group}
-                            renderInput={(params) => <TextField {...params} label="Zone" />}
+                            renderInput={(params) => <TextField {...params} label="Area" />}
                             onChange={(_, map) => navigate(`/${map.slug}`)}
                             slotProps={{
                                 listbox: {

@@ -6,6 +6,8 @@ const RahuData: GlobalMapData[Area.Rahu] = {
     description: "",
     group: Area.Rahu,
     aspectRatio: 1720/1772,
+    minLevel: 51,
+    maxLevel: 60,
     imageUrl: (await import("@assets/areas/Map_AreaRahu.png")).default,
     markers: [],
 };

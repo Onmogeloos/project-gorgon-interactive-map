@@ -1,6 +1,6 @@
-import { Area, MapData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
-const RanalonBaseData: MapData = {
+const RanalonBaseData: AreaData = {
     name: "Ranalon Base",
     slug: "ranalonbase",
     description: "",

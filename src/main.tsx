@@ -1,4 +1,4 @@
-import { Area, GlobalData, GlobalMapData, MapData } from "@localtypes/Map";
+import { Area, GlobalData, GlobalMapData, AreaData } from "@localtypes/Map";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
@@ -29,7 +29,7 @@ const MainContainer = styled.div`
 
 
 export const MapContext = createContext<{
-    currentMapData: MapData;
+    currentMapData: AreaData;
     currentArea: Area;
     mapData: GlobalMapData;
     globalData: GlobalData;
@@ -80,7 +80,7 @@ function App() {
                                             globalData={globalData}
                                             globalMapData={mapData} />} />
                                     {
-                                        Object.entries(mapData).map(([area, map]: [Area, MapData]) => (
+                                        Object.entries(mapData).map(([area, map]: [Area, AreaData]) => (
                                             <Route
                                                 key={map.slug}
                                                 path={map.slug}
@@ -101,7 +101,7 @@ function App() {
     );
 }
 
-function Page({ area, mapData, globalData, globalMapData }: { mapData: MapData, area: Area, globalData: GlobalData, globalMapData: GlobalMapData}) {
+function Page({ area, mapData, globalData, globalMapData }: { mapData: AreaData, area: Area, globalData: GlobalData, globalMapData: GlobalMapData}) {
     return <>
         <MapContext.Provider value={{
             currentMapData: mapData,

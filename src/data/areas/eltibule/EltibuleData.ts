@@ -1,12 +1,14 @@
-import { MapData, Area, MarkerType } from "@localtypes/Map";
+import { AreaData, Area, MarkerType } from "@localtypes/Map";
 
-const data: MapData = {
+const data: AreaData = {
     name: "Eltibule",
     slug: "eltibule",
     description: "",
     group: Area.Eltibule,
     imageUrl: (await import("@assets/areas/Map_AreaEltibule.png")).default,
     aspectRatio: 2048 / 2033,
+    minLevel: 20,
+    maxLevel: 50,
     markers: [
         {
             name: "Pudding",

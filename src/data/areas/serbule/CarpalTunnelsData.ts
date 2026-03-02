@@ -1,6 +1,6 @@
-import { Area, MapData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
-const CarpalTunnelsData: MapData = {
+const CarpalTunnelsData: AreaData = {
     name: "Carpal Tunnels",
     slug: "carpaltunnels",
     description: "",

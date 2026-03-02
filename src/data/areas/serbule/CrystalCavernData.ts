@@ -1,6 +1,6 @@
-import { Area, MapData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
-const CrystalCavernData: MapData = {
+const CrystalCavernData: AreaData = {
     name: "Crystal Cavern",
     slug: "crystalcavern",
     description: "",
@@ -8,13 +8,10 @@ const CrystalCavernData: MapData = {
     imageUrl: (await import("@assets/areas/Map_CrystalCavern.png")).default,
     markers: [
         {
-            "name": "Dalvos's Storage Chest",
+            "name": "Abandoned Storage Chest",
             "type": MarkerType.Object,
             "positions": [
-                [
-                    43.03924676893894,
-                    395.01942516846475
-                ]
+                [948.75, 384.75]
             ]
         },
         {
@@ -26,7 +23,10 @@ const CrystalCavernData: MapData = {
                     669.0194251684647
                 ]
             ]
-        }
+        },
+        { name: "Lore Book", type: MarkerType.Lore, positions: [[904, 397.75]] },
+        { name: "Lore Book", type: MarkerType.Lore, positions: [[800, 515.5]] },
+        { name: "Exit to Serbule", type: MarkerType.Entrance, positions: [[75.75, 391.5]], data: { leadsTo: Area.Serbule } },
     ],
     group: Area.Serbule,
 };

@@ -1,6 +1,6 @@
-import { Area, MapData } from "@localtypes/Map";
+import { Area, AreaData } from "@localtypes/Map";
 
-const RahuSewerData: MapData = {
+const RahuSewerData: AreaData = {
     name: "Rahu Sewer",
     slug: "rahusewer",
     description: "",

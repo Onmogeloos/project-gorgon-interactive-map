@@ -5,6 +5,8 @@ const FaeRealmData: GlobalMapData[Area.FaeRealm] = {
     slug: "faerealm",
     description: "",
     group: Area.FaeRealm,
+    minLevel: 70,
+    maxLevel: 80,
     imageUrl: (await import("@assets/areas/Map_AreaFaeRealm1.png")).default,
     markers: [
         {
@@ -214,7 +216,7 @@ const FaeRealmData: GlobalMapData[Area.FaeRealm] = {
 
         { name: "Fire Droach", type: MarkerType.MiniBoss, positions: [[205, 484.25], [328.5, 764]] },
         { name: "Ogamboe", type: MarkerType.NPC, positions: [[310.25, 650.75]] },
-        { name: "Bloodhunter Bee", type: MarkerType.MiniBoss, positions: [[674, 652],[595.75, 916.5]] },
+        { name: "Bloodhunter Bee", type: MarkerType.MiniBoss, positions: [[674, 652], [595.75, 916.5]] },
         { name: "Ancient Fire Elemental", type: MarkerType.Boss, positions: [[159, 158]] },
         { name: "Ancient Cold Elemental", type: MarkerType.Boss, positions: [[106.25, 839]] },
     ]

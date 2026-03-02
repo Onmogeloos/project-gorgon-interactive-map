@@ -1,6 +1,6 @@
-import { Area, MapData } from "@localtypes/Map";
+import { Area, AreaData } from "@localtypes/Map";
 
-const PovusCavesElvenJudgementData: MapData = {
+const PovusCavesElvenJudgementData: AreaData = {
     name: "Povus Caves Elven Judgement",
     slug: "povuscaveselvenjudgement",
     description: "",

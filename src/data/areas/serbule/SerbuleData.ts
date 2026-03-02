@@ -1,11 +1,13 @@
-import { Area, MapData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
-const data: MapData = {
+const data: AreaData = {
     name: "Serbule",
     slug: "serbule",
     description: "",
     group: Area.Serbule,
     aspectRatio: 1961 / 2048,
+    minLevel: 1,
+    maxLevel: 30,
     imageUrl: (await import("@assets/areas/Map_AreaSerbule.png")).default,
     markers: [
         {
@@ -1334,10 +1336,7 @@ const data: MapData = {
         {
             "name": "Carpal Tunnels",
             "positions": [
-                [
-                    448,
-                    165
-                ]
+                [425.5625, 177.5]
             ],
             "type": MarkerType.Entrance,
             data: { leadsTo: Area.CarpalTunnels }
@@ -1660,14 +1659,15 @@ const data: MapData = {
             ]
         },
         {
-            "name": "Mushroom circle",
+            "name": "Mushroom Circle",
             "positions": [
                 [
                     489.375,
                     859
-                ]
+                ],
+
             ],
-            "type": MarkerType.Object
+            "type": MarkerType.MushroomCircle
         },
         {
             "name": "Mushroom Jack",
@@ -1769,8 +1769,9 @@ const data: MapData = {
                     535
                 ]
             ],
-            "type": MarkerType.NPC
+            "type": MarkerType.UniqueEnemy
         },
+        { name: "Leonard Allenson", type: MarkerType.NPC, positions: [[760.125, 863.625]] },
         {
             "name": "Selphie",
             "type": MarkerType.NPC,
