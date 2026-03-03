@@ -124,15 +124,30 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         this.canvas.height = size.y;
         this.canvas.style.width = size.x + 'px';
         this.canvas.style.height = size.y + 'px';
-        this.draw(this._map);
+        this.draw();
     }
 
-    private draw(map: L.Map, scale = 1) {
+    private draw() {
         const ctx = this.ctx as CanvasRenderingContext2D;
         if (!ctx) return;
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.save();
-        ctx.scale(scale, scale);
+        ctx.scale(1, 1);
+
+        // Get the current map bounds and pixel size
+        const bounds = this._map.getBounds();
+        const size = this._map.getSize();
+        
+        // Helper to check if a latlng is visible in the current view
+        const isLatLngVisible = (latlng: L.LatLng) => {
+            if (!bounds.contains(latlng)) return false;
+            const point = this._map.latLngToContainerPoint(latlng);
+            return (
+                point.x >= 0 && point.x <= size.x &&
+                point.y >= 0 && point.y <= size.y
+            );
+        };
+
         Object.entries(this.iconData)
             // Draw higher zIndex first
             .sort((a, b) => (a[1].zIndex ?? 0) - (b[1].zIndex ?? 0))
@@ -140,17 +155,19 @@ export default class CanvasMarkerLayerClass extends L.Layer {
                 this.markers
                     .filter(marker => marker.type === type)
                     .forEach(marker => {
-                        marker.positions.forEach(([lat, lng]) => {
-                            const latlng = new LatLng(lat, lng);
-                            switch (iconData.type) {
-                                case "icon":
-                                    this.drawIcon(marker, iconData, latlng, scale);
-                                    break;
-                                case "label":
-                                    this.drawLabel(marker, iconData, latlng);
-                                    break;
-                            }
-                        });
+                        marker.positions
+                            .map(([lat, lng]) => new LatLng(lat, lng))
+                            .filter(isLatLngVisible)
+                            .forEach(latlng => {
+                                switch (iconData.type) {
+                                    case "icon":
+                                        this.drawIcon(marker, iconData, latlng);
+                                        break;
+                                    case "label":
+                                        this.drawLabel(marker, iconData, latlng);
+                                        break;
+                                }
+                            });
                     });
             });
         ctx.restore();
@@ -183,7 +200,7 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         });
     }
 
-    private drawIcon(marker: MarkerData, iconData: MarkerIcon, latlng: LatLng, scale: number) {
+    private drawIcon(marker: MarkerData, iconData: MarkerIcon, latlng: LatLng) {
         const point = this._map.latLngToContainerPoint(latlng);
         const size = 34
         // The width is 27 and the height is 36 in the original SVG.
