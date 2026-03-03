@@ -1,6 +1,7 @@
 import { FlexColumn, FlexRow } from "@components/Flex";
-import { MarkerData, MarkerType } from "@localtypes/Map";
-import { Box, Typography } from "@mui/material";
+import { Area, MarkerData, MarkerType } from "@localtypes/Map";
+import { NavigateNext } from "@mui/icons-material";
+import { Box, Button, Link, Typography } from "@mui/material";
 import { LatLng } from "leaflet";
 import styled from "styled-components";
 
@@ -8,26 +9,38 @@ const Container = styled.div`
     user-select: text;
 `
 
-export default function Popup({ markerData: marker, point, markerPosition }: {
+export default function Popup({ markerData: marker, navigateToArea, markerPosition }: {
     markerData: MarkerData,
-    point: [number, number],
+    navigateToArea: (area: Area) => void,
     markerPosition: LatLng
- }) {
+}) {
     const { name, type } = marker;
     const toWiki = (name: string) => `https://wiki.projectgorgon.com/w/index.php?search=${name}`
     const positionString = `(${markerPosition.lat.toFixed(2)}, ${markerPosition.lng.toFixed(2)})`;
     return <Container>
-        <FlexRow>
-            <FlexColumn>
-                <Box style={{ whiteSpace: "pre-line" }}>
-                    <Typography variant="h6" component="div">
-                        <a href={toWiki(name)} target="_blank" rel="noopener noreferrer">{name}</a>
-                    </Typography>
-                    {positionString}
-                    <br />
-                    {marker.description}
+        <Box style={{ whiteSpace: "pre-line" }}>
+            <FlexColumn $gapY="0.5rem">
+                {
+                    (type == MarkerType.ZonePortal || type == MarkerType.Entrance)
+                        ? <Link
+                            sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+                            onClick={() => navigateToArea(marker.data.leadsTo)}
+                        >
+                            <Typography noWrap variant="h6" component="div">{name} {`>`}</Typography>
+                        </Link>
+                        : <Typography variant="h6" component="div">{name}</Typography>
+                }
+                <Box>
+                    <a href={toWiki(name)} target="_blank" rel="noopener noreferrer">Wiki</a>
                 </Box>
+                <Box>
+                    Type: {type}
+                </Box>
+                <Box>
+                    Position: {positionString}
+                </Box>
+                {marker.description}
             </FlexColumn>
-        </FlexRow>
+        </Box>
     </Container>
 }

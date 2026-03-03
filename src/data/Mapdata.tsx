@@ -88,7 +88,9 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 iconElement: (await import("@assets/icons/cave.svg")).default,
                 label: "Entrances",
                 color: "#7A7A7A",
-                type: "icon"
+                type: "label",
+                zIndex: 4,
+                scale: 1.3
             },
             [MarkerType.NPC]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
@@ -102,7 +104,7 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 icon: (await import("@assets/icons/marker.svg?raw")).default,
                 iconElement: (await import("@assets/icons/marker.svg")).default,
                 label: "Locations",
-                color: "#9B9B9B",
+                color: "#afafaf",
                 type: "label",
                 scale: 1.5,
                 zIndex: 5

@@ -30,8 +30,8 @@ export default function SidebarFooter() {
                         About This Project
                     </Typography>
                     <Typography sx={{ mt: 2 }}>
-                        This website is currently in early but very active development. Markers and map data is being added as soon as possible.
-                        Feel free to propose map markers for any object in the game.
+                        This website is currently in early but very active development. More markers and map data are being added as soon as possible.
+                        Feel free to propose map markers for any point of interest in the game. Proposals will be reviewed manually before being added to the map.
                         If you have any feedback or ideas, please reach out to me on Discord.
                         <br />
                         <br />

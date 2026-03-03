@@ -1,12 +1,11 @@
 import markerBackground from "@assets/icons/markerwrapper_template.svg?raw";
 import { MarkerType } from "@localtypes/Map";
 import { useAppSelector } from "@store/hooks";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useMap } from "react-leaflet";
 import { useNavigate } from "react-router";
 import { MapContext } from "../../main";
-import CanvasMarkerLayerClass from "./CanvasMarkerLayer";
-import zIndex from "@mui/material/styles/zIndex";
+import CanvasMarkerLayer from "./CanvasMarkerLayer";
 
 export type MarkerIcon = {
     icon: HTMLImageElement;
@@ -31,9 +30,9 @@ export type MarkerItemData = MarkerIcon | MarkerLabel;
  * The component manages the lifecycle of the canvas layer, including adding and removing it from the map, and updating it based on changes to marker data and map interactions.
  * @returns A React component that renders a canvas marker layer on a Leaflet map.
  */
-export default function CanvasMarkerLayer() {
+export default function CanvasMarkerLayerWrapper() {
     const map = useMap();
-    const layerRef = useRef<CanvasMarkerLayerClass | null>(null);
+    const layerRef = useRef<CanvasMarkerLayer | null>(null);
     const { currentMapData, globalData, mapData } = useContext(MapContext);
     const { hiddenMarkerTypes: hiddenGroups, searchQuery } = useAppSelector((state) => state.map);
     const navigate = useNavigate();
@@ -61,16 +60,18 @@ export default function CanvasMarkerLayer() {
         loadIcons();
     }, [globalData.markerTypes]);
 
+    const markers = useMemo(() => {
+        if (!currentMapData.markers) return [];
+        return currentMapData.markers
+            .filter((marker) => !hiddenGroups.includes(marker.type))
+            .filter((marker) => marker.name?.toLowerCase().includes(searchQuery.toLowerCase()));
+    }, [currentMapData.markers, hiddenGroups, searchQuery]);
+
     useEffect(() => {
-        let canvasLayer: CanvasMarkerLayerClass | null = null;
+        let canvasLayer: CanvasMarkerLayer | null = null;
         const addLayer = async () => {
             if (!icons) return;
-
-            const markers = (currentMapData.markers ?? [])
-                .filter((marker) => !hiddenGroups.includes(marker.type))
-                .filter((marker) => marker.name?.toLowerCase().includes(searchQuery.toLowerCase()));
-
-            canvasLayer = new CanvasMarkerLayerClass(
+            canvasLayer = new CanvasMarkerLayer(
                 markers,
                 icons,
                 (area) => {
@@ -88,7 +89,7 @@ export default function CanvasMarkerLayer() {
                 layerRef.current = null;
             }
         };
-    }, [map, currentMapData, hiddenGroups, searchQuery, globalData.markerTypes, navigate, mapData, globalData, icons]);
+    }, [map, currentMapData, hiddenGroups, searchQuery, globalData.markerTypes, navigate, mapData, globalData, icons, markers]);
     return null;
 }
 

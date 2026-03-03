@@ -247,11 +247,10 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         map: L.Map
     ) {
         const container = document.createElement("div");
-        const point = this._map.latLngToContainerPoint(clickedMarker.latlng);
         createRoot(container).render(<Popup
             markerData={clickedMarker.marker}
             markerPosition={clickedMarker.latlng}
-            point={[point.y, point.x]}
+            navigateToArea={this.navigateToArea}
         />);
 
         if (popup) {

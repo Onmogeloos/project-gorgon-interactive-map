@@ -2,7 +2,7 @@ import logo from "@assets/images/logo.png";
 import { Form } from "@base-ui-components/react";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { Autocomplete, Button, Drawer, IconButton, MenuItem, TextField, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, useMediaQuery } from "@mui/system";
 import Joi from "joi";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -69,9 +69,10 @@ const Logo = styled.img`
 export default function Sidebar() {
     const { mapData, currentMapData } = useContext(MapContext);
     const isMarkerProposalOpen = useAppSelector((state) => state.map.isMarkerProposalOpen);
-    const [isOpen, setIsOpen] = useState(true);
-    const navigate = useNavigate();
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const [isOpen, setIsOpen] = useState(!isMobile);
+    const navigate = useNavigate();
     // Sort areas by group first, then by name to avoid duplicated headers in Autocomplete
     const areas = Object.values(mapData)
         .sort((a, b) => {
