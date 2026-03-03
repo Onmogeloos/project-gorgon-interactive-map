@@ -26,8 +26,6 @@ const MainContainer = styled.div`
     display: flex;
 `
 
-
-
 export const MapContext = createContext<{
     currentMapData: AreaData;
     currentArea: Area;

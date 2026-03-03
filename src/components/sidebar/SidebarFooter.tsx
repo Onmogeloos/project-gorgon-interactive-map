@@ -30,9 +30,9 @@ export default function SidebarFooter() {
                         About This Project
                     </Typography>
                     <Typography sx={{ mt: 2 }}>
-                        This website is currently in very early development. Bugs may occur during this time.
+                        This website is currently in early but very active development. Markers and map data is being added as soon as possible.
                         Feel free to propose map markers for any object in the game.
-                        If you have any feedback or ideas, feel free to reach out to me on Discord.
+                        If you have any feedback or ideas, please reach out to me on Discord.
                         <br />
                         <br />
                         - Onmo

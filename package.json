@@ -6,7 +6,6 @@
     "build": "vite build",
     "preview": "vite preview",
     "eslint": "eslint --fix",
-    "fetch-data": "node scripts/fetchData.js",
     "test": "npx playwright test --ui"
   },
   "dependencies": {

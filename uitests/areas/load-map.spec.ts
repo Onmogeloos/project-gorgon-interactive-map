@@ -55,9 +55,9 @@ test.describe('Load each map page', async () => {
         "statehelmcavessafehousea",
         "vidaria",
         "sunvale",
-        "sunvalecave1",
-        "sunvalecave2",
-        "sunvalecave3",
+        "fishbowlcavern",
+        "molybdenumcave",
+        "sacrificialseacave",
         "winternexus",
     ]
 

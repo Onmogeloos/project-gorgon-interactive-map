@@ -8,5 +8,6 @@ export default defineConfig({
   webServer: {
     command: 'yarn run dev',
     url: 'http://localhost:5173',
+    reuseExistingServer: true
   },
 });

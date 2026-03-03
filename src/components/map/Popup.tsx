@@ -24,6 +24,7 @@ export default function Popup({ markerData: marker, point, markerPosition }: {
                         <a href={toWiki(name)} target="_blank" rel="noopener noreferrer">{name}</a>
                     </Typography>
                     {positionString}
+                    <br />
                     {marker.description}
                 </Box>
             </FlexColumn>

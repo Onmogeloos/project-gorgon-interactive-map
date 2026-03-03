@@ -9,12 +9,14 @@ import EltibuleData from "./areas/eltibule/EltibuleData";
 import GoblinDungeonData from "./areas/eltibule/GoblinDungeonData";
 import GoblinDungeonTopFloorData from "./areas/eltibule/GoblinDungeonTopFloorData";
 import HogansKeepBasementData from "./areas/eltibule/HogansKeepBasementData";
+import AnimalNexusData from "./areas/faerealm/AnimalNexusData";
 import FaeRealmData from "./areas/faerealm/FaeRealmData";
 import TheWintertideData from "./areas/faerealm/TheWintertideData";
 import GazlukData from "./areas/gazluk/GazlukData";
 import NewPrestonbuleData from "./areas/gazluk/NewPrestonbuleData";
 import NoNameCaveData from "./areas/gazluk/NoNameCaveData";
 import SnowbloodCaveData from "./areas/gazluk/SnowbloodCaveData";
+import TowerViewCave from "./areas/gazluk/TowerViewCave";
 import WindyViewCaveData from "./areas/gazluk/WindyViewCaveData";
 import IlmariData from "./areas/ilmari/IlmariData";
 import LabyrinthData from "./areas/ilmari/LabyrinthData";
@@ -45,18 +47,16 @@ import PhantomIlmariDesertData from "./areas/serbule/PhantomIlmariDesertData";
 import SerbuleData from "./areas/serbule/SerbuleData";
 import SerbuleSewerData from "./areas/serbule/SerbuleSewerData";
 import RanalonBaseData from "./areas/serbulehills/RanalonBaseData";
-import TowerViewCave from "./areas/gazluk/TowerViewCave";   
 import SerbuleHillsData from "./areas/serbulehills/SerbuleHillsData";
 import SpiderCaveData from "./areas/serbulehills/SpiderCaveData";
 import StatehelmCavesSafeHouseAData from "./areas/statehelm/StatehelmCavesSafeHouseAData";
 import StatehelmData from "./areas/statehelm/StatehelmData";
-import VidariaData from "./areas/vidaria/VidariaData";
-import SunValeCave1Data from "./areas/sunvale/SunValeCave1Data";
-import SunValeCave2Data from "./areas/sunvale/SunValeCave2Data";
-import SunValeCave3Data from "./areas/sunvale/SunValeCave3Data";
+import FishBowlCavernData from "./areas/sunvale/FishBowlCavernData";
+import MolybdenumCaveData from "./areas/sunvale/MolybdenumCaveData";
+import SacrificialSeaCaveData from "./areas/sunvale/SacrificialSeaCaveData";
 import SunValeData from "./areas/sunvale/SunValeData";
 import WinterNexusData from "./areas/sunvale/WinterNexusData";
-import AnimalNexusData from "./areas/faerealm/AnimalNexusData";
+import VidariaData from "./areas/vidaria/VidariaData";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
@@ -250,9 +250,9 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.SnowbloodCave]: SnowbloodCaveData,
         [Area.SpiderCave]: SpiderCaveData,
         [Area.StatehelmCavesSafeHouseA]: StatehelmCavesSafeHouseAData,
-        [Area.SunValeCave1]: SunValeCave1Data,
-        [Area.SunValeCave2]: SunValeCave2Data,
-        [Area.SunValeCave3]: SunValeCave3Data,
+        [Area.FishBowlCavern]: FishBowlCavernData,
+        [Area.MolybdenumMine]: MolybdenumCaveData,
+        [Area.SacrificialSeaCave]: SacrificialSeaCaveData,
         [Area.TheWintertide]: TheWintertideData,
         [Area.TowerView]: TowerViewCave,
         // [Area.WardenCave]: WardenCaveData,
