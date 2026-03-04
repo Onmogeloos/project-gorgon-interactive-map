@@ -1769,7 +1769,8 @@ const data: AreaData = {
                     535
                 ]
             ],
-            "type": MarkerType.UniqueEnemy
+            "type": MarkerType.UniqueEnemy,
+            description: `Ivyn asks you to kill this special red deer.`
         },
         { name: "Leonard Allenson", type: MarkerType.NPC, positions: [[760.125, 863.625]] },
         {

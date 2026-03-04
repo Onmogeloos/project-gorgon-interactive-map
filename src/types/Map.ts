@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 
 export type AreaData = {
     name: string;
@@ -9,6 +10,17 @@ export type AreaData = {
     aspectRatio?: number;
     minLevel?: number;
     maxLevel?: number;
+}
+
+export enum MarkerTypeGroup {
+    Enemies = "enemies",
+    Lore = "lore",
+    Forage = "forage",
+    Exploration = "exploration",
+    NPCs = "npcs",
+    Locations = "locations",
+    Puzzle = "puzzle",
+    Treasures = "treasures",
 }
 
 export enum MarkerType {
@@ -37,29 +49,29 @@ export type Coordinate = [number, number];
 
 // Types that require a data property
 type MarkerDataWithData =
-  | {
-      type: MarkerType.Entrance;
-      name: string;
-      positions: Coordinate[];
-      description?: string;
-      data: { leadsTo: Area };
+    | {
+        type: MarkerType.Entrance;
+        name: string;
+        positions: Coordinate[];
+        description?: string;
+        data: { leadsTo: Area };
     }
-  | {
-      type: MarkerType.ZonePortal;
-      name: string;
-      positions: Coordinate[];
-      description?: string;
-      data: { leadsTo: Area };
+    | {
+        type: MarkerType.ZonePortal;
+        name: string;
+        positions: Coordinate[];
+        description?: string;
+        data: { leadsTo: Area };
     };
 
 // All other types do not have a data property
 export type MarkerData =
-  | MarkerDataWithData
-  | {
-      type: Exclude<MarkerType, MarkerDataWithData extends { type: infer T } ? T : never>;
-      name: string;
-      positions: Coordinate[];
-      description?: string;
+    | MarkerDataWithData
+    | {
+        type: Exclude<MarkerType, MarkerDataWithData extends { type: infer T } ? T : never>;
+        name: string;
+        positions: Coordinate[];
+        description?: string;
     };
 
 export enum Area {
@@ -128,19 +140,25 @@ export enum Area {
 
 export type MarkerTypeData = {
     icon: string;
-    iconElement: string;
+    IconElement: FunctionComponent;
     label: string;
     color: string;
     type: "label" | "icon";
     scale?: number;
     zIndex?: number;
+    group: MarkerTypeGroup;
 }
 
-export type AllMarkerTypeData = {
-    [key in MarkerType]: MarkerTypeData;
+export type MarkerTypeGroupData = {
+    label: string;
 }
 
 export type GlobalData = {
-    markerTypes: AllMarkerTypeData;
+    markerTypes: {
+        [key in MarkerType]: MarkerTypeData;
+    };
+    markerTypeGroups: {
+        [key in MarkerTypeGroup]: MarkerTypeGroupData;
+    };
 }
 export type GlobalMapData = { [key in Area]: AreaData }

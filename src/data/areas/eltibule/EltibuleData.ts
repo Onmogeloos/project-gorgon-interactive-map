@@ -152,8 +152,7 @@ const data: AreaData = {
         { name: "Helena Veilmoor", type: MarkerType.NPC, positions: [[924.125, 455.1875]] },
         { name: "Jesina", type: MarkerType.NPC, positions: [[580.9375, 322.1875]] },
         { name: "Sie Antry", type: MarkerType.NPC, positions: [[580.09375, 321.28125]] },
-        { name: "Goblin Dungeon Exit", type: MarkerType.Entrance, positions: [[633.09375, 408.28125]], data: { leadsTo: Area.Eltibule } },
-
+        { name: "Goblin Dungeon Exit", type: MarkerType.Entrance, positions: [[633.09375, 408.28125]], data: { leadsTo: Area.GoblinDungeon } },
 
         { name: "Eltibule Crypt", type: MarkerType.Entrance, positions: [[534.25, 638.5625]], data: {leadsTo: Area.EltibuleCrypt} },
     ],

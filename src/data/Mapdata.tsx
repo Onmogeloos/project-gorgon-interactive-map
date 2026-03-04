@@ -1,4 +1,4 @@
-import { Area, GlobalData, GlobalMapData, MarkerType } from "@localtypes/Map";
+import { Area, GlobalData, GlobalMapData, MarkerType, MarkerTypeGroup } from "@localtypes/Map";
 import AnagogeIslandData from "./areas/anagoge/AnagogeIslandData";
 import AnagogeRecordsFacilityData from "./areas/anagoge/AnagogeRecordsFacility";
 import CasinoData from "./areas/casino/CasinoData";
@@ -63,138 +63,182 @@ export async function loadGlobalData(): Promise<GlobalData> {
         markerTypes: {
             [MarkerType.MushroomCircle]: {
                 icon: (await import("@assets/icons/mushrooms.svg?raw")).default,
-                iconElement: (await import("@assets/icons/mushrooms.svg")).default,
+                IconElement: (await import("@assets/icons/mushrooms.svg?react")).default,
                 label: "Mushroom Circles",
                 color: "#dd93ec",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
             },
             [MarkerType.Animal]: {
                 icon: (await import("@assets/icons/cow.svg?raw")).default,
-                iconElement: (await import("@assets/icons/cow.svg")).default,
+                IconElement: (await import("@assets/icons/cow.svg?react")).default,
                 label: "Animals",
                 color: "#b3ca75",
                 type: "icon",
+                group: MarkerTypeGroup.NPCs
             },
             [MarkerType.Boss]: {
                 icon: (await import("@assets/icons/boss.svg?raw")).default,
-                iconElement: (await import("@assets/icons/boss.svg")).default,
+                IconElement: (await import("@assets/icons/boss.svg?react")).default,
                 label: "Bosses",
                 color: "#a74343",
                 type: "label",
-                scale: 1
+                scale: 1,
+                group: MarkerTypeGroup.Enemies
             },
             [MarkerType.Entrance]: {
                 icon: (await import("@assets/icons/cave.svg?raw")).default,
-                iconElement: (await import("@assets/icons/cave.svg")).default,
+                IconElement: (await import("@assets/icons/cave.svg?react")).default,
                 label: "Entrances",
                 color: "#7A7A7A",
                 type: "label",
                 zIndex: 4,
-                scale: 1.3
+                scale: 1.3,
+                group: MarkerTypeGroup.Locations
             },
             [MarkerType.NPC]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
-                iconElement: (await import("@assets/icons/user.svg")).default,
+                IconElement: (await import("@assets/icons/user.svg?react")).default,
                 label: "NPCs",
                 color: "#6A8BA8",
                 type: "label",
-                scale: 1
+                scale: 1,
+                group: MarkerTypeGroup.NPCs
             },
             [MarkerType.Location]: {
                 icon: (await import("@assets/icons/marker.svg?raw")).default,
-                iconElement: (await import("@assets/icons/marker.svg")).default,
+                IconElement: (await import("@assets/icons/marker.svg?react")).default,
                 label: "Locations",
                 color: "#afafaf",
                 type: "label",
                 scale: 1.5,
-                zIndex: 5
+                zIndex: 5,
+                group: MarkerTypeGroup.Locations
             },
             [MarkerType.Object]: {
                 icon: (await import("@assets/icons/hexagon.svg?raw")).default,
-                iconElement: (await import("@assets/icons/hexagon.svg")).default,
+                IconElement: (await import("@assets/icons/hexagon.svg?react")).default,
                 label: "Objects",
                 color: "#8B7355",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
             },
             [MarkerType.ZonePortal]: {
                 icon: (await import("@assets/icons/road.svg?raw")).default,
-                iconElement: (await import("@assets/icons/road.svg")).default,
+                IconElement: (await import("@assets/icons/road.svg?react")).default,
                 label: "Zone Portals",
                 color: "#B8825C",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Locations
             },
             [MarkerType.TeleportPlatform]: {
                 icon: (await import("@assets/icons/teleport.svg?raw")).default,
-                iconElement: (await import("@assets/icons/teleport.svg")).default,
+                IconElement: (await import("@assets/icons/teleport.svg?react")).default,
                 label: "Teleport Platforms",
                 color: "#7A9B7F",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
             },
             [MarkerType.MeditationPillar]: {
                 icon: (await import("@assets/icons/meditate.svg?raw")).default,
-                iconElement: (await import("@assets/icons/meditate.svg")).default,
+                IconElement: (await import("@assets/icons/meditate.svg?react")).default,
                 label: "Meditation Pillars",
                 color: "#9178A8",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
             },
             [MarkerType.FruitTree]: {
                 icon: (await import("@assets/icons/fruittree.svg?raw")).default,
-                iconElement: (await import("@assets/icons/fruittree.svg")).default,
+                IconElement: (await import("@assets/icons/fruittree.svg?react")).default,
                 label: "Fruit trees",
                 color: "#7F9C6E",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Forage
             },
             [MarkerType.ForageSpots]: {
                 icon: (await import("@assets/icons/plant.svg?raw")).default,
-                iconElement: (await import("@assets/icons/plant.svg")).default,
+                IconElement: (await import("@assets/icons/plant.svg?react")).default,
                 label: "Foraging Spots",
                 color: "#8FA87D",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
             },
             [MarkerType.Altar]: {
                 icon: (await import("@assets/icons/shrine.svg?raw")).default,
-                iconElement: (await import("@assets/icons/shrine.svg")).default,
+                IconElement: (await import("@assets/icons/shrine.svg?react")).default,
                 label: "Altars",
                 color: "#A89BC7",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Puzzle
             },
             [MarkerType.UniqueEnemy]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
-                iconElement: (await import("@assets/icons/user.svg")).default,
+                IconElement: (await import("@assets/icons/user.svg?react")).default,
                 label: "Enemies",
                 color: "#B87070",
                 type: "label",
-                scale: 1
+                scale: 1,
+                group: MarkerTypeGroup.Enemies
             },
             [MarkerType.MiniBoss]: {
                 icon: (await import("@assets/icons/elite.svg?raw")).default,
-                iconElement: (await import("@assets/icons/elite.svg")).default,
+                IconElement: (await import("@assets/icons/elite.svg?react")).default,
                 label: "Elite enemies",
                 color: "#A05858",
                 type: "label",
-                zIndex: -1
+                zIndex: -1,
+                group: MarkerTypeGroup.Enemies
             },
             [MarkerType.Treasure]: {
                 icon: (await import("@assets/icons/treasure.svg?raw")).default,
-                iconElement: (await import("@assets/icons/treasure.svg")).default,
+                IconElement: (await import("@assets/icons/treasure.svg?react")).default,
                 label: "Treasures",
                 color: "#ecdf90",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Treasures
             },
             [MarkerType.Lore]: {
                 icon: (await import("@assets/icons/scroll.svg?raw")).default,
-                iconElement: (await import("@assets/icons/scroll.svg")).default,
+                IconElement: (await import("@assets/icons/scroll.svg?react")).default,
                 label: "Lore",
                 color: "#b97960",
-                type: "icon"
+                type: "icon",
+                group: MarkerTypeGroup.Lore
             },
             [MarkerType.PlayerShop]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
-                iconElement: (await import("@assets/icons/user.svg")).default,
+                IconElement: (await import("@assets/icons/user.svg?react")).default,
                 label: "Player Shops",
                 color: "#7A9B7F",
                 type: "label",
-                zIndex: -1
+                zIndex: -1,
+                group: MarkerTypeGroup.NPCs
+            },
+        },
+        markerTypeGroups: {
+            [MarkerTypeGroup.Enemies]: {
+                label: "Enemies",
+            },
+            [MarkerTypeGroup.Lore]: {
+                label: "Lore",
+            },
+            [MarkerTypeGroup.Forage]: {
+                label: "Forage",
+            },
+            [MarkerTypeGroup.Exploration]: {
+                label: "Exploration",
+            },
+            [MarkerTypeGroup.NPCs]: {
+                label: "NPCs",
+            },
+            [MarkerTypeGroup.Locations]: {
+                label: "Locations",
+            },
+            [MarkerTypeGroup.Puzzle]: {
+                label: "Puzzles",
+            },
+            [MarkerTypeGroup.Treasures]: {
+                label: "Treasures",
             },
         }
     }

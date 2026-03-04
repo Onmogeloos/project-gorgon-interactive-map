@@ -1,57 +1,141 @@
-import { MarkerType } from "@localtypes/Map";
-import { Box, Checkbox, Typography } from "@mui/material";
+import { MarkerType, MarkerTypeData, MarkerTypeGroup } from "@localtypes/Map";
+import { Box, Typography } from "@mui/material";
 import { useContext } from "react";
+import styled from "styled-components";
 import { MapContext } from "../../main";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setHiddenMarkerTypes } from "../../store/mapSlice";
-import { FlexRow } from "../Flex";
-import styled from "styled-components";
+import { FlexColumn, FlexRow } from "../Flex";
 
-const Label = styled.label<{ $active: boolean }>`
+const LabelToggle = styled(Typography) <{ $active: boolean }>`
     cursor: pointer;
+    color: ${(props) => (props.$active ? "inherit" : props.theme.palette.text.disabled)};
     text-decoration: ${(props) => (props.$active ? "none" : "line-through")};
+    &:hover {
+        color: ${props => props.theme.palette.primary.main};
+    }
 `
 
-const Icon = styled.img<{ $isFirstColumn: boolean }>`
+const IconContainer = styled.div<{ $active?: boolean }>`
+    cursor: pointer;
     width: 1rem;
     height: 1rem;
     margin-right: 1rem;
-    margin-left: ${(props) => (props.$isFirstColumn ? "0" : "1rem")};
-    // Recolor using filter
-    filter: grayscale(100%) brightness(0) invert(1);
+`
+
+const MarkerTypeContainer = styled(Box) <{ $active: boolean }>`
+    cursor: pointer;
+    fill: ${(props) => (props.$active ? "currentColor" : props.theme.palette.text.disabled)};
+    color: ${(props) => (props.$active ? "inherit" : props.theme.palette.text.disabled)};
+    > *:not(.marker-toggle-count) {
+        text-decoration: ${(props) => (props.$active ? "none" : "line-through")};
+    }
+    &:hover {
+        fill: ${props => props.theme.palette.primary.main};
+        color: ${props => props.theme.palette.primary.main};
+    }
 `
 
 export default function MarkerToggles() {
-    const { globalData, currentMapData } = useContext(MapContext);
+    const { globalData } = useContext(MapContext);
     const dispatch = useAppDispatch();
-    const hiddenGroups = useAppSelector((state) => state.map.hiddenMarkerTypes);
 
-    const toggleGroup = (group: MarkerType) => {
-        dispatch(setHiddenMarkerTypes(
-            hiddenGroups.includes(group)
-                ? hiddenGroups.filter((g) => g !== group)
-                : [...hiddenGroups, group]
-        ));
+
+    const entries = Object.entries(globalData.markerTypes)
+        .sort(([_, a], [__, b]) => a.label.localeCompare(b.label)) as [MarkerType, MarkerTypeData][];
+    const groups = new Set(entries.map(([_, data]) => data.group));
+
+    const hideAll = () => {
+        dispatch(setHiddenMarkerTypes(entries.map(([type, _]) => type)));
+    };
+    const displayAll = () => {
+        dispatch(setHiddenMarkerTypes([]));
     };
 
     return (
         <Box sx={{ marginBottom: "1rem" }}>
-            <Typography variant="h6" sx={{ marginBottom: "1rem" }}>Marker types</Typography>
-            <FlexRow $wrap $gapY="0.5rem">
-                {Object.entries(globalData.markerTypes).map(([key, data], i) => {
-                    const count = currentMapData.markers.filter((marker) => marker.type === key).length;
-                    return <Box key={key} sx={{ display: "flex", alignItems: "center", width: "50%" }}>
-                        <Checkbox sx={{ display: "none" }} id={key} onChange={() => toggleGroup(key as MarkerType)} />
-                        <Icon src={data.iconElement} alt={data.label} $isFirstColumn={i % 2 === 0} />
-                        <Box sx={{ flexGrow: 1 }}>
-                            <Label $active={!hiddenGroups.includes(key as MarkerType)} htmlFor={key}>{data.label}</Label>
-                        </Box>
-                        <Box>
-                            <Typography variant="caption">{count}</Typography>
-                        </Box>
-                    </Box>;
-                })}
-            </FlexRow>
-        </Box>
+            <FlexRow $alignVertical="center">
+                <Box sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" sx={{ marginBottom: "1rem" }}>Marker types</Typography>
+                </Box>
+                <FlexRow>
+                    <LabelToggle
+                        $active={true}
+                        onClick={displayAll}
+                        sx={{ marginRight: "1rem" }}
+                        variant="body2">Display all</LabelToggle>
+                    <LabelToggle
+                        $active={true}
+                        onClick={hideAll}
+                        variant="body2">Hide all</LabelToggle>
+                </FlexRow>
+            </FlexRow >
+            <FlexColumn $gapY="0.5rem">
+                {
+                    [...groups].map((group, i) => <Box
+                        key={group}>
+                        <GroupColumn
+                            group={group}
+                            entries={entries.filter(([_, data]) => data.group === group)} />
+                    </Box>)
+                }
+            </FlexColumn >
+        </Box >
     );
 }
+
+export function GroupColumn({ group, entries }: { group: MarkerTypeGroup, entries: [MarkerType, MarkerTypeData][] }) {
+    const { currentMapData, globalData: { markerTypeGroups } } = useContext(MapContext);
+    const dispatch = useAppDispatch();
+    const hiddenTypes = useAppSelector((state) => state.map.hiddenMarkerTypes);
+    const allHidden = entries.every(([type, _]) => hiddenTypes.includes(type));
+
+    const toggleType = (type: MarkerType) => {
+        dispatch(setHiddenMarkerTypes(
+            hiddenTypes.includes(type)
+                ? hiddenTypes.filter((g) => g !== type)
+                : [...hiddenTypes, type]
+        ));
+    };
+
+    const toggleGroupType = () => {
+        const groupTypes = entries.map(([type, _]) => type);
+        dispatch(setHiddenMarkerTypes(
+            allHidden
+                ? hiddenTypes.filter((g) => !groupTypes.includes(g))
+                : [...hiddenTypes, ...groupTypes.filter((type) => !hiddenTypes.includes(type))]
+        ));
+    };
+
+    return <>
+        <LabelToggle $active={!allHidden} onClick={toggleGroupType}>{markerTypeGroups[group].label}</LabelToggle>
+        <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+            {
+                entries.map(([type, data], i) => {
+                    const count = currentMapData.markers.filter((marker) => marker.type === type).length;
+                    const isActive = !hiddenTypes.includes(type);
+                    const IconElement = data.IconElement
+                    return <MarkerTypeContainer
+                        key={type}
+                        onClick={() => toggleType(type)}
+                        $active={isActive}
+                        sx={{ display: "flex", width: "50%" }}>
+                        <Box sx={{ paddingTop: "2px" }}>
+                            <IconContainer $active={isActive}>
+                                <IconElement />
+                            </IconContainer>
+                        </Box>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <LabelToggle
+                                $active={isActive}>{data.label}</LabelToggle>
+                        </Box>
+                        <Box className="marker-toggle-count">
+                            <Typography variant="caption" sx={{ paddingRight: "1rem" }}>{count}</Typography>
+                        </Box>
+                    </MarkerTypeContainer>;
+                })
+            }
+        </Box >
+    </>;
+}
+
