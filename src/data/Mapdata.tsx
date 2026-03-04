@@ -57,10 +57,44 @@ import SacrificialSeaCaveData from "./areas/sunvale/SacrificialSeaCaveData";
 import SunValeData from "./areas/sunvale/SunValeData";
 import WinterNexusData from "./areas/sunvale/WinterNexusData";
 import VidariaData from "./areas/vidaria/VidariaData";
+import WardenCaveData from "./areas/kurmountains/WardenCaveData";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
         markerTypes: {
+            [MarkerType.Storage]: {
+                icon: (await import("@assets/icons/chest.svg?raw")).default,
+                IconElement: (await import("@assets/icons/chest.svg?react")).default,
+                label: "Storage",
+                color: "#86a0da",
+                type: "icon",
+                group: MarkerTypeGroup.Exploration,
+                zIndex: 4
+            },
+            [MarkerType.WorkOrders]: {
+                icon: (await import("@assets/icons/clipboard.svg?raw")).default,
+                IconElement: (await import("@assets/icons/clipboard.svg?react")).default,
+                label: "Work Orders",
+                color: "#4d7e76",
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
+            },
+            [MarkerType.Campfire]: {
+                icon: (await import("@assets/icons/campfire.svg?raw")).default,
+                IconElement: (await import("@assets/icons/campfire.svg?react")).default,
+                label: "Campfires",
+                color: "#b98422",
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
+            },
+            [MarkerType.Statue]: {
+                icon: (await import("@assets/icons/obelisk.svg?raw")).default,
+                IconElement: (await import("@assets/icons/obelisk.svg?react")).default,
+                label: "Statues",
+                color: "#9B9B9B",
+                type: "icon",
+                group: MarkerTypeGroup.Exploration
+            },
             [MarkerType.MushroomCircle]: {
                 icon: (await import("@assets/icons/mushrooms.svg?raw")).default,
                 IconElement: (await import("@assets/icons/mushrooms.svg?react")).default,
@@ -128,7 +162,8 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 IconElement: (await import("@assets/icons/road.svg?react")).default,
                 label: "Zone Portals",
                 color: "#B8825C",
-                type: "icon",
+                type: "label",
+                scale: 1.5,
                 group: MarkerTypeGroup.Locations
             },
             [MarkerType.TeleportPlatform]: {
@@ -155,7 +190,7 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 type: "icon",
                 group: MarkerTypeGroup.Forage
             },
-            [MarkerType.ForageSpots]: {
+            [MarkerType.Harvestable]: {
                 icon: (await import("@assets/icons/plant.svg?raw")).default,
                 IconElement: (await import("@assets/icons/plant.svg?react")).default,
                 label: "Foraging Spots",
@@ -174,24 +209,33 @@ export async function loadGlobalData(): Promise<GlobalData> {
             [MarkerType.UniqueEnemy]: {
                 icon: (await import("@assets/icons/user.svg?raw")).default,
                 IconElement: (await import("@assets/icons/user.svg?react")).default,
-                label: "Enemies",
+                label: "Unique enemies",
                 color: "#B87070",
                 type: "label",
                 scale: 1,
                 group: MarkerTypeGroup.Enemies
             },
+            [MarkerType.Camp]: {
+                icon: (await import("@assets/icons/camp.svg?raw")).default,
+                IconElement: (await import("@assets/icons/camp.svg?react")).default,
+                label: "Camps",
+                color: "rgb(109, 62, 35)",
+                type: "icon",
+                scale: 1,
+                group: MarkerTypeGroup.Locations
+            },
             [MarkerType.MiniBoss]: {
                 icon: (await import("@assets/icons/elite.svg?raw")).default,
                 IconElement: (await import("@assets/icons/elite.svg?react")).default,
                 label: "Elite enemies",
-                color: "#A05858",
+                color: "rgb(161, 77, 77)",
                 type: "label",
                 zIndex: -1,
                 group: MarkerTypeGroup.Enemies
             },
             [MarkerType.Treasure]: {
-                icon: (await import("@assets/icons/treasure.svg?raw")).default,
-                IconElement: (await import("@assets/icons/treasure.svg?react")).default,
+                icon: (await import("@assets/icons/chest.svg?raw")).default,
+                IconElement: (await import("@assets/icons/chest.svg?react")).default,
                 label: "Treasures",
                 color: "#ecdf90",
                 type: "icon",
@@ -301,7 +345,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.SacrificialSeaCave]: SacrificialSeaCaveData,
         [Area.TheWintertide]: TheWintertideData,
         [Area.TowerView]: TowerViewCave,
-        // [Area.WardenCave]: WardenCaveData,
+        [Area.WardenCave]: WardenCaveData,
         [Area.WindyViewCave]: WindyViewCaveData,
         [Area.WinterNexus]: WinterNexusData,
         [Area.WolfCave]: WolfCaveData,

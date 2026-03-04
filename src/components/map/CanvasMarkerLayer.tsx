@@ -235,9 +235,6 @@ export default class CanvasMarkerLayerClass extends L.Layer {
     private onClick(e) {
         const clickedMarker = this.getMarkerAt(e.latlng);
         if (!clickedMarker) return;
-        // If the clicked marker is a portal or entrance, navigate to the linked area instead of showing a popup
-        if (clickedMarker.marker.type === MarkerType.ZonePortal || clickedMarker.marker.type === MarkerType.Entrance)
-            return this.navigateToArea(clickedMarker.marker.data.leadsTo);
         // Display popup
         this.popup = this.createPopup(clickedMarker, this.popup, this._map);
     }

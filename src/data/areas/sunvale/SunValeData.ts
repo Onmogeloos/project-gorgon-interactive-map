@@ -63,7 +63,7 @@ const SunValeData: GlobalMapData[Area.SunVale] = {
                 [135, 690],
                 [480, 790]
             ],
-            type: MarkerType.Object
+            type: MarkerType.Statue
         },
         { name: 'Bell to Serbule', positions: [[703, 115]], type: MarkerType.ZonePortal, data: { leadsTo: Area.Serbule } },
         { name: 'Viedesi', positions: [[725, 150]], type: MarkerType.NPC },
@@ -111,7 +111,7 @@ const SunValeData: GlobalMapData[Area.SunVale] = {
         },
         { name: 'Urglemarg', positions: [[240, 565]], type: MarkerType.NPC },
         { name: 'Fish Bowl Cavern', positions: [[120, 665]], type: MarkerType.Entrance, data: { leadsTo: Area.FishBowlCavern } },
-        { name: 'Guard Captain Lusssha', positions: [[175, 860]], type: MarkerType.NPC },
+        { name: 'Guard Captain Lusssha', positions: [[175, 860]], type: MarkerType.Boss },
         { name: 'Sacrificial Sea Cave', positions: [[160, 855]], type: MarkerType.Entrance, data: { leadsTo: Area.SacrificialSeaCave } },
         { name: 'Ranalon Ruin', positions: [[264.25, 854.25]], type: MarkerType.Location },
     ],

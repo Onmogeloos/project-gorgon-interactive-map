@@ -10,6 +10,11 @@ const data: AreaData = {
     aspectRatio: 2048 / 1988,
     imageUrl: (await import("@assets/areas/Map_AreaSerbule2.png")).default,
     markers: [
+        { name: "Bloodmaw", type: MarkerType.Boss, positions: [[93.5, 349.5]] },
+        { name: "Mushroom Circle", type: MarkerType.MushroomCircle, positions: [[160.5625, 324.875], [921.5, 902.5]] },
+        { name: "Altar", type: MarkerType.Altar, positions: [[133.5, 137.625], [61.8125, 969.5625], [261.59375, 546.09375]] },
+        { name: "The Big Widow", type: MarkerType.Boss, positions: [[338.4375, 406.375]] },
+        { name: "Logging Camp", type: MarkerType.Camp, positions: [[793, 825.5], [816.25, 855], [771, 905.25]] },
         {
             name: "Paul Vaughn",
             type: MarkerType.NPC,
@@ -64,35 +69,16 @@ const data: AreaData = {
             ]
         },
         {
-            "name": "Control Bowl",
-            "type": MarkerType.Location,
-            "positions": [
-                [
-                    359.75,
-                    237
-                ]
-            ]
-        },
-        {
             "name": "Meditation Pillar",
             "type": MarkerType.MeditationPillar,
             "positions": [
-                [
-                    819.4164989939638,
-                    119.62890625
-                ],
-                [
-                    710.7645875251509,
-                    571.2890625
-                ],
+                [810.4375, 119.8125],
+                [710.78125, 571.5],
                 [
                     279.17505030181087,
                     261.23046875
                 ],
-                [
-                    93.56136820925553,
-                    660.64453125
-                ],
+                [105.6875, 661.0625],
                 [
                     905.9356136820926,
                     758.7890625
@@ -123,20 +109,14 @@ const data: AreaData = {
             "name": "Cleo Conyer",
             "type": MarkerType.NPC,
             "positions": [
-                [
-                    891.851106639839,
-                    192.87109375
-                ]
+                [880.59375, 192.375]
             ]
         },
         {
             "name": "Durstin Tallow",
             "type": MarkerType.NPC,
             "positions": [
-                [
-                    883.2997987927565,
-                    195.3125
-                ]
+                [871.90625, 195.3125]
             ]
         },
         {
@@ -153,10 +133,7 @@ const data: AreaData = {
             "name": "Jaime Fatholm",
             "type": MarkerType.NPC,
             "positions": [
-                [
-                    894.8692152917505,
-                    195.80078125
-                ]
+                [883.9375, 195.71875]
             ]
         },
         {
@@ -167,16 +144,14 @@ const data: AreaData = {
                     757.0422535211268,
                     174.8046875
                 ]
-            ]
+            ],
+            description: `Skill Trainer: Gardening`
         },
         {
             "name": "Lana Songtree",
             "type": MarkerType.NPC,
             "positions": [
-                [
-                    885.8148893360161,
-                    195.80078125
-                ]
+                [874.625, 195.625]
             ]
         },
         {
@@ -200,23 +175,10 @@ const data: AreaData = {
             ]
         },
         {
-            "name": "Paul Vaughn",
-            "type": MarkerType.NPC,
-            "positions": [
-                [
-                    869.215291750503,
-                    204.58984375
-                ]
-            ]
-        },
-        {
             "name": "Rappanel",
             "type": MarkerType.NPC,
             "positions": [
-                [
-                    888.3299798792757,
-                    196.2890625
-                ]
+                [877.84375, 195.84375]
             ]
         },
         {
@@ -226,16 +188,6 @@ const data: AreaData = {
                 [
                     530.6841046277666,
                     113.76953125
-                ]
-            ]
-        },
-        {
-            "name": "Stables Golem",
-            "type": MarkerType.NPC,
-            "positions": [
-                [
-                    869.215291750503,
-                    184.5703125
                 ]
             ]
         },
@@ -253,14 +205,11 @@ const data: AreaData = {
             "name": "Tyler Green",
             "type": MarkerType.NPC,
             "positions": [
-                [
-                    892.3541247484909,
-                    190.4296875
-                ]
+                [883.1875, 190.3125]
             ]
         },
         {
-            "name": "Tunnel to Ranalon Base",
+            "name": "Ranalon Base",
             "type": MarkerType.Entrance,
             "positions": [
                 [

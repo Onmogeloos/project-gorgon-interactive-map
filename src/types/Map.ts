@@ -30,7 +30,7 @@ export enum MarkerType {
     UniqueEnemy = 'uniqueenemy',
 
     Entrance = 'entrance',
-    ForageSpots = "foragespots",
+    Harvestable = "harvestable",
     FruitTree = "fruittree",
     Location = 'location',
     MeditationPillar = 'meditationpillar',
@@ -43,6 +43,11 @@ export enum MarkerType {
     PlayerShop = "playershop",
     Animal = "animal",
     MushroomCircle = "mushroomcircle",
+    Camp = "camp",
+    Statue = "statue",
+    Campfire = "campfire",
+    Storage = "CouncilStorage",
+    WorkOrders = "workorders",
 }
 
 export type Coordinate = [number, number];
@@ -136,6 +141,7 @@ export enum Area {
     YetiCave = "Yeti Cave",
     AnimalNexus = "Animal Nexus",
     TowerView = "TowerView",
+    WardenCave = "WardenCave",
 }
 
 export type MarkerTypeData = {

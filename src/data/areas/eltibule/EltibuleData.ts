@@ -19,7 +19,7 @@ const data: AreaData = {
         },
         {
             "name": "Dark Chapel Statue",
-            "type": MarkerType.Object,
+            "type": MarkerType.Statue,
             "positions": [
                 [857.5, 222.375],
                 [414.25, 66.375],
@@ -90,20 +90,23 @@ const data: AreaData = {
                 [293.625, 522.25]
             ]
         },
-        { "name": "Red Wing Casino", type: MarkerType.ZonePortal, "positions": [[122.375, 135]],
+        { "name": "Yasinda", "type": MarkerType.NPC, "positions": [[948.125, 459]] },
+        {
+            "name": "Red Wing Casino", type: MarkerType.ZonePortal, "positions": [[122.375, 135]],
             data: { leadsTo: Area.Casino }
         },
         { "name": "Secret Chest", type: MarkerType.Treasure, "positions": [[599, 599.75]] },
-        { "name": "Statue", type: MarkerType.Lore, "positions": [[335, 478.375]] },
+        { "name": "Statue", type: MarkerType.Statue, "positions": [[335, 478.375]] },
         {
             "name": "Eltibule Keep",
             "type": MarkerType.Location,
             "positions": [[585.5, 639]]
         },
         {
-            "name": "Hogan's Basement",
-            "type": MarkerType.Location,
-            "positions": [[975.0625, 487.3125]]
+            "name": "Hogan's Keep Basement",
+            "type": MarkerType.Entrance,
+            "positions": [[975.0625, 487.3125]],
+            data: { leadsTo: Area.HogansKeepBasement }
         },
         {
             "name": "Path to Kur Mountains",
@@ -154,7 +157,7 @@ const data: AreaData = {
         { name: "Sie Antry", type: MarkerType.NPC, positions: [[580.09375, 321.28125]] },
         { name: "Goblin Dungeon Exit", type: MarkerType.Entrance, positions: [[633.09375, 408.28125]], data: { leadsTo: Area.GoblinDungeon } },
 
-        { name: "Eltibule Crypt", type: MarkerType.Entrance, positions: [[534.25, 638.5625]], data: {leadsTo: Area.EltibuleCrypt} },
+        { name: "Eltibule Crypt", type: MarkerType.Entrance, positions: [[534.25, 638.5625]], data: { leadsTo: Area.EltibuleCrypt } },
     ],
 };
 

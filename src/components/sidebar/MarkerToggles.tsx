@@ -54,22 +54,23 @@ export default function MarkerToggles() {
 
     return (
         <Box sx={{ marginBottom: "1rem" }}>
-            <FlexRow $alignVertical="center">
-                <Box sx={{ flexGrow: 1 }}>
-                    <Typography variant="h6" sx={{ marginBottom: "1rem" }}>Marker types</Typography>
-                </Box>
-                <FlexRow>
+            <Box sx={{ marginBottom: "1rem" }}>
+                <FlexRow $alignVertical="center">
+                    <Box sx={{ flexGrow: 1 }}>
+                        <Typography variant="h6">Marker types</Typography>
+                    </Box>
                     <LabelToggle
                         $active={true}
                         onClick={displayAll}
-                        sx={{ marginRight: "1rem" }}
-                        variant="body2">Display all</LabelToggle>
+                        sx={{ marginRight: "1rem", marginBottom: "0 !important" }}
+                        variant="body2">Show all</LabelToggle>
                     <LabelToggle
                         $active={true}
                         onClick={hideAll}
+                        sx={{ marginBottom: "0 !important" }}
                         variant="body2">Hide all</LabelToggle>
-                </FlexRow>
-            </FlexRow >
+                </FlexRow >
+            </Box>
             <FlexColumn $gapY="0.5rem">
                 {
                     [...groups].map((group, i) => <Box
@@ -112,7 +113,10 @@ export function GroupColumn({ group, entries }: { group: MarkerTypeGroup, entrie
         <Box sx={{ display: "flex", flexWrap: "wrap" }}>
             {
                 entries.map(([type, data], i) => {
-                    const count = currentMapData.markers.filter((marker) => marker.type === type).length;
+                    const count = currentMapData.markers
+                        .filter((marker) => marker.type === type)
+                        .map((marker) => marker.positions.length)
+                        .reduce((a, b) => a + b, 0);
                     const isActive = !hiddenTypes.includes(type);
                     const IconElement = data.IconElement
                     return <MarkerTypeContainer
