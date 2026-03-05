@@ -15,8 +15,8 @@
     "dev": "yarn workspace @project-gorgon-interactive-map/webapp dev",
     "build": "yarn workspace @project-gorgon-interactive-map/webapp build",
     "test": "yarn workspaces foreach --all --parallel run test",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint": "yarn workspaces foreach --all --parallel run lint",
+    "e2e": "yarn workspace @project-gorgon-interactive-map/e2e start"
   },
   "workspaces": [
     "e2e",

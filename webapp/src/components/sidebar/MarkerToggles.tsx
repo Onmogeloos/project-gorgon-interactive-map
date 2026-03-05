@@ -73,7 +73,7 @@ export default function MarkerToggles() {
             </Box>
             <FlexColumn $gapY="0.5rem">
                 {
-                    [...groups].map((group, i) => <Box
+                    [...groups].map((group) => <Box
                         key={group}>
                         <GroupColumn
                             group={group}
@@ -112,7 +112,7 @@ export function GroupColumn({ group, entries }: { group: MarkerTypeGroup, entrie
         <LabelToggle $active={!allHidden} onClick={toggleGroupType}>{markerTypeGroups[group].label}</LabelToggle>
         <Box sx={{ display: "flex", flexWrap: "wrap" }}>
             {
-                entries.map(([type, data], i) => {
+                entries.map(([type, data]) => {
                     const count = currentMapData.markers
                         .filter((marker) => marker.type === type)
                         .map((marker) => marker.positions.length)

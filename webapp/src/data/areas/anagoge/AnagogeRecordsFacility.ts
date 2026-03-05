@@ -1,4 +1,4 @@
-import { Area, AreaData, MarkerType } from "@localtypes/Map";
+import { Area, AreaData } from "@localtypes/Map";
 
 const data: AreaData = {
     name: "Anagoge Records Facility",

@@ -1,4 +1,5 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { test } from '../base';
 
 test('Form submits correct data', async ({ page }) => {
     await page.goto('/');

@@ -1,4 +1,3 @@
-import { Area, AreaData } from "@localtypes/Map";
 
 // const TowerViewData: MapData = {
 //     name: "Tower View",

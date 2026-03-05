@@ -1,9 +1,7 @@
-import { test as base } from '../../webapp/node_modules/@playwright/test/index.js';
+import { test as base } from '@playwright/test';
+import { GlobalData, GlobalMapData } from "@webapp/types/Map";
 
-export const test = base.extend<{
-    mapData: any,
-    globalData: any,
-}>({
+export const test = base.extend({
     page: async ({ page }, use) => {
         page.on('console', m => {
             if (m.type() === 'error') {
@@ -13,16 +11,23 @@ export const test = base.extend<{
 
         await use(page);
     },
-    data: async ({ page }, use) => {
-        const data = await page.evaluate(() => {
-            return new Promise(resolve => {
-                window.addEventListener("message", (event) => {
-                    if (event.data?.type === "mapDataLoaded") {
-                        resolve({ mapData: event.data.mapData, globalData: event.data.globalData });
-                    }
-                }, { once: true });
-            });
-        });
-        await use(data);
-    },
+    // data: async ({ page }, use) => {
+    //     await page.goto('/');
+    //     const data = await page.evaluate(() => {
+    //         return new Promise<{
+    //             mapData: GlobalMapData,
+    //             globalData: GlobalData,
+    //         }>(resolve => {
+    //             window.addEventListener("message", (event) => {
+    //                 if (event.data?.type === "mapDataLoaded") {
+                        
+    //                     console.log(JSON.stringify(event.data.data))
+    //                     resolve({ mapData: event.data.data.mapData, globalData: event.data.data.globalData });
+    //                 }
+    //             }, { once: true });
+    //         });
+    //     });
+    //     console.log(JSON.stringify(data))
+    //     await use(data);
+    // },
 });

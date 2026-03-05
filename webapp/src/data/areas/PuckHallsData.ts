@@ -1,4 +1,3 @@
-import { Area, AreaData } from "@localtypes/Map";
 
 // const PuckHallsData: MapData = {
 //     name: "Puck Halls",

@@ -46,9 +46,6 @@ function App() {
     useEffect(() => {
         const preload = async () => {
             const MAP_DATA = await loadMapData();
-            // Expose map data for testing purposes
-            // @ts-ignore
-            window.MAP_DATA = MAP_DATA; 
             const GLOBAL_DATA = await loadGlobalData();
             setMapData(MAP_DATA);
             setGlobalData(GLOBAL_DATA);

@@ -1,7 +1,6 @@
-import { FlexColumn, FlexRow } from "@components/Flex";
+import { FlexColumn } from "@components/Flex";
 import { Area, MarkerData, MarkerType } from "@localtypes/Map";
-import { NavigateNext } from "@mui/icons-material";
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { LatLng } from "leaflet";
 import styled from "styled-components";
 

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
@@ -8,7 +9,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "target": "es2024",
-    "module": "esnext"
+    "module": "esnext",
+    "paths": {
+      "@webapp/*": ["../webapp/src/*"],
+      "@assets/*": ["../webapp/src/assets/*"],
+    }
   },
   "include": ["src/**/*"],
   "exclude": [

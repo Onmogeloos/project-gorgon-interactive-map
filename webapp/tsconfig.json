@@ -14,6 +14,7 @@
       "@localtypes/*": ["./src/types/*"],
       "@components/*": ["./src/components/*"],
       "@store/*": ["./src/store/*"],
+      "@project-gorgon-interactive-map/webapp/*": ["../webapp/src/*"]
     },
     "target": "es2024",
     "module": "esnext"
