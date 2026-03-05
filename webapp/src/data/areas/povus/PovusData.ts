@@ -1,5 +1,4 @@
 import { Area, GlobalMapData, MarkerType } from "@localtypes/Map";
-import { m } from "react-router/dist/development/index-react-server-client-1TI9M9o1";
 
 const PovusData: GlobalMapData[Area.Povus] = {
     name: "Povus",

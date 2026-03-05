@@ -1,25 +1,7 @@
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "outDir": "../dist",
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true,
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@assets/*": ["./src/assets/*"],
-      "@localtypes/*": ["./src/types/*"],
-      "@components/*": ["./src/components/*"],
-      "@store/*": ["./src/store/*"],
-    },
-    "target": "es2024",
-    "module": "esnext"
-  },
-  "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-  ],
+  "files": [],
+  "references": [
+    { "path": "./e2e" },
+    { "path": "./webapp" },
+  ]
 }

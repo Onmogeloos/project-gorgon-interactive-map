@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "es2024",
+    "module": "esnext"
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+  ],
+}
