@@ -86,6 +86,7 @@ export default function Sidebar() {
     return (
         <Box>
             <Drawer
+                data-testid="sidebar"
                 slotProps={{
                     paper: {
                         sx: {
