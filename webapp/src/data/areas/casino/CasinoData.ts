@@ -1,4 +1,4 @@
-import { Area, AreaData } from "@localtypes/Map";
+import { Area, AreaData, MarkerType } from "@localtypes/Map";
 
 const CasinoData: AreaData = {
     name: "Casino",
@@ -7,7 +7,38 @@ const CasinoData: AreaData = {
     minLevel: 30,
     maxLevel: 50,
     imageUrl: (await import("@assets/areas/Map_AreaCasino.png")).default,
-    markers: [],
+    markers: [
+        { name: "Theatre", type: MarkerType.Location, positions: [[644, 680],] },
+        { name: "Arena", type: MarkerType.Location, positions: [[368, 432],] },
+        { name: "Lore book", type: MarkerType.Lore, positions: [[367.25, 381.375], [439, 58.375]] },
+        { name: "Game room", type: MarkerType.Location, positions: [[316.5, 620.75],] },
+        { name: "Lady Alethina", type: MarkerType.NPC, positions: [[346.75, 712],] },
+        { name: "Mandibles", type: MarkerType.NPC, positions: [[289.75, 714],] },
+        { name: "High Stakes", type: MarkerType.Location, positions: [[316.25, 870.25],] },
+        { name: "Dorimir", type: MarkerType.NPC, positions: [[356.25, 132.75],] },
+        { name: "Riston", type: MarkerType.NPC, positions: [[292.875, 125.625],] },
+        { name: "Guild chests", type: MarkerType.Storage, positions: [[248.375, 352.5],] },
+        { name: "Qatik", type: MarkerType.NPC, positions: [[223.625, 352],] },
+        { name: "Transfer chest", type: MarkerType.Storage, positions: [[223.375, 371],] },
+        { name: "Teleportation Attendant", type: MarkerType.NPC, positions: [[117.125, 383.625],] },
+        { name: "Rahu Exit", type: MarkerType.Entrance, positions: [[117.5, 483],], data: { leadsTo: Area.Rahu } },
+        { name: "Teleport Platform", type: MarkerType.TeleportPlatform, positions: [[142.625, 459.125],] },
+        { name: "Arianna", type: MarkerType.NPC, positions: [[161.75, 507],] },
+        { name: "Fiddler", type: MarkerType.NPC, positions: [[189.5, 509.875],] },
+        { name: "Irkima", type: MarkerType.NPC, positions: [[195.75, 369.25],] },
+        { name: "Kuzavek", type: MarkerType.NPC, positions: [[424, 438],] },
+        { name: "Garden", type: MarkerType.Location, positions: [[505.5, 369],] },
+        { name: "Cow", type: MarkerType.Animal, positions: [[529, 433.5], [505, 514.5], [475, 424.5], [545.5, 498.5]] },
+        { name: "Tavilak", type: MarkerType.NPC, positions: [[471, 480.5],] },
+        { name: "Willem", type: MarkerType.NPC, positions: [[647.25, 365.75],] },
+        { name: "Evenline", type: MarkerType.NPC, positions: [[641.75, 493.5],] },
+        { name: "Meditation Pillar", type: MarkerType.MeditationPillar, positions: [[779.25, 433],] },
+        { name: "Celebration Hall", type: MarkerType.Location, positions: [[874.25, 671.5],] },
+        { name: "Eltibule Exit", type: MarkerType.Entrance, positions: [[403.875, 40.875],], data: { leadsTo: Area.Eltibule } },
+        { name: "Otis", type: MarkerType.NPC, positions: [[683.875, 419.125],] },
+        { name: "Ragabir", type: MarkerType.NPC, positions: [[228, 525.625],] },
+        { name: "Kib", type: MarkerType.NPC, positions: [[683.875, 444.875],] },
+    ],
     group: Area.Casino,
 };
 
