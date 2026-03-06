@@ -77,7 +77,7 @@ export default class CanvasMarkerLayerClass extends L.Layer {
         // Don't rerender each move event for better performance.
         this.interval = setInterval(() => {
             this.reset();
-        }, 250);
+        }, 100);
     }
 
     private async onMouseMove(e) {

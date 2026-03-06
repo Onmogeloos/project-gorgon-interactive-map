@@ -257,10 +257,13 @@ function MarkerProposalSidebar() {
                             {...form.register("type")}
                         >
                             {
-                                Object.entries(globalData.markerTypes).map(([key, group]) => (
-                                    <MenuItem key={key} value={key}>{group.label}</MenuItem>
-                                ))
+                                Object.entries(globalData.markerTypes)
+                                    .sort(([_, a], [__, b]) => a.label.localeCompare(b.label))
+                                    .map(([key, group]) => (
+                                        <MenuItem key={key} value={key}>{group.label}</MenuItem>
+                                    ))
                             }
+                            <MenuItem value={"other"}>Other</MenuItem>
                         </TextField>
                         {
                             form.formState.errors.type && <Typography color="error">{form.formState.errors.type.message}</Typography>

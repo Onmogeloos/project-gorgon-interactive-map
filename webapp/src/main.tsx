@@ -1,5 +1,5 @@
 import { Area, AreaData, GlobalData, GlobalMapData } from "@localtypes/Map";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, Snackbar } from "@mui/material";
 import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
 import { CRS } from 'leaflet';
 import { createContext, useEffect, useState } from 'react';
@@ -96,7 +96,7 @@ function App() {
     );
 }
 
-function Page({ area, mapData, globalData, globalMapData }: { mapData: AreaData, area: Area, globalData: GlobalData, globalMapData: GlobalMapData}) {
+function Page({ area, mapData, globalData, globalMapData }: { mapData: AreaData, area: Area, globalData: GlobalData, globalMapData: GlobalMapData }) {
     return <>
         <MapContext.Provider value={{
             currentMapData: mapData,
@@ -120,6 +120,21 @@ function Page({ area, mapData, globalData, globalMapData }: { mapData: AreaData,
                 <Map />
             </MapContainer >
             <FloatingButtons />
+            <Snackbar
+                open={mapData.markers.length === 0}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                autoHideDuration={5000}
+                message="This map has no data yet. Please help by proposing new markers."
+                slotProps={{
+                    clickAwayListener: {
+                        onClickAway: (event) => {
+                            // Prevent's default 'onClickAway' behavior.
+                            // @ts-ignore
+                            event.defaultMuiPrevented = true;
+                        },
+                    },
+                }}
+            />
         </MapContext.Provider>
     </>
 }

@@ -58,6 +58,7 @@ import SunValeData from "./areas/sunvale/SunValeData";
 import WinterNexusData from "./areas/sunvale/WinterNexusData";
 import VidariaData from "./areas/vidaria/VidariaData";
 import WardenCaveData from "./areas/kurmountains/WardenCaveData";
+import PuckHallsData from "./areas/sunvale/PuckHallsData";
 
 export async function loadGlobalData(): Promise<GlobalData> {
     return {
@@ -67,6 +68,15 @@ export async function loadGlobalData(): Promise<GlobalData> {
                 IconElement: (await import("@assets/icons/chest.svg?react")).default,
                 label: "Storage",
                 color: "#86a0da",
+                type: "icon",
+                group: MarkerTypeGroup.Exploration,
+                zIndex: 4
+            },
+            [MarkerType.Ore]: {
+                icon: (await import("@assets/icons/ore.svg?raw")).default,
+                IconElement: (await import("@assets/icons/ore.svg?react")).default,
+                label: "Ore",
+                color: "#626f8d",
                 type: "icon",
                 group: MarkerTypeGroup.Exploration,
                 zIndex: 4
@@ -333,7 +343,7 @@ export async function loadMapData(): Promise<GlobalMapData> {
         [Area.PovusCavesLevel3]: PovusCavesLevel3Data,
         [Area.PovusCavesLevel4]: PovusCavesLevel4Data,
         [Area.PovusCavesNightmareCaves]: PovusCavesNightmareCavesData,
-        // [Area.PuckHalls]: PuckHallsData,
+        [Area.PuckHalls]: PuckHallsData,
         [Area.RahuSewer]: RahuSewerData,
         [Area.RanalonBase]: RanalonBaseData,
         [Area.SerbuleSewer]: SerbuleSewerData,

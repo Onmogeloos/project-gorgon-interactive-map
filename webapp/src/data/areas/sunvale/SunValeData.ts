@@ -67,7 +67,7 @@ const SunValeData: GlobalMapData[Area.SunVale] = {
         },
         { name: 'Bell to Serbule', positions: [[703, 115]], type: MarkerType.ZonePortal, data: { leadsTo: Area.Serbule } },
         { name: 'Viedesi', positions: [[725, 150]], type: MarkerType.NPC },
-        // { name: 'Work Orders', positions: [[710, 160]], type: MarkerType.NPC },
+        { name: 'Work Orders', positions: [[710, 160]], type: MarkerType.WorkOrders },
         {
             name: 'Meditation Arch',
             positions: [

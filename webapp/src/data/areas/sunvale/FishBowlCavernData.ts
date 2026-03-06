@@ -9,6 +9,7 @@ const SunValeCave1Data: AreaData = {
     imageUrl: (await import("@assets/areas/Map_SunValeCave1.png")).default,
     markers: [
         { name: "Exit to Sun Vale", type: MarkerType.Entrance, positions: [[804.75, 178.125]], data: { leadsTo: Area.SunVale } },
+        { name: "Chest", type: MarkerType.Treasure, positions: [[193, 242.25], [164, 285.5]] },
     ],
     group: Area.SunVale,
 };

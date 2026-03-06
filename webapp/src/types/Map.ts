@@ -28,7 +28,7 @@ export enum MarkerType {
     Boss = 'boss',
     MiniBoss = 'miniboss',
     UniqueEnemy = 'uniqueenemy',
-
+    Ore = 'ore',
     Entrance = 'entrance',
     Harvestable = "harvestable",
     FruitTree = "fruittree",
@@ -46,7 +46,7 @@ export enum MarkerType {
     Camp = "camp",
     Statue = "statue",
     Campfire = "campfire",
-    Storage = "CouncilStorage",
+    Storage = "councilstorage",
     WorkOrders = "workorders",
 }
 
@@ -122,7 +122,7 @@ export enum Area {
     PovusCavesLevel3 = "Povus Caves Level 3",
     PovusCavesLevel4 = "Povus Caves Level 4",
     PovusCavesNightmareCaves = "Povus Caves Nightmare Caves",
-    // PuckHalls = "Puck Halls",
+    PuckHalls = "Puck Halls",
     RahuSewer = "Rahu Sewer",
     RanalonBase = "Ranalon Base",
     SerbuleSewer = "Serbule Sewer",
@@ -133,8 +133,6 @@ export enum Area {
     MolybdenumMine = "Molybdenum Mine",
     SacrificialSeaCave = "Sacrificial Sea Cave",
     TheWintertide = "The Wintertide",
-    // TowerView = "Tower View",
-    // WardenCave = "Warden Cave",
     WindyViewCave = "Windy View Cave",
     WinterNexus = "Winter Nexus",
     WolfCave = "Wolf Cave",
