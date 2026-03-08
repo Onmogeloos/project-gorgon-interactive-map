@@ -7,6 +7,7 @@ const RanalonBaseData: AreaData = {
     aspectRatio: 1024 / 838,
     imageUrl: (await import("@assets/areas/Map_RanalonBase.png")).default,
     markers: [
+        { "name": "Heavy Sack", type: MarkerType.Object, "positions": [[241, 701]] },
         {
             "name": "Chirrra",
             "type": MarkerType.NPC,
@@ -57,7 +58,10 @@ const RanalonBaseData: AreaData = {
                 ]
             ],
             data: { leadsTo: Area.SerbuleHills }
-        }
+        },
+        { "name": "Torrri", "type": MarkerType.Boss, "positions": [[238, 732]] },
+        {"name":"Storage Chest","type":MarkerType.Treasure,"positions":[[862,377]],"description":"Requires a Ranalon Key."},
+        
     ],
     group: Area.SerbuleHills,
 };

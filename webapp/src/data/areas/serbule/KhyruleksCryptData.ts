@@ -38,6 +38,7 @@ const KhyruleksCryptData: AreaData = {
                 ]
             ]
         },
+        { "name": "Chest", "type": MarkerType.Treasure, "positions": [[394.5, 713.5]] },
         {
             "name": "Gilded Chest Puzzle",
             "type": MarkerType.Object,

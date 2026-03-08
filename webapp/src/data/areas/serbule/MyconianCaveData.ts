@@ -7,6 +7,9 @@ const MyconianCaveData: AreaData = {
     aspectRatio: 541 / 1024,
     imageUrl: (await import("@assets/areas/Map_MyconianCave.png")).default,
     markers: [
+        { "name": "Senzur", type: MarkerType.Boss, "positions": [[321, 317.5]] },
+        { "name": "Chest", "type": MarkerType.Treasure, "positions": [[587.5, 256.5], [231.5, 460.5]] },
+        { "name": "Tremor", "type": MarkerType.Boss, "positions": [[719.5, 296.75]] },
         {
             "name": "Greta",
             "type": MarkerType.Boss,
