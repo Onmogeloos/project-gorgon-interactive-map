@@ -1,4 +1,4 @@
-import { Area, GlobalMapData } from "@localtypes/Map";
+import { Area, GlobalMapData, MarkerType } from "@localtypes/Map";
 
 const VidariaData: GlobalMapData[Area.Vidaria] = {
     name: "Vidaria",
@@ -9,7 +9,9 @@ const VidariaData: GlobalMapData[Area.Vidaria] = {
     minLevel: 90,
     maxLevel: 95,
     imageUrl: (await import("@assets/areas/Map_Vidaria.png")).default,
-    markers: [],
+    markers: [
+        {"name":"Teleportation Circle","type":MarkerType.TeleportPlatform,"positions":[[153.6437814365866,358.978931298745]]}
+    ],
 };
 
 export default VidariaData;

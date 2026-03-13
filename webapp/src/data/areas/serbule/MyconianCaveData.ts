@@ -10,6 +10,7 @@ const MyconianCaveData: AreaData = {
         { "name": "Senzur", type: MarkerType.Boss, "positions": [[321, 317.5]] },
         { "name": "Chest", "type": MarkerType.Treasure, "positions": [[587.5, 256.5], [231.5, 460.5]] },
         { "name": "Tremor", "type": MarkerType.Boss, "positions": [[719.5, 296.75]] },
+        { "name": "Adventurer's Pack", "type": MarkerType.Treasure, "positions": [[792.125, 513.25]] },
         {
             "name": "Greta",
             "type": MarkerType.Boss,

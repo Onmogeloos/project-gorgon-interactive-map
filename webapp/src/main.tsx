@@ -97,6 +97,7 @@ function App() {
 }
 
 function Page({ area, mapData, globalData, globalMapData }: { mapData: AreaData, area: Area, globalData: GlobalData, globalMapData: GlobalMapData }) {
+    const [toastOpen, setToastOpen] = useState(mapData.markers.length < 3);
     return <>
         <MapContext.Provider value={{
             currentMapData: mapData,
@@ -121,10 +122,15 @@ function Page({ area, mapData, globalData, globalMapData }: { mapData: AreaData,
             </MapContainer >
             <FloatingButtons />
             <Snackbar
-                open={mapData.markers.length === 0}
+                open={toastOpen}
+                onClose={() => setToastOpen(false)}
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 autoHideDuration={5000}
-                message="This map has no data yet. Please help by proposing new markers."
+                message={
+                    mapData.markers.length === 0
+                    ? "This map has no data yet. Please help by proposing new markers."
+                    : "This map has very few markers. Please help by proposing new markers."
+                }
                 slotProps={{
                     clickAwayListener: {
                         onClickAway: (event) => {
