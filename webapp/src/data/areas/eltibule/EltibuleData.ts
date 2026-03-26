@@ -10,6 +10,10 @@ const data: AreaData = {
     minLevel: 20,
     maxLevel: 50,
     markers: [
+        { "name": "Mythander", "type": MarkerType.NPC, "positions": [[935.25, 459.125]] },
+        { "name": "Hogan", "type": MarkerType.NPC, "positions": [[933.125, 481]] },
+        { "name": "Thimble Pete", "type": MarkerType.NPC, "positions": [[925.875, 480]] },
+        { "name": "Percy Evans", "type": MarkerType.NPC, "positions": [[859.625, 883.125]] },
         { "name": "Yetta", "type": MarkerType.NPC, "positions": [[574.25, 646.5]] },
         { "name": "Braigon", "type": MarkerType.NPC, "positions": [[573.75, 638]] },
         { "name": "George Madler", "type": MarkerType.NPC, "positions": [[574, 633.5]] },

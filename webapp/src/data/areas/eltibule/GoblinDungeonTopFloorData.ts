@@ -8,6 +8,7 @@ const GoblinDungeonTopFloorData: AreaData = {
     imageUrl: (await import("@assets/areas/Map_GoblinDungeon_TopFloor.png")).default,
     markers: [
         { "name": "Dwarven Chest", "type": MarkerType.Storage, "positions": [[154, 844]] },
+        { "name": "Secret Chest", "type": MarkerType.Treasure, "positions": [[592, 742]] }
     ],
     group: Area.Eltibule,
 };
